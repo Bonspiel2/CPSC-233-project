@@ -9,6 +9,7 @@ public class Enemy {
 	private static int counter;
 	private boolean alive;
 	private boolean right;
+	private String symbol = "V";
 	
 	Enemy(int cols) {
 		this.x = new Random().nextInt(cols);
@@ -17,6 +18,12 @@ public class Enemy {
 		this.alive = true;
 		counter++;
 	}
+	
+	
+	
+	
+	
+	
 	
 	public void move(String[][] board) {
 		int width = board[0].length;
@@ -36,6 +43,10 @@ public class Enemy {
 		return x;
 	}
 
+	public boolean isAlive() {
+		return alive;
+	}
+	
 	public void setX(int x) {
 		this.x = x;
 	}
@@ -49,7 +60,7 @@ public class Enemy {
 	}
 
 	public String draw() {
-		return "V";
+		return symbol;
 	}
 	
 	
