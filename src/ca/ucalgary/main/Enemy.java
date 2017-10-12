@@ -1,6 +1,56 @@
 package ca.ucalgary.main;
 
+import java.util.Random;
+
 public class Enemy {
-	int x = 5;
-	int y = 10;
+	
+	private int x;
+	private int y;
+	private static int counter;
+	private boolean alive;
+	private boolean right;
+	
+	Enemy(int cols) {
+		this.x = new Random().nextInt(cols);
+		this.y = counter;
+		this.right = new Random().nextBoolean();
+		this.alive = true;
+		counter++;
+	}
+	
+	public void move(String[][] board) {
+		int width = board[0].length;
+		if(x == 0 || x == width) {
+			right = !right;
+		}
+		
+		if(right) {
+			x++;
+		}
+		else if(!right) {
+			x--;
+		}
+	}
+	
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public String draw() {
+		return "V";
+	}
+	
+	
 }
