@@ -1,6 +1,7 @@
 package ca.ucalgary.main;
 
 public class Player {
+
 		private int x;
 		private int y;
 		
