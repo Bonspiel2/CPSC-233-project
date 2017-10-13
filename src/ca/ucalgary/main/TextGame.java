@@ -18,7 +18,7 @@ public class TextGame {
 		projectiles = new ArrayList<Projectile>();
 		collectables = new ArrayList<Collectable>();
 		
-		board = new String[15][7];
+		board = new String[ROWS][COLUMNS];
 	}
 	
 	public void run() {
