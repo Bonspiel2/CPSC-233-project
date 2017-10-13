@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class TextGame {
 	
-	public static final int ROWS = 15;
-	public static final int COLUMNS = 7;
+	public static final int ROWS = 8;
+	public static final int COLUMNS = 5;
 	public static final int NUMSTARTENEMIES = 6;
 	
 	private ArrayList<Enemy> enemies;
@@ -27,7 +27,18 @@ public class TextGame {
 	
 	//Cole
 	public void run() {
+		//while(running) {
+			//move(getInput) -> make a class for handling input (use to uppercase so that it is "A" and "D"
+			//checkCollisions etc maybe with its own class?
+			//(generate proj and enemy at top of screen)
+			//check for dead things and remove from lists
+			//draw
+			//print
 		
+	}
+	
+	//Quinn + Cole?
+	public void checkCollisions() {
 		
 	}
 	
@@ -39,27 +50,35 @@ public class TextGame {
 	
 	//Lily
 	public void print() {
+
+	}
+	
+	//Lily
+	public String getInput{
 		
 	}
 	
 	//Matt
-	public void move(String moveCommand) {
+	public void move(String s) {
+		
 		for(int i = 0; i < enemies.size(); i++) {
 			Enemy enemy = enemies.get(i);
 			enemy.move();	
 		}
-		
 		for(int i = 0; i < projectiles.size(); i++) {
 			Projectile projectile = projectiles.get(i);
-			projectile.move();
+			projectile.move(); 
 		}
+		//@Lily fix your move^^
 		
 		for(int i = 0; i < collectables.size(); i++) {
 			Collectable collectable = collectables.get(i);
 			collectable.move();
 		}
+		//@Quinn fix your move^^
 		
-		player.move(board, moveCommand);
+		player.move(s);
+		//@Cole fix your move^^ (just take string)
 	}
 	
 	//Matt
@@ -75,6 +94,7 @@ public class TextGame {
 			enemies.add(enemy);
 			board[enemy.getY()][enemy.getX()] = enemy.draw();
 		}
+		board[player.getY()][player.getX()] = player.draw();
 		
 		return board;
 	}
