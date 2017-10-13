@@ -13,11 +13,17 @@ public class Enemy {
 	
 	private String symbol = "V";
 	
-	Enemy(int cols) {
-		this.x = new Random().nextInt(cols);
+	Enemy() {
+		this.x = new Random().nextInt(TextGame.COLUMNS - 1);
 		this.y = 0;
 		this.alive = true;
 		
+	}
+	
+	Enemy(int y) {
+		this.x = new Random().nextInt(TextGame.COLUMNS - 1);
+		this.y = y;
+		this.alive = true;
 	}
 	
 	//moves the enemy down one row and randomly in the horizontal(-1, 0 or +1)
