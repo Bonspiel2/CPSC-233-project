@@ -6,38 +6,68 @@ public class Enemy {
 	
 	private int x;
 	private int y;
+	
 	private static int counter;
+	
 	private boolean alive;
-	private boolean right;
+	
 	private String symbol = "V";
 	
 	Enemy(int cols) {
 		this.x = new Random().nextInt(cols);
-		this.y = counter;
-		this.right = new Random().nextBoolean();
+		this.y = 0;
 		this.alive = true;
-		counter++;
+		
 	}
 	
-	
-	
-	
-	
-	
-	
-	public void move(String[][] board) {
-		int width = board[0].length;
-		if(x == 0 || x == width) {
-			right = !right;
+	//moves the enemy down one row and randomly in the horizontal(-1, 0 or +1)
+	public boolean move() {
+		
+		y = y++;
+		if(y == TextGame.ROWS - 1) {
+			alive = false;
 		}
 		
-		if(right) {
-			x++;
+		else if(x == TextGame.COLUMNS - 1) {
+			int move = new Random().nextInt(3) - 1;
+			if(move == 0 || move == -1) {
+				x = x + move;
+			} else {
+				x = 0;
+			}
 		}
-		else if(!right) {
-			x--;
+		
+		else if(x == 0) {
+			int move = new Random().nextInt(3) - 1;
+			if(move == 0 || move == 1) {
+				x = x + move;
+			} else {
+				x = TextGame.COLUMNS - 1;
+			}
 		}
+		
+		else{
+			int move = new Random().nextInt(3) - 1;
+			x = x + move;
+		}
+		return alive;
 	}
+	
+	
+	//Checks for collision with players ship
+	public boolean collidedWith(Player player) {
+		boolean collided = false;
+		if(x > player.getX()) {
+			collided = false;
+		}
+		else if(x == player.getX() && y == player.getY()) {
+			collided = true;
+		}
+		return collided;
+	} 
+	
+	
+	
 	
 	public int getX() {
 		return x;
