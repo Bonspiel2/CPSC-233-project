@@ -18,25 +18,34 @@ public class TextGame {
 		projectiles = new ArrayList<Projectile>();
 		collectables = new ArrayList<Collectable>();
 		
-		board = new String[ROWS][COLUMNS];
+		board = initBoard();
 	}
 	
+	//Cole
 	public void run() {
 		
 		
 	}
 	
+	//Quinn
 	public String[][] draw(){
 		return null;
 		
 	}
 	
+	//Lily
 	public void print() {
 		
 	}
 	
+	//Matt
 	public void move() {
 		
+	}
+	
+	//Matt
+	public String[][] initBoard(){
+		return null;
 	}
 
 }
