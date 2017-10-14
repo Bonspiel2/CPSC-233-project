@@ -49,8 +49,8 @@ public class Player {
 			return new Projectile(x, y-1);
 		}
 		
-		public String draw() {
-			return ship;
+		public void draw(String[][] board) {
+            board[x][y] = ship;
 		}
 
 		public int getX() {

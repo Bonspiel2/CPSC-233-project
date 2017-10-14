@@ -20,7 +20,8 @@ public class TextGame {
 		projectiles = new ArrayList<Projectile>();
 		collectables = new ArrayList<Collectable>();
 		
-		player = new Player(COLUMNS/2, ROWS - 2, 5);
+        //player = new Player(COLUMNS/2, ROWS - 2, 5); I think rows and columns might be reversed?
+        player = new Player(ROWS - 2, COLUMNS/2, 5);
 		
 		board = initBoard();
 	}
@@ -43,19 +44,40 @@ public class TextGame {
 	}
 	
 	//Quinn
-	public String[][] draw(){
-		return null;
+	public String[][] draw() {
+        
+        player.draw(board);
+
+        for (Projectile projectile : projectiles) {
+            projectile.draw(board);
+        }
+        
+        for (Enemy enemy : enemies) {
+            enemy.draw(board);
+        }
+        
+        for (Collectable collectable : collectables) {
+            collectables.draw(board);
+        }
+
+        return board;
 		
 	}
 	
 	//Lily
 	public void print() {
-
-	}
+        draw();
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                System.out.print(board[i][j] + " ");
+            }
+            System.out.print("\n");
+        }
+    }
 	
 	//Lily
-	public String getInput{
-		
+	public String getInput() {
+        return null;
 	}
 	
 	//Matt
@@ -75,9 +97,8 @@ public class TextGame {
 			Collectable collectable = collectables.get(i);
 			collectable.move();
 		}
-		//@Quinn fix your move^^
 		
-		player.move(s);
+		player.move(board, s);
 		//@Cole fix your move^^ (just take string)
 	}
 	
@@ -89,12 +110,12 @@ public class TextGame {
 				board[row][col] = " ";
 			}
 		}
+        // we need to erase the board every time but only want the enemies to be created once
+        // maybe separate clearBoard and initGame methods?
 		for(int i = 0; i < NUMSTARTENEMIES; i++) {
 			Enemy enemy = new Enemy(i);
 			enemies.add(enemy);
-			board[enemy.getY()][enemy.getX()] = enemy.draw();
 		}
-		board[player.getY()][player.getX()] = player.draw();
 		
 		return board;
 	}
