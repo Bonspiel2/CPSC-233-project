@@ -4,29 +4,32 @@ public class Projectile {
 	
 	private int x;
 	private int y;
-	private boolean collided;
+    private boolean collided;
 	private boolean edgy;
 	
 	// detects whether projectile at same coordinate as enemy
 	public boolean collidedWith(Enemy enemy) {
-		if(x == enemy.getX() && y == enemy.getY()) {
-			collided = true;
-		} else {
-			collided = false;
-		}
-		return collided;
+        collided = (x == enemy.getX() && y == enemy.getY());
+        return collided;
+
 	}
 	// constructor
 	public Projectile(int newX, int newY){
 		x = newX;
-		y = newY; 
+		y = newY;
+        collided = false;
 		
 	}
 	// moves the projectile up one row and detects whether it has reached
 	// the edge of the board
 	public boolean move() {
-		// detects whether the projectile's current row is the same as the edge of the board
-		if(y == 0) {
+        // projectile stops moving if it has collided with an enemy
+        if (collided) {
+            y = y;
+        }
+        
+        // detects whether the projectile's current row is the same as the edge of the board
+        if (y == 0) {
 			edgy = true;
 		} else {
 			edgy = false;
@@ -38,6 +41,7 @@ public class Projectile {
 	public void draw(String[][] board) {
 		board[x][y] = "|";
 	}
+    
 	public int getX() {
 		return x;
 	}
@@ -50,7 +54,5 @@ public class Projectile {
 	public void setY(int y) {
 		this.y = y;
 	}
-	
-	
 
 }

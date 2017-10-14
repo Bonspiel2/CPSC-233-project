@@ -68,4 +68,12 @@ public class Player {
 		public void setY(int y) {
 			this.y = y;
 		}
+    
+        public void setHealth(int newHealth) {
+            this.health = newHealth;
+        }
+    
+        public int getHealth() {
+            return health;
+        }
 }
