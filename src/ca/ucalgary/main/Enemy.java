@@ -95,8 +95,8 @@ public class Enemy {
 		this.y = y;
 	}
 
-	public String draw() {
-		return symbol;
+	public void draw(String[][] board) {
+		board[x][y] = symbol;
 	}
 	
 	

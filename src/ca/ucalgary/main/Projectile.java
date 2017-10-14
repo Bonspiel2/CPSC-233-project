@@ -24,7 +24,7 @@ public class Projectile {
 	}
 	// moves the projectile up one row and detects whether it has reached
 	// the edge of the board
-	public boolean move(String[][] board) {
+	public boolean move() {
 		// detects whether the projectile's current row is the same as the edge of the board
 		if(y == 0) {
 			edgy = true;
@@ -35,8 +35,8 @@ public class Projectile {
 		return edgy;
 	}
 	// draws the projectile
-	public String draw() {
-		return "|";
+	public void draw(String[][] board) {
+		board[x][y] = "|";
 	}
 	public int getX() {
 		return x;

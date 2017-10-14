@@ -31,7 +31,7 @@ public class Collectable {
 		return onScreen;
 	}
 
-	public String draw() {
-		return "$";
+	public void draw(String[][] board) {
+		board[x][y] = "$";
 	}
 }
