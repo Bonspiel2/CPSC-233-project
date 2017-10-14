@@ -1,12 +1,13 @@
 package ca.ucalgary.main;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class TextGame {
 	
 	public static final int ROWS = 8;
 	public static final int COLUMNS = 5;
-	public static final int NUMSTARTENEMIES = 6;
+	public static final int NUMSTARTENEMIES = 5;
 	
 	private ArrayList<Enemy> enemies;
 	private ArrayList<Projectile> projectiles;
@@ -38,26 +39,54 @@ public class TextGame {
 		
 	}
 	
-	//Quinn + Cole?
+	//Quinn
 	public void checkCollisions() {
-		
-	}
+        // check collisions between enemies and projectiles
+        for (Iterator<Enemy> enemyItr = enemies.iterator(); enemyItr.hasNext();) {
+            Enemy enemy = enemyItr.next();
+            for (Iterator<Projectile> projecItr = projectiles.iterator(); projecItr.hasNext();) {
+                Projectile projec = projecItr.next();
+                // if enemy and projectile collide, remove each from respective arraylists
+                if (projec.collidedWith(enemy)) {
+                    projecItr.remove();
+                    enemyItr.remove();
+                }
+            }
+        }
+        // check collisions between collectables and player
+        for (Iterator<Collectable> collecItr = collectables.iterator(); collecItr.hasNext();) {
+            Collectable collec = collecItr.next();
+            if (player.collidedWith(collec)) {
+                collecItr.remove();
+            }
+        }
+        
+        // check collisions between enemies and player
+        for (Iterator<Enemy> enemyItr = enemies.iterator(); enemyItr.hasNext();) {
+            Enemy enemy = enemyItr.next();
+            // decrease player health by one if collision occurs
+            if (enemy.collidedWith(player)) {
+                int health = player.getHealth() - 1;
+                player.setHealth(health);
+            }
+        }
+    }
 	
 	//Quinn
 	public String[][] draw() {
         
         player.draw(board);
+        
+        for (Enemy enemy : enemies) {
+            enemy.draw(board);
+        }
 
         for (Projectile projectile : projectiles) {
             projectile.draw(board);
         }
         
-        for (Enemy enemy : enemies) {
-            enemy.draw(board);
-        }
-        
         for (Collectable collectable : collectables) {
-            collectables.draw(board);
+            collectable.draw(board);
         }
 
         return board;
@@ -95,7 +124,7 @@ public class TextGame {
 		
 		for(int i = 0; i < collectables.size(); i++) {
 			Collectable collectable = collectables.get(i);
-			collectable.move();
+			collectable.move(board);
 		}
 		
 		player.move(board, s);
