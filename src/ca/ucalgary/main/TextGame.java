@@ -6,9 +6,8 @@ import java.util.Scanner;
 
 public class TextGame {
 	
-	public static final int ROWS = 8;
-	public static final int COLUMNS = 5;
-	public static final int NUMSTARTENEMIES = 5;
+	public static final int ROWS = 10;
+	public static final int COLUMNS = 7;
 	
 	private ArrayList<Enemy> enemies;
 	private ArrayList<Projectile> projectiles;
@@ -31,6 +30,7 @@ public class TextGame {
 	//Cole
 	public void run() {
 		running = true;
+		
 		
 		while (running) {
 			String input = getInput();
@@ -102,7 +102,7 @@ public class TextGame {
 	
 	//Lily
 	public void print() {
-        draw();
+        draw();		//why does this and run call draw?
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 System.out.print(board[i][j] + " ");
@@ -129,7 +129,6 @@ public class TextGame {
 			Projectile projectile = projectiles.get(i);
 			projectile.move(); 
 		}
-		//@Lily fix your move^^
 		
 		for(int i = 0; i < collectables.size(); i++) {
 			Collectable collectable = collectables.get(i);
@@ -137,21 +136,21 @@ public class TextGame {
 		}
 		
 		player.move(s);
-		//@Cole fix your move^^ (just take string)
 	}
 	
     public void clearBoard() {
         board = new String[ROWS][COLUMNS];
         for(int row = 0; row < ROWS; row++) {
             for(int col = 0; col < COLUMNS; col++) {
-                board[row][col] = " ";
+                board[row][col] = "-";
             }
         }
     }
+    
 	//Matt
 	public String[][] initBoard(){
         clearBoard();
-		for(int i = 0; i < NUMSTARTENEMIES; i++) {
+		for(int i = 0; i < ROWS-6; i++) {
 			Enemy enemy = new Enemy(i);
 			enemies.add(enemy);
 		}
