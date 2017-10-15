@@ -14,4 +14,7 @@ Group 3 Work Log
 	Worked on draw() and print() for TextGame class. Updated draw methods in each individual class to accept board as parameter. (~ 1.5 hours)
 
 14/10/17 - Quinn
-	Worked on checkCollisions() for TextGame class. Updated projectile collidedWith method.	(~ 1 hour)	
+	Worked on checkCollisions() for TextGame class. Updated projectile collidedWith method.	(~ 1 hour)
+
+15/10/17 - Quinn
+	Fixed bug with drawing projectiles. Added clearBoard(). Fixed a couple other minor bugs related to player movement. Added prompt for user to start the game. (~ 0.5 hours)	
