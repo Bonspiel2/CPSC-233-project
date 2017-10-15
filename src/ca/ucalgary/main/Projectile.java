@@ -9,7 +9,7 @@ public class Projectile {
 	
 	// detects whether projectile at same coordinate as enemy
 	public boolean collidedWith(Enemy enemy) {
-        collided = (x == enemy.getX() && (y == enemy.getY() || y == enemy.getY() - 1));
+        collided = (y == enemy.getY() && (x == enemy.getX() || x == enemy.getX() + 1));
         return collided;
 
 	}
@@ -37,9 +37,10 @@ public class Projectile {
 		}
 		return edgy;
 	}
+    
 	// draws the projectile
 	public void draw(String[][] board) {
-		board[x][y] = "|";
+		board[y][x] = "|";
 	}
     
 	public int getX() {

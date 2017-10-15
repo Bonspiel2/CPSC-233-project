@@ -96,7 +96,6 @@ public class Enemy {
 	}
 
 	public void draw(String[][] board) {
-        System.out.println(x + " " + y);
 		board[x][y] = symbol;
 	}
 	

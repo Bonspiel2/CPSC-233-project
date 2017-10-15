@@ -24,9 +24,7 @@ public class TextGame {
 		projectiles = new ArrayList<Projectile>();
 		collectables = new ArrayList<Collectable>();
 		
-        player = new Player(COLUMNS/2, ROWS - 2, 5); //I think rows and columns might be reversed?
-        //player = new Player(ROWS - 2, COLUMNS/2, 5);
-		
+        player = new Player(COLUMNS/2, ROWS - 2, 5);		
 		board = initBoard();
 	}
 	
@@ -82,6 +80,8 @@ public class TextGame {
 	//Quinn
 	public String[][] draw() {
         
+        clearBoard();
+        
         player.draw(board);
         
         for (Enemy enemy : enemies) {
@@ -114,7 +114,7 @@ public class TextGame {
 	//Lily
 	public String getInput() {
 		Scanner in = new Scanner(System.in);
-		String com = in.nextLine();
+		String com = in.nextLine().toUpperCase();
         return com;
 	}
 	
@@ -140,16 +140,17 @@ public class TextGame {
 		//@Cole fix your move^^ (just take string)
 	}
 	
+    public void clearBoard() {
+        board = new String[ROWS][COLUMNS];
+        for(int row = 0; row < ROWS; row++) {
+            for(int col = 0; col < COLUMNS; col++) {
+                board[row][col] = " ";
+            }
+        }
+    }
 	//Matt
 	public String[][] initBoard(){
-		String[][] board = new String[ROWS][COLUMNS];
-		for(int row = 0; row < ROWS; row++) {
-			for(int col = 0; col < COLUMNS; col++) {
-				board[row][col] = " ";
-			}
-		}
-        // we need to erase the board every time but only want the enemies to be created once
-        // maybe separate clearBoard and initGame methods?
+        clearBoard();
 		for(int i = 0; i < NUMSTARTENEMIES; i++) {
 			Enemy enemy = new Enemy(i);
 			enemies.add(enemy);

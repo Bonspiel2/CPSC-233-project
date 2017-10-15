@@ -26,7 +26,7 @@ public class Player {
 					 x--;
 				 }
 			 } else if (s.equals("D")) {
-				 if (x + 1 >= TextGame.COLUMNS) {
+				 if ((x + 1) < TextGame.COLUMNS) {
 					 x++;
 				 }
 			 }
