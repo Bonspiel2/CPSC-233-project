@@ -20,13 +20,13 @@ public class Player {
 			this.ship = "A";
 		}
 		
-		public void move(String[][] board, String s) {
+		public void move(String s) {
 			 if (s.equals("A")) {
 				 if (x - 1 >= 0) {
 					 x--;
 				 }
 			 } else if (s.equals("D")) {
-				 if (x + 1 >= board[0].length) {
+				 if (x + 1 >= TextGame.COLUMNS) {
 					 x++;
 				 }
 			 }
@@ -50,7 +50,7 @@ public class Player {
 		}
 		
 		public void draw(String[][] board) {
-            board[x][y] = ship;
+            board[y][x] = ship;
 		}
 
 		public int getX() {

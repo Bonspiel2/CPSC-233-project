@@ -2,6 +2,7 @@ package ca.ucalgary.main;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class TextGame {
 	
@@ -16,26 +17,32 @@ public class TextGame {
 	
 	private String[][] board;
 	
+	private boolean running;
+	
 	public TextGame() {
 		enemies = new ArrayList<Enemy>();
 		projectiles = new ArrayList<Projectile>();
 		collectables = new ArrayList<Collectable>();
 		
-        //player = new Player(COLUMNS/2, ROWS - 2, 5); I think rows and columns might be reversed?
-        player = new Player(ROWS - 2, COLUMNS/2, 5);
+        player = new Player(COLUMNS/2, ROWS - 2, 5); //I think rows and columns might be reversed?
+        //player = new Player(ROWS - 2, COLUMNS/2, 5);
 		
 		board = initBoard();
 	}
 	
 	//Cole
 	public void run() {
-		//while(running) {
-			//move(getInput) -> make a class for handling input (use to uppercase so that it is "A" and "D"
-			//checkCollisions etc maybe with its own class?
-			//(generate proj and enemy at top of screen)
-			//check for dead things and remove from lists
-			//draw
-			//print
+		running = true;
+		
+		while (running) {
+			String input = getInput();
+			move(input);
+			checkCollisions();
+			enemies.add(new Enemy(0));
+			projectiles.add(new Projectile(player.getX(), player.getY() - 1));
+			draw();
+			print();
+		}
 		
 	}
 	
@@ -106,7 +113,9 @@ public class TextGame {
 	
 	//Lily
 	public String getInput() {
-        return null;
+		Scanner in = new Scanner(System.in);
+		String com = in.nextLine();
+        return com;
 	}
 	
 	//Matt
@@ -127,7 +136,7 @@ public class TextGame {
 			collectable.move(board);
 		}
 		
-		player.move(board, s);
+		player.move(s);
 		//@Cole fix your move^^ (just take string)
 	}
 	
