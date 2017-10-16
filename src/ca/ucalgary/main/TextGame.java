@@ -132,7 +132,9 @@ public class TextGame {
 		}
 		for(int i = 0; i < projectiles.size(); i++) {
 			Projectile projectile = projectiles.get(i);
-			projectile.move(); 
+			if(projectile.move()) {
+				projectiles.remove(i);
+			}; 
 		}
 		
 		for(int i = 0; i < collectables.size(); i++) {

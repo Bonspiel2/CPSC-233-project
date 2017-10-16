@@ -2,6 +2,13 @@ package ca.ucalgary.main;
 
 import java.util.Random;
 
+
+
+/**
+ * 
+ * @author Matt
+ *
+ */
 public class Enemy {
 
 	private int x;
@@ -13,20 +20,28 @@ public class Enemy {
 
 	private String symbol = "V";
 
+
 	Enemy() {
 		this.x = new Random().nextInt(TextGame.COLUMNS - 1);
 		this.y = 0;
 		this.alive = true;
 
 	}
-
+	
+	/**
+	 * 
+	 * @param y y coordinate of the enemy 
+	 */
 	Enemy(int y) {
 		this.x = new Random().nextInt(TextGame.COLUMNS - 1);
 		this.y = y;
 		this.alive = true;
 	}
 
-	// moves enemy down one row
+	/**
+	 * 
+	 * @return	the enemy's alive value 
+	 */
 	public boolean move() {
 
 		y++;
@@ -37,8 +52,12 @@ public class Enemy {
 
 		return alive;
 	}
-
-	// Checks for collision with players ship
+	
+	/**
+	 * 
+	 * @param player	the player object which collision is checked for
+	 * @return		true if it has collided, false if it has not
+	 */
 	public boolean collidedWith(Player player) {
 		boolean collided = false;
 
@@ -50,6 +69,9 @@ public class Enemy {
 		return collided;
 	}
 	
+	/**	Draws the enemy on the board at its current x and y coordinates
+	 * @param board	The board on which the enemy is drawn.
+	 */
 	public void draw(String[][] board) {
 
 		if (this.alive) {
