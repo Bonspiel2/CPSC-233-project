@@ -152,10 +152,10 @@ public class TextGame {
 	/**
 	 * Reads user input with every turn to determine whether 
 	 * the player moves the the right or to to the left.
-	 * @return String thaqt indicates the direction the player 
+	 * @return String that indicates the direction the player 
 	 * desires to move.
 	 * 
-	 * @author Lily and Quinn
+	 * @author Lily
 	 */
 	public String getInput() {
 		Scanner in = new Scanner(System.in);
