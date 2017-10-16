@@ -64,8 +64,6 @@ public class TextGame {
         for (Iterator<Collectable> collecItr = collectables.iterator(); collecItr.hasNext();) {
             Collectable collec = collecItr.next();
             if (player.collidedWith(collec)) {
-            	int score = player.getScore() + 1;
-            	player.setScore(score);
                 collecItr.remove();
             }
         }
