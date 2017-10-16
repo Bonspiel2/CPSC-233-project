@@ -140,7 +140,13 @@ public class TextGame {
         return com;
 	}
 	
-	//Matt
+	/**
+	 * Moves each object to its next location on the screen
+	 * @param s The string command given as input for the direction 
+	 * for the player to move
+	 * @author Matt
+	 */
+	
 	public void move(String s) {
 		
 		for(int i = 0; i < enemies.size(); i++) {
@@ -173,7 +179,12 @@ public class TextGame {
         }
     }
     
-	//Matt
+	/**
+	 * Initializes the board blank and then with enemies up to the 6th
+	 * row from the bottom
+	 * @return board The text board after being initialized
+	 * @author Matt
+	 */
 	public String[][] initBoard(){
         clearBoard();
 		for(int i = 0; i < ROWS-6; i++) {
