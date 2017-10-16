@@ -32,4 +32,7 @@ Group 3 Work Log
 	Fix bug within enemy draw method, game over state added, collision bug fixed (~ 1.5 hours)
 
 15/10/17 - Cole
-	Added javadocs for player class (~ 0.5 hours)	
+	Added javadocs for player class (~ 0.5 hours)
+
+15/10/17 - Cole
+	Made class diagram (~ 1 hours)
