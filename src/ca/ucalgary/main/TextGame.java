@@ -54,11 +54,11 @@ public class TextGame {
                 // if enemy and projectile collide, remove each from respective arraylists
                 if (projec.collidedWith(enemy)) {
                 	collectables.add(new Collectable(enemy.getX(),enemy.getY()));
-                	//also should create a collectible in the enemy's place
                     projecItr.remove();
                     enemyItr.remove();
                 }
             }
+            //should do the player/enemy collision check here for efficency
         }
         // check collisions between collectables and player
         for (Iterator<Collectable> collecItr = collectables.iterator(); collecItr.hasNext();) {
