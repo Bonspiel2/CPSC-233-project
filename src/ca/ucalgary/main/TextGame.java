@@ -83,7 +83,6 @@ public class TextGame {
                     break;
                 }
             }
-            //should do the player/enemy collision check here for efficency
         }
         // check collisions between collectables and player
         for (Iterator<Collectable> collecItr = collectables.iterator(); collecItr.hasNext();) {

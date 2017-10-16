@@ -28,6 +28,7 @@ public class Projectile {
     /**
      * Detects whether projectile occupies the same coordinates as a given enemy.
      * @param enemy the enemy whose coordinates are compared to the projectile's.
+     * @return collided returns true if the enemy and projectile have the same coordinates
      */
 	public boolean collidedWith(Enemy enemy) {
         collided = ((y == enemy.getY() || y == enemy.getY()-1) && x == enemy.getX());
