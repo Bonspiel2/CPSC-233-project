@@ -5,22 +5,27 @@ import java.util.Random;
 
 
 /**
+ * The enemy class allows the game to create and interact with
+ * enemy position
+ * The class moves the enemies down the screen as the game 
+ * progresses and checks for collisions with the player
  * 
  * @author Matt
- *
  */
 public class Enemy {
 
 	private int x;
 	private int y;
 
-	private static int counter;
-
 	private boolean alive;
 
 	private String symbol = "V";
 
-
+	/**
+	 * Default constructor
+	 * Creates an enemy at the top of the screen in a
+	 * (psuedo)random column, and sets it to alive
+	 */
 	Enemy() {
 		this.x = new Random().nextInt(TextGame.COLUMNS - 1);
 		this.y = 0;
@@ -29,8 +34,9 @@ public class Enemy {
 	}
 	
 	/**
-	 * 
-	 * @param y y coordinate of the enemy 
+	 * Board initializer constructor, used to initialize the
+	 * enemies on the board on different rows
+	 * @param y y Coordinate of the enemy 
 	 */
 	Enemy(int y) {
 		this.x = new Random().nextInt(TextGame.COLUMNS - 1);
@@ -39,8 +45,10 @@ public class Enemy {
 	}
 
 	/**
-	 * 
-	 * @return	the enemy's alive value 
+	 * Moves the enemy down one row towards the players ship and 
+	 * if it has reached the edge of the screen returns false
+	 * @return	The enemy's alive value to know whether to draw
+	 * it or not
 	 */
 	public boolean move() {
 
@@ -54,9 +62,11 @@ public class Enemy {
 	}
 	
 	/**
-	 * 
-	 * @param player	the player object which collision is checked for
-	 * @return		true if it has collided, false if it has not
+	 * Checks whether the player and enemy have collided i.e. they have 
+	 * the same x and y values
+	 * @param player The player object which collision is checked 
+	 * for with
+	 * @return True if it has collided, false if it has not
 	 */
 	public boolean collidedWith(Player player) {
 		boolean collided = false;
@@ -70,7 +80,7 @@ public class Enemy {
 	}
 	
 	/**	Draws the enemy on the board at its current x and y coordinates
-	 * @param board	The board on which the enemy is drawn.
+	 * @param board	The text board on which the enemy is drawn.
 	 */
 	public void draw(String[][] board) {
 
