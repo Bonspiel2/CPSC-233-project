@@ -30,6 +30,7 @@ Group 3 Work Log
 	
 15/10/17 - Matt
 	Fix bug within enemy draw method, game over state added, collision bug fixed (~ 1.5 hours)
+	Added javadocs for enemy class and initBoard and move methods in TextGame (~0.5 hours)
 
 15/10/17 - Cole
 	Added javadocs for player class (~ 0.5 hours)
