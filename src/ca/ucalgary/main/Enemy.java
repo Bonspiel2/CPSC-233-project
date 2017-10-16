@@ -89,22 +89,32 @@ public class Enemy {
 		}
 	}
 
+	/** Gets the current column/ x value
+	 * @return x Current column
+	 */
 	public int getX() {
 		return x;
 	}
-
-	public boolean isAlive() {
-		return alive;
-	}
-
+	
+	/** Sets the enemy's current column/ x value
+	 * @param x New x value
+	 */
 	public void setX(int x) {
 		this.x = x;
 	}
 
+	/**
+	 * Gets enemy's y value/ row
+	 * @return y The enemy's y value/ row
+	 */
 	public int getY() {
 		return y;
 	}
 
+	/**
+	 * Sets enemy's y value/ row
+	 * @param y New y value
+	 */
 	public void setY(int y) {
 		this.y = y;
 	}
