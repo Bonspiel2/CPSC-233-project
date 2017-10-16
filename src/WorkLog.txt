@@ -3,10 +3,13 @@ Group 3 Work Log
 
 12/10/17 - Quinn
 	Worked on projectile class (~ 2.5 hours)
+
 12/10/17 - Matt
 	Worked on enemy class (~ 2.5 hours)
+
 12/10/17 - Cole
 	Worked on player class (~ 2.5 hours)
+
 12/10/17 - Lily
 	Worked on collectables class (~ 2.5 hours)
 	
@@ -19,8 +22,14 @@ Group 3 Work Log
 14/10/17 - Quinn
 	Worked on checkCollisions() for TextGame class. Updated projectile collidedWith method.	(~ 1 hour)
 
+14/10/17 - Cole
+	Worked on run() for TextGame class. Fixed row/column swap for player class (~ 1 hour)
+
 15/10/17 - Quinn
 	Fixed bug with drawing projectiles. Added clearBoard(). Fixed a couple other minor bugs related to player movement. Added prompt for user to start the game. (~ 0.5 hours)	
 	
 15/10/17 - Matt
-	Fix bug within enemy draw method, game over state added, collision bug fixed (~ 1.5 hours)	
+	Fix bug within enemy draw method, game over state added, collision bug fixed (~ 1.5 hours)
+
+15/10/17 - Cole
+	Added javadocs for player class (~ 0.5 hours)	
