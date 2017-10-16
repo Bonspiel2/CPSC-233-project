@@ -48,7 +48,15 @@ public class TextGame {
 
 	}
 	
-	//Quinn
+	/**
+     * Checks if collisions have occured between enemies and projectiles, 
+     * between collectables and the player, or between enemies and the player.
+     * If a collision occurs, the given object(s) is/are removed from their 
+     * array list (and therefore the board).
+     *
+     * @author Quinn
+     *
+     */
 	public void checkCollisions() {
         // check collisions between enemies and projectiles
         for (Iterator<Enemy> enemyItr = enemies.iterator(); enemyItr.hasNext();) {
@@ -84,7 +92,12 @@ public class TextGame {
         }
     }
 	
-	//Quinn
+    /**
+     * Draws the enemies, projectiles, collectables, and player on the gameboard.
+     *
+     * @author Quinn
+     * @return board the fully drawn gameboard.
+     */
 	public String[][] draw() {
         
         clearBoard();
