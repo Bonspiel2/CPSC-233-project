@@ -9,7 +9,7 @@ public class Projectile {
 	
 	// detects whether projectile at same coordinate as enemy
 	public boolean collidedWith(Enemy enemy) {
-        collided = (y == enemy.getY() && (x == enemy.getX() || x == enemy.getX() + 1));
+        collided = ((y == enemy.getY() || y == enemy.getY()-1) && x == enemy.getX());
         return collided;
 
 	}
