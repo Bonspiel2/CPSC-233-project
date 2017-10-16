@@ -53,6 +53,7 @@ public class TextGame {
                 Projectile projec = projecItr.next();
                 // if enemy and projectile collide, remove each from respective arraylists
                 if (projec.collidedWith(enemy)) {
+                	//also should create a collectible in the enemy's place
                     projecItr.remove();
                     enemyItr.remove();
                 }
@@ -62,6 +63,8 @@ public class TextGame {
         for (Iterator<Collectable> collecItr = collectables.iterator(); collecItr.hasNext();) {
             Collectable collec = collecItr.next();
             if (player.collidedWith(collec)) {
+            	int score = player.getScore() + 1;
+            	player.setScore(score);
                 collecItr.remove();
             }
         }
@@ -102,13 +105,15 @@ public class TextGame {
 	
 	//Lily
 	public void print() {
-        draw();		//why does this and run call draw?
+        //draw();		//why does this and run call draw?
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 System.out.print(board[i][j] + " ");
             }
             System.out.print("\n");
         }
+        System.out.println("Health: " + player.getHealth());
+        System.out.println("Score: " + player.getScore());
     }
 	
 	//Lily

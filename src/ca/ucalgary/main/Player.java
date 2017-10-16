@@ -15,7 +15,7 @@ public class Player {
 			this.y = y;
 			
 			this.health = health;
-			this.score = 0;
+			this.setScore(0);
 			
 			this.ship = "A";
 		}
@@ -38,7 +38,7 @@ public class Player {
 			int cy = c.getY();
 			
 			if (cx == x && cy == y) {
-				score++;
+				setScore(getScore() + 1);
 				collided = true;
 			}
 			
@@ -76,4 +76,12 @@ public class Player {
         public int getHealth() {
             return health;
         }
+
+		public int getScore() {
+			return score;
+		}
+
+		public void setScore(int score) {
+			this.score = score;
+		}
 }
