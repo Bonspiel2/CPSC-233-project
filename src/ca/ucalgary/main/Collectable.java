@@ -4,7 +4,13 @@ public class Collectable {
 
 	private int x;
 	private int y;
-
+	
+	Collectable(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	
 	public int getX() {
 		return x;
 	}
@@ -32,6 +38,6 @@ public class Collectable {
 	}
 
 	public void draw(String[][] board) {
-		board[x][y] = "$";
+		board[y][x] = "$";
 	}
 }

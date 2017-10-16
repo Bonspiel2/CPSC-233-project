@@ -9,6 +9,9 @@ Group 3 Work Log
 	Worked on player class (~ 2.5 hours)
 12/10/17 - Lily
 	Worked on collectables class (~ 2.5 hours)
+	
+13/10/17 - Matt
+	Worked on move() and initBoard() for TextGame class. (~ 1 hour)
 
 13/10/17 - Quinn
 	Worked on draw() and print() for TextGame class. Updated draw methods in each individual class to accept board as parameter. (~ 1.5 hours)

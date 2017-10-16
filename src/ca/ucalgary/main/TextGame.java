@@ -53,6 +53,7 @@ public class TextGame {
                 Projectile projec = projecItr.next();
                 // if enemy and projectile collide, remove each from respective arraylists
                 if (projec.collidedWith(enemy)) {
+                	collectables.add(new Collectable(enemy.getX(),enemy.getY()));
                 	//also should create a collectible in the enemy's place
                     projecItr.remove();
                     enemyItr.remove();
@@ -139,7 +140,9 @@ public class TextGame {
 		
 		for(int i = 0; i < collectables.size(); i++) {
 			Collectable collectable = collectables.get(i);
-			collectable.move(board);
+			if(!collectable.move(board)) {;
+			collectables.remove(i);
+			}
 		}
 		
 		player.move(s);
