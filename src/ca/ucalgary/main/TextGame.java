@@ -132,7 +132,11 @@ public class TextGame {
 		
 	}
 	
-	//Lily
+	/**
+	 * Prints the game board, the player's health 
+	 * and the players score for each turn.
+	 * @author Lily and Quinn
+	 */
 	public void print() {
         //draw();		//why does this and run call draw?
         for (int i = 0; i < board.length; i++) {
@@ -145,7 +149,14 @@ public class TextGame {
         System.out.println("Score: " + player.getScore());
     }
 	
-	//Lily
+	/**
+	 * Reads user input with every turn to determine whether 
+	 * the player moves the the right or to to the left.
+	 * @return String thaqt indicates the direction the player 
+	 * desires to move.
+	 * 
+	 * @author Lily and Quinn
+	 */
 	public String getInput() {
 		Scanner in = new Scanner(System.in);
 		String com = in.nextLine().toUpperCase();
