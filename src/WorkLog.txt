@@ -23,4 +23,4 @@ Group 3 Work Log
 	Fixed bug with drawing projectiles. Added clearBoard(). Fixed a couple other minor bugs related to player movement. Added prompt for user to start the game. (~ 0.5 hours)	
 	
 15/10/17 - Matt
-	Fix bug within enemy draw method (~ 0.5 hours)	
+	Fix bug within enemy draw method, game over state added, collision bug fixed (~ 1.5 hours)	

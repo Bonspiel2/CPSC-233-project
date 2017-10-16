@@ -40,8 +40,12 @@ public class TextGame {
 			projectiles.add(new Projectile(player.getX(), player.getY() - 1));
 			draw();
 			print();
+			if(player.getHealth() == 0) {
+				running = false;
+			}
 		}
-		
+		System.out.println("GAME OVER!");
+
 	}
 	
 	//Quinn
@@ -56,6 +60,7 @@ public class TextGame {
                 	collectables.add(new Collectable(enemy.getX(),enemy.getY()));
                     projecItr.remove();
                     enemyItr.remove();
+                    break;
                 }
             }
             //should do the player/enemy collision check here for efficency
