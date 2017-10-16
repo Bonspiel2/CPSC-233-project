@@ -13,14 +13,15 @@ package ca.ucalgary.main;
 public class Projectile {
 	
     /**
-     * The x coordinate of the projectile (rows)
+     * The x coordinate of the projectile (columns)
      */
 	private int x;
     
     /**
-     * The y coordinate of the projectile (columns)
+     * The y coordinate of the projectile (rows)
      */
 	private int y;
+    
     private boolean collided;
 	private boolean edgy;
 	
@@ -33,8 +34,13 @@ public class Projectile {
         return collided;
 
 	}
-	// constructor
-	public Projectile(int newX, int newY){
+    
+    /**
+     * Main constructor
+     * @param newX new projectile's column value
+     * @param newY new projectile's row value
+     */
+    public Projectile(int newX, int newY){
 		x = newX;
 		y = newY;
         collided = false;
