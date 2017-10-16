@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
+
+/**
+ * The TextGame program implements a space invaders game which can be
+ * played on the console.
+ * 
+ * @author Group 3
+ */
 public class TextGame {
 	
 	public static final int ROWS = 10;
@@ -27,7 +34,12 @@ public class TextGame {
 		board = initBoard();
 	}
 	
-	//Cole
+	/**
+	 * Updates the game every iteration as well as creates new objects when needed
+	 * If the players health reaches zero, this method will quit the game
+	 * 
+	 * @author Cole
+	 */
 	public void run() {
 		running = true;
 		
