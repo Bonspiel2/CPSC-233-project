@@ -19,6 +19,9 @@ Group 3 Work Log
 13/10/17 - Quinn
 	Worked on draw() and print() for TextGame class. Updated draw methods in each individual class to accept board as parameter. (~ 1.5 hours)
 
+14/10/17 - Lily
+	Worked on print() method and getInput() method in TextGame class. (~1 hour)
+
 14/10/17 - Quinn
 	Worked on checkCollisions() for TextGame class. Updated projectile collidedWith method.	(~ 1 hour)
 
