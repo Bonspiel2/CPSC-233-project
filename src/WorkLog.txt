@@ -46,4 +46,7 @@ Group 3 Work Log
 	
 16/10/17 - Lily
 	Added javadocs for print and  getInput methods (~.5 hours)
-	
+	 
+21/10/17 - Quinn
+	Added Board, GooeyInterface, and GooeyLogic classes. Updated draw methods for all classes. (~3 hours). 
+
