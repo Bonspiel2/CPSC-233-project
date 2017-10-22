@@ -86,6 +86,11 @@ public class Player {
 		public void draw(String[][] board) {
             board[y][x] = ship;
 		}
+    
+        public void draw(Board board) {
+            board.draw(ship, x, y);
+        }
+
 		
 		/**
 		 * Gets the player's column value

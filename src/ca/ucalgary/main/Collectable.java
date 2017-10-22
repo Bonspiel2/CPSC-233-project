@@ -13,6 +13,7 @@ public class Collectable {
 
 	private int x;
 	private int y;
+    private String symbol = "$";
 	
 	Collectable(int x, int y) {
 		this.x = x;
@@ -76,5 +77,11 @@ public class Collectable {
 	 */
 	public void draw(String[][] board) {
 		board[y][x] = "$";
+        
 	}
+    
+    public void draw(Board board) {
+        board.draw(symbol, x, y);
+    }
+
 }

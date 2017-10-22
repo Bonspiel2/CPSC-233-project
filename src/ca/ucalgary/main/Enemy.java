@@ -88,6 +88,11 @@ public class Enemy {
 			board[y][x] = symbol;
 		}
 	}
+    
+    public void draw(Board board) {
+        board.draw(symbol, x, y);
+    }
+
 
 	/** Gets the current column/ x value
 	 * @return x Current column

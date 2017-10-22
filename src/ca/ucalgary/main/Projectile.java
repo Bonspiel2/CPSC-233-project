@@ -24,6 +24,11 @@ public class Projectile {
     
     private boolean collided;
 	private boolean edgy;
+    
+    // velocity of the projectile
+    private int velProjec;
+    
+    private String symbol = "|";
 	
     /**
      * Detects whether projectile occupies the same coordinates as a given enemy.
@@ -75,6 +80,10 @@ public class Projectile {
     public void draw(String[][] board) {
 		board[y][x] = "|";
 	}
+    
+    public void draw(Board board) {
+        board.draw(symbol, x, y);
+    }
     
     /**
      * Gets the projectile's current x (column) coordinate.

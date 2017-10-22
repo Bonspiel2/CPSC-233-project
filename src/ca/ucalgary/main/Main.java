@@ -12,6 +12,8 @@ public class Main {
         System.out.print("Text-Based Space Invaders \nHit enter to start. Control your ship using WASD.");
 		
         TextGame g = new TextGame();
+        GooeyInterface gui = new GooeyInterface(g);
+
         
         g.run();
 	}

@@ -16,10 +16,10 @@ public class TextGame {
 	public static final int ROWS = 10;
 	public static final int COLUMNS = 7;
 	
-	private ArrayList<Enemy> enemies;
-	private ArrayList<Projectile> projectiles;
-	private ArrayList<Collectable> collectables;
-	private Player player;
+	 ArrayList<Enemy> enemies;
+	 ArrayList<Projectile> projectiles;
+	 ArrayList<Collectable> collectables;
+	 Player player;
 	
 	private String[][] board;
 	
