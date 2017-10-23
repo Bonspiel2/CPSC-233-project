@@ -11,15 +11,21 @@ public class Player {
 
 		private int x;
 		private int y;
+		private int width;
+		private int height;
 		
 		private int health;
 		private int score;
 		
 		private String ship;
 		
+		private double firerate;
+		private double fireCount;
+		private double fireTimer;
+		
 		
 		/**
-		 * Main constructor
+		 * Main constructor for textgame
 		 * @param x new player's column value
 		 * @param y new player's row value
 		 * @param health new player's total health
@@ -27,11 +33,41 @@ public class Player {
 		public Player(int x, int y, int health) {
 			this.x = x;
 			this.y = y;
+			this.width = 0;
+			this.height = 0;
 			
 			this.health = health;
 			this.score = 0;
 			
 			this.ship = "A";
+			
+			firerate = 0.5;
+			fireCount = 6;
+			fireTimer = fireCount * firerate;
+		}
+		
+		/**
+		 * Main constructor for GUI game
+		 * @param x new player's column value
+		 * @param y new player's row value
+		 * @param width new player's width
+		 * @param height new player's height
+		 * @param health new player's total health
+		 */
+		public Player(int x, int y, int width, int height, int health) {
+			this.x = x;
+			this.y = y;
+			this.width = width;
+			this.height = height;
+			
+			this.health = health;
+			this.score = 0;
+			
+			this.ship = "A";
+			
+			firerate = 0.5;
+			fireCount = 100;
+			fireTimer = fireCount * firerate;
 		}
 		
 		
@@ -49,6 +85,14 @@ public class Player {
 				 if ((x + 1) < TextGame.COLUMNS) {
 					 x++;
 				 }
+			 } else if (s.equals("W")) {
+				 if ((y - 1) >= 0) {
+					 y--;
+				 }
+			 } else if (s.equals("S")) {
+				 if ((y + 1) < TextGame.ROWS) {
+					 y++;
+				 }
 			 }
 		}
 		
@@ -63,7 +107,7 @@ public class Player {
 			int cx = c.getX();
 			int cy = c.getY();
 			
-			if (cx == x && cy == y) {
+			if (cx == (x + width) && cy == (y + height) ) {
 				score++;
 				collided = true;
 			}
@@ -72,11 +116,17 @@ public class Player {
 		}
 		
 		/**
-		 * Creates a projectile when the player shoots.
-		 * @return the projectile object fired
+		 * Creates a projectile when the player's cooldown is at 0
+		 * @return the projectile object fired or null when nothing fired
 		 */
 		public Projectile shoot() {
-			return new Projectile(x, y-1);
+			Projectile newShot = null;
+			fireTimer--;
+			if (fireTimer <= 0) {
+				newShot = new Projectile(x, y-1);
+				fireTimer = firerate * fireCount;
+			}
+			return newShot;
 		}
 		
 		/**

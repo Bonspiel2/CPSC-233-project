@@ -48,5 +48,10 @@ Group 3 Work Log
 	Added javadocs for print and  getInput methods (~.5 hours)
 	 
 21/10/17 - Quinn
-	Added Board, GooeyInterface, and GooeyLogic classes. Updated draw methods for all classes. (~3 hours). 
+	Added Board, GooeyInterface, and GooeyLogic classes. Updated draw methods for all classes. (~3 hours).
+
+22/10/17 - Cole
+	Added width/height variables for player. 
+	Added firerate for player (Only shoots on certain time intervals)
+	Allowed player to move in all directions (total ~.75 hours)
 
