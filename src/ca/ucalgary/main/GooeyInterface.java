@@ -1,3 +1,5 @@
+// add player health and score to the GUI
+
 package ca.ucalgary.main;
 
 
