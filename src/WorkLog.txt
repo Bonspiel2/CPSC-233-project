@@ -55,3 +55,6 @@ Group 3 Work Log
 	Added firerate for player (Only shoots on certain time intervals)
 	Allowed player to move in all directions (total ~.75 hours)
 
+24/10/17 - Quinn
+	Divided projectile class into parent Projectile and subclasses EnemyProjectile and PlayerProjectile. Added ability for enemies to shoot. (~2 hours)
+
