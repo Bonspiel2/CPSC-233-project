@@ -18,6 +18,8 @@ public class Enemy {
 	private int y;
 
 	private boolean alive;
+    
+    private boolean hasAShot;
 
 	private String symbol = "V";
 
@@ -30,6 +32,7 @@ public class Enemy {
 		this.x = new Random().nextInt(TextGame.COLUMNS - 1);
 		this.y = 0;
 		this.alive = true;
+        this.hasAShot = true;
 
 	}
 	
@@ -42,6 +45,8 @@ public class Enemy {
 		this.x = new Random().nextInt(TextGame.COLUMNS - 1);
 		this.y = y;
 		this.alive = true;
+        this.hasAShot = true;
+
 	}
 
 	/**
@@ -123,6 +128,17 @@ public class Enemy {
 	public void setY(int y) {
 		this.y = y;
 	}
+    
+    public boolean getHasAShot() {
+        return hasAShot;
+    }
+
+    
+    public EnemyProjectile shoot() {
+        EnemyProjectile shot = new EnemyProjectile(x, y + 1);
+        hasAShot = false;
+        return shot;
+    }
 
 
 }

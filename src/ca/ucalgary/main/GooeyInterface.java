@@ -50,6 +50,10 @@ public class GooeyInterface extends JPanel {
         for (Collectable collectable : game.collectables) {
             collectable.draw(board);
         }
+        for (EnemyProjectile projectile : game.enemyProjectiles) {
+            projectile.draw(board);
+        }
+
 
     }
     

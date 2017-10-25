@@ -19,6 +19,7 @@ public class TextGame {
 	ArrayList<Enemy> enemies;
 	ArrayList<PlayerProjectile> playerProjectiles;
 	ArrayList<Collectable> collectables;
+    ArrayList<EnemyProjectile> enemyProjectiles;
 	Player player;
 
 	private String[][] board;
@@ -29,6 +30,7 @@ public class TextGame {
 		enemies = new ArrayList<Enemy>();
 		playerProjectiles = new ArrayList<PlayerProjectile>();
 		collectables = new ArrayList<Collectable>();
+        enemyProjectiles = new ArrayList<EnemyProjectile>();
 
 		player = new Player(COLUMNS/2, ROWS - 2, 5);		
 		board = initBoard();
@@ -49,13 +51,22 @@ public class TextGame {
 			move(input);
 			checkCollisions();
 			enemies.add(new Enemy(0));
-			PlayerProjectile shot = player.shoot();
-			if (shot!=null) {
-				playerProjectiles.add(shot);
+			PlayerProjectile playerShot = player.shoot();
+            
+            for (Enemy enemy : enemies) {
+                if (enemy.getHasAShot()) {
+                EnemyProjectile enemyShot = enemy.shoot();
+                enemyProjectiles.add(enemyShot);
+                }
+            }
+            
+			if (playerShot!=null) {
+				playerProjectiles.add(playerShot);
 			}
+
 			draw();
 			print();
-			if(player.getHealth() == 0) {
+			if(player.getHealth() <= 0) {
 				running = false;
 			}
 		}
@@ -87,6 +98,18 @@ public class TextGame {
 				}
 			}
 		}
+        
+        // check collisions between enemy projectiles and player
+        for (Iterator<EnemyProjectile> enemyProjecItr = enemyProjectiles.iterator(); enemyProjecItr.hasNext();) {
+            EnemyProjectile enemyProjec = enemyProjecItr.next();
+            // decrease player health by one if collision occurs
+            if (enemyProjec.collidedWith(player)) {
+                enemyProjecItr.remove();
+                int health = player.getHealth() - 1;
+                player.setHealth(health);
+            }
+        }
+        
 		// check collisions between collectables and player
 		for (Iterator<Collectable> collecItr = collectables.iterator(); collecItr.hasNext();) {
 			Collectable collec = collecItr.next();
@@ -129,6 +152,10 @@ public class TextGame {
 		for (Collectable collectable : collectables) {
 			collectable.draw(board);
 		}
+        
+        for (EnemyProjectile projectile : enemyProjectiles) {
+            projectile.draw(board);
+        }
 
 		return board;
 
@@ -184,6 +211,13 @@ public class TextGame {
 				playerProjectiles.remove(i);
 			}; 
 		}
+        
+        for(int i = 0; i < enemyProjectiles.size(); i++) {
+            EnemyProjectile projectile = enemyProjectiles.get(i);
+            if(projectile.move()) {
+                enemyProjectiles.remove(i);
+            }; 
+        }
 
 		for(int i = 0; i < collectables.size(); i++) {
 			Collectable collectable = collectables.get(i);

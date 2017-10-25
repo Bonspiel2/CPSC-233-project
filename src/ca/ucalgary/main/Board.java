@@ -18,7 +18,7 @@ public class Board {
         this.graphics = graphics;
       
     }
-    
+
     public void draw (String symbol, int x, int y) {
         Color color = Color.BLACK;
         if (symbol == "|") {
@@ -29,6 +29,8 @@ public class Board {
             color = Color.YELLOW;
         }  else if (symbol == "A") {
             color = Color.BLUE;
+        } else if ("*".equals(symbol)) {
+            color = Color.ORANGE;
         }
 
         graphics.setColor(color);

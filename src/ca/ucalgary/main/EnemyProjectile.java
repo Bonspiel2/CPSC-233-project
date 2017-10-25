@@ -5,6 +5,7 @@ public class EnemyProjectile extends Projectile {
     private int velocity;
     private boolean collided;
     private boolean edgy;
+    private String symbol = "*";
     
 //    // Main constructor
     public EnemyProjectile (int x, int y) {
@@ -41,6 +42,16 @@ public class EnemyProjectile extends Projectile {
         }
         return edgy;
     }
+    @Override
+    public void draw(String[][] board) {
+        board[y][x] = "*";
+    }
+    @Override
+    public void draw(Board board) {
+        board.draw(symbol, x, y);
+    }
+
+
 
     
 }

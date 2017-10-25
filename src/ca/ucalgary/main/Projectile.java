@@ -27,7 +27,7 @@ public abstract class Projectile {
     private boolean collided;
 	private boolean edgy;
         
-    private String symbol = "|";
+    protected String symbol = "|";
 	
         /**
      * Main constructor
