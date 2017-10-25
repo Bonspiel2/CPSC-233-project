@@ -17,7 +17,7 @@ public class TextGame {
 	public static final int COLUMNS = 7;
 
 	ArrayList<Enemy> enemies;
-	ArrayList<Projectile> projectiles;
+	ArrayList<PlayerProjectile> playerProjectiles;
 	ArrayList<Collectable> collectables;
 	Player player;
 
@@ -27,7 +27,7 @@ public class TextGame {
 
 	public TextGame() {
 		enemies = new ArrayList<Enemy>();
-		projectiles = new ArrayList<Projectile>();
+		playerProjectiles = new ArrayList<PlayerProjectile>();
 		collectables = new ArrayList<Collectable>();
 
 		player = new Player(COLUMNS/2, ROWS - 2, 5);		
@@ -49,9 +49,9 @@ public class TextGame {
 			move(input);
 			checkCollisions();
 			enemies.add(new Enemy(0));
-			Projectile shot = player.shoot();
+			PlayerProjectile shot = player.shoot();
 			if (shot!=null) {
-				projectiles.add(shot);
+				playerProjectiles.add(shot);
 			}
 			draw();
 			print();
@@ -76,8 +76,8 @@ public class TextGame {
 		// check collisions between enemies and projectiles
 		for (Iterator<Enemy> enemyItr = enemies.iterator(); enemyItr.hasNext();) {
 			Enemy enemy = enemyItr.next();
-			for (Iterator<Projectile> projecItr = projectiles.iterator(); projecItr.hasNext();) {
-				Projectile projec = projecItr.next();
+			for (Iterator<PlayerProjectile> projecItr = playerProjectiles.iterator(); projecItr.hasNext();) {
+				PlayerProjectile projec = projecItr.next();
 				// if enemy and projectile collide, remove each from respective arraylists
 				if (projec.collidedWith(enemy)) {
 					collectables.add(new Collectable(enemy.getX(),enemy.getY()));
@@ -122,7 +122,7 @@ public class TextGame {
 			enemy.draw(board);
 		}
 
-		for (Projectile projectile : projectiles) {
+		for (PlayerProjectile projectile : playerProjectiles) {
 			projectile.draw(board);
 		}
 
@@ -178,10 +178,10 @@ public class TextGame {
 			Enemy enemy = enemies.get(i);
 			enemy.move();	
 		}
-		for(int i = 0; i < projectiles.size(); i++) {
-			Projectile projectile = projectiles.get(i);
+		for(int i = 0; i < playerProjectiles.size(); i++) {
+			PlayerProjectile projectile = playerProjectiles.get(i);
 			if(projectile.move()) {
-				projectiles.remove(i);
+				playerProjectiles.remove(i);
 			}; 
 		}
 

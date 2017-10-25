@@ -43,7 +43,7 @@ public class GooeyInterface extends JPanel {
             enemy.draw(board);
         }
         
-        for (Projectile projectile : game.projectiles) {
+        for (PlayerProjectile projectile : game.playerProjectiles) {
             projectile.draw(board);
         }
         

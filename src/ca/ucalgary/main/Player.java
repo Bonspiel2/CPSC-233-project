@@ -119,11 +119,11 @@ public class Player {
 		 * Creates a projectile when the player's cooldown is at 0
 		 * @return the projectile object fired or null when nothing fired
 		 */
-		public Projectile shoot() {
-			Projectile newShot = null;
+		public PlayerProjectile shoot() {
+			PlayerProjectile newShot = null;
 			fireTimer--;
 			if (fireTimer <= 0) {
-				newShot = new Projectile(x, y-1);
+				newShot = new PlayerProjectile(x, y-1);
 				fireTimer = firerate * fireCount;
 			}
 			return newShot;
@@ -137,6 +137,10 @@ public class Player {
             board[y][x] = ship;
 		}
     
+        /**
+         * Draws the projectile for the GUI Game.
+         * @param board the current GUI gameboard.
+         */
         public void draw(Board board) {
             board.draw(ship, x, y);
         }
