@@ -3,7 +3,9 @@ package ca.ucalgary.main;
 import java.util.Scanner;
 
 /**
- * Main launches the game after prompting the user to play.
+ * Main prompts user to choose which game they want to play 
+ * and launches either the text or the gooey game based on 
+ * user input.
  *
  * @author Group 3
  *
