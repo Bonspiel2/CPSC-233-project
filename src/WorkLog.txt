@@ -59,3 +59,7 @@ Group 3 Work Log
 	Divided projectile class into parent Projectile and subclasses EnemyProjectile and PlayerProjectile. Added ability for enemies to shoot. (~2 hours)
 26/10/17 - Lily
 	Updated main class to display main menu to choose game type. (~.25 hrs)
+	
+27/10/17 - Cole	
+	Converted TextGame to Game
+	Implemented Text-only code in TextGame (~1.5 hours)

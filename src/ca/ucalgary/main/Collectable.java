@@ -60,9 +60,9 @@ public class Collectable {
 	 * @return true if the collectable is still within
 	 * the range of the game board.
 	 */
-	public boolean move(String[][] board) {
+	public boolean move() {
 		boolean onScreen = true;
-		if (y == (board.length - 1)) {
+		if (y == TextGame.ROWS - 1) {
 			onScreen = false;
 		} else {
 			y++;

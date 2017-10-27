@@ -1,5 +1,4 @@
-- Convert TextGame class to Game
-- GUIGame extends Game (convert GooeyLogic to GUIGame) and TextGame extends Game
+- GUIGame extends Game (convert GooeyLogic to GUIGame)
 - Main Menu (command line)
 - Add plater health and score to GUI
 - Enemy projectiles (different shape)
