@@ -63,3 +63,8 @@ Group 3 Work Log
 27/10/17 - Cole	
 	Converted TextGame to Game
 	Implemented Text-only code in TextGame (~1.5 hours)
+
+29/10/17 - Quinn
+	Added a keyboard listener so that the player now moves in response to user input without going through the command line.
+	Updated how draw was called. Edited run method.
+	Edited player constructor and move method so that the movement is in terms of maximum x and y rather than columns and rows. (~2.5 hours)
