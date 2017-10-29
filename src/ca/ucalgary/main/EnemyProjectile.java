@@ -7,13 +7,13 @@ public class EnemyProjectile extends Projectile {
     private boolean edgy;
     private String symbol = "*";
     
-//    // Main constructor
+    // Main constructor
     public EnemyProjectile (int x, int y) {
         super(x, y);
         this.velocity = 0;
     }
-//
-//    // Constructor with velocity parameter
+    
+    // Constructor with velocity parameter
     public EnemyProjectile(int x, int y, int velocity) {
         super(x, y, velocity);
     }
@@ -50,8 +50,5 @@ public class EnemyProjectile extends Projectile {
     public void draw(Board board) {
         board.draw(symbol, x, y);
     }
-
-
-
     
 }

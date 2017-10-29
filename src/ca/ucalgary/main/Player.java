@@ -9,19 +9,23 @@ package ca.ucalgary.main;
  */
 public class Player {
 
-		private int x;
-		private int y;
-		private int width;
-		private int height;
+    private int x;
+    private int y;
+    private int width;
+    private int height;
 		
-		private int health;
-		private int score;
+    
+    private int maxX; //columns
+    private int maxY; //rows
+    
+    private int health;
+    private int score;
 		
-		private String ship;
+    private String ship;
 		
-		private double firerate;
-		private double fireCount;
-		private double fireTimer;
+    private double firerate;
+    private double fireCount;
+    private double fireTimer;
 		
 		
 		/**
@@ -82,7 +86,7 @@ public class Player {
 					 x--;
 				 }
 			 } else if (s.equals("D")) {
-				 if ((x + 1) < TextGame.COLUMNS) {
+				 if ((x + 1) < maxX) {
 					 x++;
 				 }
 			 } else if (s.equals("W")) {
@@ -90,7 +94,7 @@ public class Player {
 					 y--;
 				 }
 			 } else if (s.equals("S")) {
-				 if ((y + 1) < TextGame.ROWS) {
+				 if ((y + 1) < maxY) {
 					 y++;
 				 }
 			 }
@@ -201,4 +205,12 @@ public class Player {
 		public int getScore() {
 			return score;
 		}
+    
+    public void setMaxX(int max) {
+        this.maxX = max;
+    }
+    
+    public void setMaxY(int max) {
+        this.maxY = max;
+    }
 }

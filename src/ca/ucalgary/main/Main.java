@@ -16,16 +16,18 @@ public class Main {
         Scanner in = new Scanner(System.in);
 		System.out.print("Type 1 to play the text game or 2 to play the gooey game.");
         int gameChoice = in.nextInt();
-        TextGame g = new TextGame();
         
         
         if(gameChoice == 1){
+            TextGame textgame = new TextGame();
         	System.out.println("You chose the text game! Control your ship using WASD.");
-        	g.run();
+        	textgame.run();
         }
         else if (gameChoice == 2){
+            GooeyGame guigame = new GooeyGame();
         	System.out.println("You chose the gooey game! Control your ship using WASD.");
-        	GooeyInterface gui = new GooeyInterface(g);
+        	GooeyInterface gui = new GooeyInterface(guigame);
+            guigame.run();
         }
 
         

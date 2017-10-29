@@ -21,13 +21,13 @@ public class Board {
 
     public void draw (String symbol, int x, int y) {
         Color color = Color.BLACK;
-        if (symbol == "|") {
+        if ("|".equals(symbol)) {
             color = Color.GREEN;
-        }  else if (symbol == "V") {
+        }  else if ("V".equals(symbol)) {
             color = Color.RED;
-        } else if (symbol == "$") {
+        } else if ("$".equals(symbol)) {
             color = Color.YELLOW;
-        }  else if (symbol == "A") {
+        }  else if ("A".equals(symbol)) {
             color = Color.BLUE;
         } else if ("*".equals(symbol)) {
             color = Color.ORANGE;

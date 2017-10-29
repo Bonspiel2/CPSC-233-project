@@ -21,7 +21,14 @@ public class TextGame extends Game {
 	private boolean running;
 
 	public TextGame() {
-		super(new Player(COLUMNS/2, ROWS - 2, 5));	
+		super();
+        
+        Player player = new Player(COLUMNS/2, ROWS - 2, 5);
+        player.setMaxX(COLUMNS);
+        player.setMaxY(ROWS);
+
+        super.setPlayer(player);
+        
 		board = initBoard();
 	}
 
@@ -41,7 +48,7 @@ public class TextGame extends Game {
 			checkCollisions();
 			addEnemy(new Enemy(0));
 			playerShoot();
-
+            enemiesShoot();
 
 			draw();
 			print();
@@ -100,7 +107,6 @@ public class TextGame extends Game {
 	 * @author Lily and Quinn
 	 */
 	public void print() {
-		//draw();		//why does this and run call draw?
 		Player player = getPlayer();
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[i].length; j++) {

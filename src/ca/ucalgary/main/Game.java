@@ -5,19 +5,19 @@ import java.util.Iterator;
 
 public abstract class Game {
 
-	private ArrayList<Enemy> enemies;
-	private ArrayList<Collectable> collectables;
-	private ArrayList<Projectile> projectiles;
+	public ArrayList<Enemy> enemies;
+	public ArrayList<Collectable> collectables;
+	public ArrayList<Projectile> projectiles;
 
-	private Player player;
+	public Player player;
 
-	public Game(Player player) {
+	public Game() {
 		enemies = new ArrayList<Enemy>();
 		projectiles = new ArrayList<Projectile>();
 		collectables = new ArrayList<Collectable>();
-
-		this.player = player;
 	}
+    
+    
 
 	/**
 	 * Updates the game every iteration as well as creates new objects when needed
@@ -183,5 +183,9 @@ public abstract class Game {
 	public Player getPlayer() {
 		return player;
 	}
+    
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 
 }
