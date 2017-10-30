@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public abstract class Game {
-	
-	public static final int SCREEN_WIDTH = 350;
-	public static final int SCREEN_HEIGHT = 500;
 
 	public ArrayList<Enemy> enemies;
 	public ArrayList<Collectable> collectables;
@@ -83,6 +80,7 @@ public abstract class Game {
 			if (enemy.collidedWith(player)) {
 				int health = player.getHealth() - 1;
 				player.setHealth(health);
+				enemyItr.remove();
 			}
 		}
 	}
@@ -122,7 +120,10 @@ public abstract class Game {
 
 		for(int i = 0; i < enemies.size(); i++) {
 			Enemy enemy = enemies.get(i);
-			enemy.move();	
+			if (!enemy.move()) {
+				enemies.remove(i);
+				i--;
+			}
 		}
 		for(int i = 0; i < projectiles.size(); i++) {
 			Projectile projectile = projectiles.get(i);

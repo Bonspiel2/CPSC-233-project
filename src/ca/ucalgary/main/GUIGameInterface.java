@@ -26,12 +26,12 @@ public class GUIGameInterface extends JPanel {
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
     	
-        frame.setSize(Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT);
+        frame.setSize(GUIGame.SCREEN_WIDTH, GUIGame.SCREEN_HEIGHT);
         frame.setVisible(true);
         
         frame.getContentPane().addKeyListener(k);
         
-        setSize(Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT);
+        setSize(GUIGame.SCREEN_WIDTH, GUIGame.SCREEN_HEIGHT);
 
         setBackground(Color.BLACK);
         

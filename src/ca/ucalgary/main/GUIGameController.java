@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
 
 import javax.swing.Timer;
 
@@ -65,7 +66,7 @@ public class GUIGameController implements ActionListener, KeyListener {
 		if (e.getActionCommand().equals("TIMER")) {
 			enemyCounter++;
 			if(enemyCounter >= 20) {
-				game.addEnemy(new Enemy(0,0,10,10));
+				game.addEnemy(new Enemy(new Random().nextInt(GUIGame.SCREEN_WIDTH),0,10,10));
 				enemyCounter = 0;
 			}
 			game.move();

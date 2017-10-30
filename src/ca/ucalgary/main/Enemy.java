@@ -20,6 +20,8 @@ public class Enemy {
 	private int y;
 	private int width;
 	private int height;
+	
+	private int maxY;
 
 	private boolean alive;
     
@@ -40,6 +42,8 @@ public class Enemy {
 		
 		this.alive = true;
         this.hasAShot = true;
+        
+        this.maxY = TextGame.ROWS;
 	}
 	
 	public Enemy(int x, int y, int width, int height) {
@@ -50,6 +54,8 @@ public class Enemy {
 		
 		this.alive = true;
         this.hasAShot = true;
+        
+        this.maxY = GUIGame.SCREEN_HEIGHT;
 	}
 	
 	
@@ -77,7 +83,7 @@ public class Enemy {
 
 		y++;
 
-		if (y == TextGame.ROWS - 1) {
+		if (y >= maxY) {
 			alive = false;
 		}
 

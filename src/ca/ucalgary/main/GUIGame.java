@@ -6,16 +6,19 @@ public class GUIGame extends Game{
 
 	Timer gameClock;
 	GUIGameInterface gui;
+	
+	public static final int SCREEN_WIDTH = 350;
+	public static final int SCREEN_HEIGHT = 500;
 
 
 	// constructor
 	public GUIGame() {
 		super();
 
-		Player player = new Player(Game.SCREEN_WIDTH/2, Game.SCREEN_HEIGHT*7/8, 25, 25, 5);
+		Player player = new Player(SCREEN_WIDTH/2, SCREEN_HEIGHT*7/8, 15, 15, 5);
 
-		player.setMaxX(Game.SCREEN_WIDTH);
-		player.setMaxY(Game.SCREEN_HEIGHT);
+		player.setMaxX(SCREEN_WIDTH);
+		player.setMaxY(SCREEN_HEIGHT);
         
         player.setStep(5);
 
