@@ -100,8 +100,8 @@ public class Enemy {
 	public boolean collidedWith(Player player) {
 		boolean collided = false;
 
-		if (x >= player.getX() && x < player.getX() + player.getWidth() && 
-				y >= player.getY() && y < player.getY() + player.getHeight()) {
+		if (x >= player.getX() && x <= player.getX() + player.getWidth() && 
+				y >= player.getY() && y <= player.getY() + player.getHeight()) {
 			collided = true;
 			alive = false;
 		}
