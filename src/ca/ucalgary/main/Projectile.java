@@ -108,7 +108,7 @@ public abstract class Projectile {
 	}
     
 	public void draw(Graphics g) {
-		g.setColor(Color.pink);
+		g.setColor(Color.white);
 		g.fillRect(x, y, width, height);
 	}
 	
@@ -118,6 +118,10 @@ public abstract class Projectile {
 	
 	public int getHeight() {
 		return height;
+	}
+	
+	public int getVelocity() {
+		return velocity;
 	}
     /**
      * Sets the projectile's y (row) coordinate to a given value.

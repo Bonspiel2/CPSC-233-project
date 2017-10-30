@@ -137,14 +137,16 @@ public class Player {
 	public PlayerProjectile shoot() {
 		PlayerProjectile newShot = null;
 		fireTimer--;
-		boolean gui = false;
-		if(width != 0) {
-			gui = true;
-		}
 		if (fireTimer <= 0) {
-			newShot = new PlayerProjectile(x+(width/2), y-1);
+			if(width != 0) {
+				newShot = new PlayerProjectile(x+(width/2), y-1, 2);
+			} else {
+				newShot = new PlayerProjectile(x+(width/2), y-1);
+			}
 			fireTimer = firerate * fireCount;
+
 		}
+
 		return newShot;
 	}
 

@@ -55,6 +55,7 @@ public class GUIGame extends Game{
 		player.setY(y - player.getHeight()/2);
 		
 	}
+	
 
 
 

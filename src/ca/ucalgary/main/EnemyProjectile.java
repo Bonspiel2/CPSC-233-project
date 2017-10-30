@@ -5,7 +5,6 @@ import java.awt.Graphics;
 
 public class EnemyProjectile extends Projectile {
 
-	private int velocity;
 	private boolean collided;
 	private boolean edgy;
 	private String symbol = "*";
@@ -13,7 +12,6 @@ public class EnemyProjectile extends Projectile {
 	// Main constructor
 	public EnemyProjectile(int x, int y) {
 		super(x, y);
-		this.velocity = 0;
 	}
 
 	// Constructor with velocity parameter
@@ -47,7 +45,7 @@ public class EnemyProjectile extends Projectile {
 			edgy = false;
 		} else {
 			edgy = true;
-			this.y = this.y + 1;
+			this.y = this.y + getVelocity();
 		}
 		return edgy;
 	}
@@ -59,7 +57,7 @@ public class EnemyProjectile extends Projectile {
 
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(Color.BLUE);
+		g.setColor(Color.PINK);
 		g.fillRect(x, y, getWidth(), getHeight());
 	}
 

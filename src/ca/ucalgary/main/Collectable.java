@@ -23,6 +23,7 @@ public class Collectable {
     private int width;
     private int height;
 	
+    
 	Collectable(int x, int y, int maxY) {
 		this.x = x;
 		this.y = y;
@@ -113,7 +114,6 @@ public class Collectable {
 //    }
     
     public void draw(Graphics g) {
- 	
     	g.setColor(Color.YELLOW);
     	g.drawString("$", x, y);
     	
