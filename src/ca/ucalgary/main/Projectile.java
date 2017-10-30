@@ -1,8 +1,11 @@
 package ca.ucalgary.main;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 /**
  *
- * The Projectile class controls the behavior of all projectiles in the game 
+ * The abstract Projectile class controls the behavior of all projectiles in the game
  * through drawing projectiles as well as detecting whether or not a projectile 
  * has collided with an enemy or reached the end of the board.
  *
@@ -10,68 +13,59 @@ package ca.ucalgary.main;
  *
  */
 
-public class Projectile {
+public abstract class Projectile {
 	
     /**
      * The x coordinate of the projectile (columns)
      */
-	private int x;
+	protected int x;
     
+	public static final int HEIGHT = 10;
+	public static final int WIDTH = 2;
+
     /**
      * The y coordinate of the projectile (rows)
      */
-	private int y;
+	protected int y;
+    
+    private int velocity;
     
     private boolean collided;
 	private boolean edgy;
-    
-    // velocity of the projectile
-    private int velProjec;
-    
-    private String symbol = "|";
+        
+    protected String symbol = "|";
 	
-    /**
-     * Detects whether projectile occupies the same coordinates as a given enemy.
-     * @param enemy the enemy whose coordinates are compared to the projectile's.
-     * @return collided returns true if the enemy and projectile have the same coordinates
-     */
-	public boolean collidedWith(Enemy enemy) {
-        collided = ((y == enemy.getY() || y == enemy.getY()-1) && x == enemy.getX());
-        return collided;
-
-	}
-    
-    /**
+        /**
      * Main constructor
      * @param newX new projectile's column value
      * @param newY new projectile's row value
      */
-    public Projectile(int newX, int newY){
-		x = newX;
-		y = newY;
+    public Projectile(int x, int y) {
+		this.x = x;
+		this.y = y;
         collided = false;
 		
 	}
+    
     /**
-     * Moves the projectile up one row and detects whether or not it has reached
-     * the edge of the board.
-     * @return edgy returns true if the projectile has reached the edhe of the board.
+     * Main constructor for GUI Game
+     * @param newX new projectile's column value
+     * @param newY new projectile's row value
+     * @param newVelocity new projectile's velocity
      */
-	public boolean move() {
-        // projectile stops moving if it has collided with an enemy
-        if (collided) {
-            y = y;
-        }
+    public Projectile(int x, int y, int vel){
+        this.x = x;
+        this.y = y;
+        this.velocity = vel;
+        collided = false;
         
-        // detects whether the projectile's current row is the same as the edge of the board
-        if (y == 0) {
-			edgy = true;
-		} else {
-			edgy = false;
-			y = y - 1;
-		}
-		return edgy;
-	}
+    }
+
+    /**
+     * Abstract method that dictates how projectile moves
+     */
+    
+    public abstract boolean move();
     
     /**
      * Draws the projectile.
@@ -80,10 +74,13 @@ public class Projectile {
     public void draw(String[][] board) {
 		board[y][x] = "|";
 	}
-    
-    public void draw(Board board) {
-        board.draw(symbol, x, y);
-    }
+    /**
+     * Draws the projectile for the GUI Game.
+     * @param board the current GUI gameboard.
+     */
+//    public void draw(Board board) {
+//        board.draw(symbol, x, y);
+//    }
     
     /**
      * Gets the projectile's current x (column) coordinate.
@@ -109,6 +106,10 @@ public class Projectile {
 		return y;
 	}
     
+	public void draw(Graphics g) {
+		g.setColor(Color.pink);
+		g.fillRect(x, y, WIDTH, HEIGHT);
+	}
     /**
      * Sets the projectile's y (row) coordinate to a given value.
      * @param y the new y coordinate.

@@ -1,0 +1,6 @@
+- GUIGame extends Game (convert GooeyLogic to GUIGame)
+- Main Menu (command line)
+- Add plater health and score to GUI
+- Enemy projectiles (different shape)
+	- create new Enemy Projectile class and player projectile class with parent projectile class
+- Add GUI constructors to each class

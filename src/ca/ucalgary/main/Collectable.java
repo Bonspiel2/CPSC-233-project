@@ -1,4 +1,8 @@
 package ca.ucalgary.main;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
 /**
  * This Collectable class allows the game to interact with 
  * the position of collectables spawned within the enemy 
@@ -60,9 +64,9 @@ public class Collectable {
 	 * @return true if the collectable is still within
 	 * the range of the game board.
 	 */
-	public boolean move(String[][] board) {
+	public boolean move() {
 		boolean onScreen = true;
-		if (y == (board.length - 1)) {
+		if (y == TextGame.ROWS - 1) {
 			onScreen = false;
 		} else {
 			y++;
@@ -79,9 +83,14 @@ public class Collectable {
 		board[y][x] = "$";
         
 	}
+//    
+//    public void draw(Board board) {
+//        board.draw(symbol, x, y);
+//    }
     
-    public void draw(Board board) {
-        board.draw(symbol, x, y);
+    public void draw(Graphics g) {
+    	g.setColor(Color.YELLOW);
+    	g.drawString("$", x, y);
     }
 
 }

@@ -1,4 +1,8 @@
 package ca.ucalgary.main;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
 /**
  * The player class allows the game to interact with the 
  * player's position, their health as well as their score.
@@ -9,19 +13,25 @@ package ca.ucalgary.main;
  */
 public class Player {
 
-		private int x;
-		private int y;
-		private int width;
-		private int height;
+    private int x;
+    private int y;
+    private int width;
+    private int height;
+    
+    private int step;
 		
-		private int health;
-		private int score;
+    
+    private int maxX; //columns
+    private int maxY; //rows
+    
+    private int health;
+    private int score;
 		
-		private String ship;
+    private String ship;
 		
-		private double firerate;
-		private double fireCount;
-		private double fireTimer;
+    private double firerate;
+    private double fireCount;
+    private double fireTimer;
 		
 		
 		/**
@@ -40,8 +50,8 @@ public class Player {
 			this.score = 0;
 			
 			this.ship = "A";
-			
-			firerate = 0.5;
+            
+			firerate = 5;
 			fireCount = 6;
 			fireTimer = fireCount * firerate;
 		}
@@ -78,20 +88,20 @@ public class Player {
 		 */
 		public void move(String s) {
 			 if (s.equals("A")) {
-				 if (x - 1 >= 0) {
-					 x--;
+				 if (x - step >= 0) {
+					 x-= step;
 				 }
 			 } else if (s.equals("D")) {
-				 if ((x + 1) < TextGame.COLUMNS) {
-					 x++;
+				 if ((x + step) < maxX) {
+					 x+= step;
 				 }
 			 } else if (s.equals("W")) {
-				 if ((y - 1) >= 0) {
-					 y--;
+				 if ((y - step) >= 0) {
+					 y-= step;
 				 }
 			 } else if (s.equals("S")) {
-				 if ((y + 1) < TextGame.ROWS) {
-					 y++;
+				 if ((y + step) < maxY) {
+					 y+= step;
 				 }
 			 }
 		}
@@ -119,11 +129,11 @@ public class Player {
 		 * Creates a projectile when the player's cooldown is at 0
 		 * @return the projectile object fired or null when nothing fired
 		 */
-		public Projectile shoot() {
-			Projectile newShot = null;
+		public PlayerProjectile shoot() {
+			PlayerProjectile newShot = null;
 			fireTimer--;
 			if (fireTimer <= 0) {
-				newShot = new Projectile(x, y-1);
+				newShot = new PlayerProjectile(x, y-1);
 				fireTimer = firerate * fireCount;
 			}
 			return newShot;
@@ -137,10 +147,18 @@ public class Player {
             board[y][x] = ship;
 		}
     
-        public void draw(Board board) {
-            board.draw(ship, x, y);
+        /**
+         * Draws the projectile for the GUI Game.
+         * @param board the current GUI gameboard.
+         */
+//        public void draw(Board board) {
+//            board.draw(ship, x, y);
+//        }
+    
+        public void draw(Graphics g) {
+        	g.setColor(Color.CYAN);
+        	g.fillOval(x, y, 15, 15);
         }
-
 		
 		/**
 		 * Gets the player's column value
@@ -197,4 +215,16 @@ public class Player {
 		public int getScore() {
 			return score;
 		}
+    
+    public void setMaxX(int max) {
+        this.maxX = max;
+    }
+    
+    public void setMaxY(int max) {
+        this.maxY = max;
+    }
+    
+    public void setStep(int step) {
+        this.step = step;
+    }
 }

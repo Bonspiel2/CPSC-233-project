@@ -1,5 +1,7 @@
 package ca.ucalgary.main;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.Random;
 
 
@@ -16,8 +18,16 @@ public class Enemy {
 
 	private int x;
 	private int y;
+	
+	private int guiX;
+    
+    private int size;
+	
+//	private static final int SIZE = 20;
 
 	private boolean alive;
+    
+    private boolean hasAShot;
 
 	private String symbol = "V";
 
@@ -28,8 +38,10 @@ public class Enemy {
 	 */
 	Enemy() {
 		this.x = new Random().nextInt(TextGame.COLUMNS - 1);
+		this.guiX = new Random().nextInt(Game.SCREEN_WIDTH - 1);
 		this.y = 0;
 		this.alive = true;
+        this.hasAShot = true;
 
 	}
 	
@@ -42,6 +54,8 @@ public class Enemy {
 		this.x = new Random().nextInt(TextGame.COLUMNS - 1);
 		this.y = y;
 		this.alive = true;
+        this.hasAShot = true;
+
 	}
 
 	/**
@@ -88,11 +102,6 @@ public class Enemy {
 			board[y][x] = symbol;
 		}
 	}
-    
-    public void draw(Board board) {
-        board.draw(symbol, x, y);
-    }
-
 
 	/** Gets the current column/ x value
 	 * @return x Current column
@@ -123,6 +132,36 @@ public class Enemy {
 	public void setY(int y) {
 		this.y = y;
 	}
+    
+	public void draw(Graphics g) {
+		g.setColor(Color.RED);
+		g.fillRect(guiX, y, size, size);
+	}
+	
+	
+    public boolean getHasAShot() {
+        return hasAShot;
+    }
+
+    
+    public EnemyProjectile shoot() {
+        EnemyProjectile shot = new EnemyProjectile(guiX + size / 2, y+ size + 5 );
+        hasAShot = false;
+        return shot;
+    }
+    
+    public void setSize(int size) {
+        this.size = size;
+    }
+    
+    public int getSize() {
+        return this.size;
+    }
+    
+    public int getGUIX() {
+        return this.guiX;
+    }
+
 
 
 }
