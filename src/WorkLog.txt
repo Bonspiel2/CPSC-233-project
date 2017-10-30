@@ -85,3 +85,9 @@ Group 3 Work Log
 	More things, bugs etc (~2 hours)	
 	Updates Javadocs in Collectable, Enemy, and EnemyProjectile (~2 hours)
 
+30/10/17 - Quinn
+    Added score to GUI. Fixed various bugs. JavaDocs. (~2 hours)
+
+30/10/17 - Cole
+    Updated Javadocs. Tons of bug fixes. (~4 hours)
+
