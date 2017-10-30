@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public abstract class Game {
+	
+	public static final int SCREEN_WIDTH = 750;
+	public static final int SCREEN_HEIGHT = 1000;
 
 	public ArrayList<Enemy> enemies;
 	public ArrayList<Collectable> collectables;
