@@ -88,7 +88,7 @@ public class Collectable {
 	 */
 	public boolean move() {
 		boolean onScreen = true;
-		if (y >= maxY) {
+		if (y >= maxY-1) {
 			onScreen = false;
 		} else {
 			y++;

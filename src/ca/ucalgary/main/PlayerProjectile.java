@@ -20,11 +20,11 @@ public class PlayerProjectile extends Projectile {
 
     
     public boolean collidedWith(Enemy enemy) {
-        collided = ((this.y >= enemy.getY() &&
-                     this.y <= enemy.getY() + enemy.getWidth())
+        collided = (((this.y >= enemy.getY() || this.y == enemy.getY()-1) &&
+                     this.y <= enemy.getY() + enemy.getHeight())
                     &&
                     (this.x >= enemy.getX() &&
-                    this.x <= enemy.getX() + enemy.getHeight()));
+                    this.x <= enemy.getX() + enemy.getWidth()));
 
 //        collided = ((this.y == enemy.getY() || this.y == enemy.getY()-1)
 //                    && this.x == enemy.getX());
@@ -40,12 +40,12 @@ public class PlayerProjectile extends Projectile {
     @Override
     public boolean move() {
         if (collided) {
-            edgy = true;
+            edgy = false;
         }
         if (this.y == 0) {
-            edgy = true;
-        } else {
             edgy = false;
+        } else {
+            edgy = true;
             this.y = this.y - 1;
         }
         return edgy;

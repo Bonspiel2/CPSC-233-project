@@ -122,7 +122,7 @@ public class Player {
 		int cw = c.getW();
 		int ch = c.getH();
 
-		if (cx + cw >= x && cx < (x + width) && cy >= y && cy < y + height ) {
+		if (cx + cw >= x && cx <= (x + width) && cy >= y && cy <= y + height ) {
 			score++;
 			collided = true;
 		}
