@@ -1,5 +1,7 @@
 package ca.ucalgary.main;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.Random;
 
 
@@ -16,6 +18,10 @@ public class Enemy {
 
 	private int x;
 	private int y;
+	
+	private int guiX;
+	
+	private static final int SIZE = 20;
 
 	private boolean alive;
     
@@ -30,6 +36,7 @@ public class Enemy {
 	 */
 	Enemy() {
 		this.x = new Random().nextInt(TextGame.COLUMNS - 1);
+		this.guiX = new Random().nextInt(Game.SCREEN_WIDTH - 1);
 		this.y = 0;
 		this.alive = true;
         this.hasAShot = true;
@@ -93,11 +100,6 @@ public class Enemy {
 			board[y][x] = symbol;
 		}
 	}
-    
-    public void draw(Board board) {
-        board.draw(symbol, x, y);
-    }
-
 
 	/** Gets the current column/ x value
 	 * @return x Current column
@@ -129,13 +131,19 @@ public class Enemy {
 		this.y = y;
 	}
     
+	public void draw(Graphics g) {
+		g.setColor(Color.RED);
+		g.fillRect(guiX, y, SIZE, SIZE);
+	}
+	
+	
     public boolean getHasAShot() {
         return hasAShot;
     }
 
     
     public EnemyProjectile shoot() {
-        EnemyProjectile shot = new EnemyProjectile(x, y + 1);
+        EnemyProjectile shot = new EnemyProjectile(x, y+1);
         hasAShot = false;
         return shot;
     }

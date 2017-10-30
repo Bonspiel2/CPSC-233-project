@@ -1,5 +1,8 @@
 package ca.ucalgary.main;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 public class EnemyProjectile extends Projectile {
     
     private int velocity;
@@ -47,8 +50,9 @@ public class EnemyProjectile extends Projectile {
         board[y][x] = "*";
     }
     @Override
-    public void draw(Board board) {
-        board.draw(symbol, x, y);
+    public void draw(Graphics g) {
+    	g.setColor(Color.BLUE);
+    	g.fillRect(x, y, WIDTH, HEIGHT);
     }
     
 }

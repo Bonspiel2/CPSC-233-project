@@ -1,4 +1,8 @@
 package ca.ucalgary.main;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
 /**
  * This Collectable class allows the game to interact with 
  * the position of collectables spawned within the enemy 
@@ -82,6 +86,11 @@ public class Collectable {
     
     public void draw(Board board) {
         board.draw(symbol, x, y);
+    }
+    
+    public void draw(Graphics g) {
+    	g.setColor(Color.YELLOW);
+    	g.drawString("$", x, y);
     }
 
 }

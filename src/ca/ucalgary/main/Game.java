@@ -5,8 +5,8 @@ import java.util.Iterator;
 
 public abstract class Game {
 	
-	public static final int SCREEN_WIDTH = 750;
-	public static final int SCREEN_HEIGHT = 1000;
+	public static final int SCREEN_WIDTH = 350;
+	public static final int SCREEN_HEIGHT = 500;
 
 	public ArrayList<Enemy> enemies;
 	public ArrayList<Collectable> collectables;
@@ -138,6 +138,8 @@ public abstract class Game {
 			}
 		}
 	}
+
+	
 
 	/**
 	 * Initializes the board blank and then with enemies up to the 6th

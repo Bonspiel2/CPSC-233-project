@@ -1,5 +1,8 @@
 package ca.ucalgary.main;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 /**
  *
  * The abstract Projectile class controls the behavior of all projectiles in the game
@@ -17,6 +20,9 @@ public abstract class Projectile {
      */
 	protected int x;
     
+	public static final int HEIGHT = 10;
+	public static final int WIDTH = 2;
+
     /**
      * The y coordinate of the projectile (rows)
      */
@@ -100,6 +106,10 @@ public abstract class Projectile {
 		return y;
 	}
     
+	public void draw(Graphics g) {
+		g.setColor(Color.pink);
+		g.fillRect(x, y, WIDTH, HEIGHT);
+	}
     /**
      * Sets the projectile's y (row) coordinate to a given value.
      * @param y the new y coordinate.

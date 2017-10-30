@@ -12,10 +12,10 @@ public class GUIGame extends Game{
 	public GUIGame() {
 		super();
 
-		Player player = new Player(3, 8, 5);
+		Player player = new Player(Game.SCREEN_WIDTH/2, Game.SCREEN_HEIGHT*7/8, 5);
 
-		player.setMaxX(7);
-		player.setMaxY(9);
+		player.setMaxX(Game.SCREEN_WIDTH);
+		player.setMaxY(Game.SCREEN_HEIGHT);
 
 		super.setPlayer(player);
 	}

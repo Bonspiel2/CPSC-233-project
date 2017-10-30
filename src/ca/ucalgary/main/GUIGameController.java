@@ -12,6 +12,9 @@ public class GUIGameController implements ActionListener, KeyListener {
 	private GUIGameInterface gui;
 	private GUIGame game;
 	
+	private int enemyCounter = 0;
+	
+	
 	private Timer gameClock;
 	
 	public GUIGameController() {
@@ -19,7 +22,7 @@ public class GUIGameController implements ActionListener, KeyListener {
 		game = new GUIGame();
 		gui = new GUIGameInterface(this, this, game);
 		
-		gameClock = new Timer(200, this);
+		gameClock = new Timer(50, this);
         gameClock.setActionCommand("TIMER");
         gameClock.start();
         
@@ -62,10 +65,17 @@ public class GUIGameController implements ActionListener, KeyListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("TIMER")) {
-			game.addEnemy(new Enemy(0));
+			enemyCounter++;
+			if(enemyCounter >= 20) {
+				game.addEnemy(new Enemy());
+				enemyCounter = 0;
+			}
 			game.move();
+			game.playerShoot();
+			game.enemiesShoot();
 			game.checkCollisions();
 			gui.repaint();
+
 		}
 		
 	}

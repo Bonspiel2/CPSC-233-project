@@ -1,4 +1,8 @@
 package ca.ucalgary.main;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
 /**
  * The player class allows the game to interact with the 
  * player's position, their health as well as their score.
@@ -45,7 +49,7 @@ public class Player {
 			
 			this.ship = "A";
 			
-			firerate = 0.5;
+			firerate = 5;
 			fireCount = 6;
 			fireTimer = fireCount * firerate;
 		}
@@ -148,7 +152,11 @@ public class Player {
         public void draw(Board board) {
             board.draw(ship, x, y);
         }
-
+        
+        public void draw(Graphics g) {
+        	g.setColor(Color.CYAN);
+        	g.fillOval(x, y, 15, 15);
+        }
 		
 		/**
 		 * Gets the player's column value

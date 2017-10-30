@@ -25,12 +25,12 @@ public class GUIGameInterface extends JPanel {
     	frame = new JFrame("Space Invaders");
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	
-        frame.setSize(400, 500);
+        frame.setSize(Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT);
         frame.setVisible(true);
         
         frame.addKeyListener(k);
         
-        setSize(400, 500);
+        setSize(Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT);
 
         setBackground(Color.BLACK);
         
@@ -43,20 +43,19 @@ public class GUIGameInterface extends JPanel {
     
     public void paintComponent(Graphics g) {
     	super.paintComponent(g);
-        Board board = new Board(g);
         
-        game.player.draw(board);
+        game.player.draw(g);
         
         for (Enemy enemy : game.enemies) {
-            enemy.draw(board);
+            enemy.draw(g);
         }
                 
         for (Projectile projectile : game.projectiles) {
-            projectile.draw(board);
+            projectile.draw(g);
         }
         
         for (Collectable collectable : game.collectables) {
-            collectable.draw(board);
+            collectable.draw(g);
         }
 
 
