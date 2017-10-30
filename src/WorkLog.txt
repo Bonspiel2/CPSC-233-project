@@ -72,3 +72,8 @@ Group 3 Work Log
 29/10/17 - Cole
 	Restructured the Game/Interface/Controller
 	Fixed Listener bugs (~1.5 hours)
+	
+30/10/17 - Matt
+	Changed from grid layout to nicer version
+	enemies and player shoot (~2 hours)
+	
