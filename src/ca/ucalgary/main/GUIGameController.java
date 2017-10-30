@@ -2,8 +2,6 @@ package ca.ucalgary.main;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -11,20 +9,27 @@ import java.util.Random;
 
 import javax.swing.Timer;
 
-public class GUIGameController implements ActionListener, KeyListener, MouseMotionListener {
+/**
+ * The GUIGameController class allows the game to respond to user input.
+ * It reacts to user-given mouse events and refreshes the board based on a timer.
+ *
+ */
+public class GUIGameController implements ActionListener, MouseMotionListener {
 	
 	private GUIGameInterface gui;
 	private GUIGame game;
 	
 	private int enemyCounter = 0;
 	
-	
 	private Timer gameClock;
 	
+	/**
+	 * The main constructor for the GUIGameController class.
+	 */
 	public GUIGameController() {
 		
 		game = new GUIGame();
-		gui = new GUIGameInterface(this, this, this, game);
+		gui = new GUIGameInterface(this, this, game);
 
 		gameClock = new Timer(10, this);
         gameClock.setActionCommand("TIMER");
@@ -32,37 +37,7 @@ public class GUIGameController implements ActionListener, KeyListener, MouseMoti
         
         game.initBoard();
 	}
-	@Override
-	public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_W){
-                System.out.println("Up");
-                game.movePlayer("W");
-        }
-        if (e.getKeyCode() == KeyEvent.VK_A) {
-             System.out.println("Left");
-             game.movePlayer("A");
-        }
-        if (e.getKeyCode() == KeyEvent.VK_S) {
-                System.out.println("Down");
-                game.movePlayer("S");
-        }            
-        if (e.getKeyCode() == KeyEvent.VK_D) {
-                System.out.println("Right");
-                game.movePlayer("D");
-        }
-    }
-
-	@Override
-	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

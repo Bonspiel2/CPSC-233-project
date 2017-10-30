@@ -31,7 +31,7 @@ public class GUIGameInterface extends JPanel {
 	private boolean gameOver;
 	private Cursor blankCursor;
 
-	public GUIGameInterface(ActionListener a, KeyListener k,
+	public GUIGameInterface(ActionListener a,
 			MouseMotionListener m, GUIGame g) {
 		game = g;
 		frame = new JFrame("Space Invaders");
@@ -39,9 +39,6 @@ public class GUIGameInterface extends JPanel {
 
 		frame.setSize(GUIGame.SCREEN_WIDTH, GUIGame.SCREEN_HEIGHT);
 		frame.setVisible(true);
-
-		frame.getContentPane().addKeyListener(k);
-		frame.addKeyListener(k);
 		
 		playAgain = new JButton("Play Again");
 		playAgain.addActionListener(a);
