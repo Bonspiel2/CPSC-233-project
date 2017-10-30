@@ -24,10 +24,11 @@ public class Main {
         	textgame.run();
         }
         else if (gameChoice == 2){
-            GooeyGame guigame = new GooeyGame();
+            GUIGameController guiGame = new GUIGameController();
         	System.out.println("You chose the gooey game! Control your ship using WASD.");
-        	GooeyInterface gui = new GooeyInterface(guigame);
-            guigame.run();
+        	GUIGameInterface gui = guiGame.getGUI();
+        	gui.setVisible(true);
+        	
         }
 
         
