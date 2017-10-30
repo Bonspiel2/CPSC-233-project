@@ -116,8 +116,10 @@ public class Player {
 			boolean collided = false;
 			int cx = c.getX();
 			int cy = c.getY();
+			int cw = c.getW();
+			int ch = c.getH();
 			
-			if (cx == (x + width) && cy == (y + height) ) {
+			if (cx + cw >= x && cx < (x + width) && cy >= y && cy < y + height ) {
 				score++;
 				collided = true;
 			}

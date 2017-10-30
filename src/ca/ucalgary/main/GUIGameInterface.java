@@ -30,6 +30,7 @@ public class GUIGameInterface extends JPanel {
         frame.setVisible(true);
         
         frame.getContentPane().addKeyListener(k);
+        frame.addKeyListener(k);
         
         setSize(GUIGame.SCREEN_WIDTH, GUIGame.SCREEN_HEIGHT);
 
