@@ -1,6 +1,7 @@
 package ca.ucalgary.main;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import java.awt.Cursor;
 import java.awt.Graphics;
@@ -30,6 +31,7 @@ public class GUIGameInterface extends JPanel {
 	private GUIGame game;
 	private boolean gameOver;
 	private Cursor blankCursor;
+	private int finalScore;
 
 	public GUIGameInterface(ActionListener a,
 			MouseMotionListener m, GUIGame g) {
@@ -93,6 +95,13 @@ public class GUIGameInterface extends JPanel {
 			for (Collectable collectable : game.collectables) {
 				collectable.draw(g);
 			}
+			g.setColor(Color.WHITE);
+			g.drawString("Score: " + game.player.getScore(), 10, 15);
+		}
+		else {
+			g.setColor(Color.WHITE);
+			g.setFont(new Font("Helvetica", Font.BOLD, 30));
+			g.drawString("Score: " + finalScore, 100, 200);
 		}
 	}
 	
@@ -101,6 +110,8 @@ public class GUIGameInterface extends JPanel {
 		playAgain.setVisible(true);
 		playAgain.setEnabled(true);
 		frame.getContentPane().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		finalScore = game.player.getScore();
+		
 	}
 	
 	public void newGame() {

@@ -98,7 +98,6 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 		int y = e.getY();
 		
 		game.movePlayer(x,y);
-		
 	}
 
 }
