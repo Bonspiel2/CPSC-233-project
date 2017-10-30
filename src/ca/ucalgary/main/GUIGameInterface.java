@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import java.awt.event.MouseMotionListener;
 import java.awt.Graphics;
 import java.awt.Color;
 
@@ -20,7 +20,7 @@ public class GUIGameInterface extends JPanel {
 	private JFrame frame;
 	private GUIGame game;
 	
-    public GUIGameInterface(ActionListener a, KeyListener k, GUIGame g) {
+    public GUIGameInterface(ActionListener a, KeyListener k, MouseMotionListener m, GUIGame g) {
     	game = g;
     	frame = new JFrame("Space Invaders");
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,6 +30,8 @@ public class GUIGameInterface extends JPanel {
         frame.setVisible(true);
         
         frame.getContentPane().addKeyListener(k);
+        
+        frame.addMouseMotionListener(m);
         
         setSize(GUIGame.SCREEN_WIDTH, GUIGame.SCREEN_HEIGHT);
 

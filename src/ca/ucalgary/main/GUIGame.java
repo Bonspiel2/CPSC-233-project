@@ -50,6 +50,12 @@ public class GUIGame extends Game{
 		player.move(string);
 	}
 
+	public void movePlayer(int x, int y) {
+		player.setX(x);
+		player.setY(y);
+		
+	}
+
 
 
 

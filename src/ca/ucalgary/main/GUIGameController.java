@@ -4,11 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.Random;
 
 import javax.swing.Timer;
 
-public class GUIGameController implements ActionListener, KeyListener {
+public class GUIGameController implements ActionListener, KeyListener, MouseMotionListener {
 	
 	private GUIGameInterface gui;
 	private GUIGame game;
@@ -21,7 +24,7 @@ public class GUIGameController implements ActionListener, KeyListener {
 	public GUIGameController() {
 		
 		game = new GUIGame();
-		gui = new GUIGameInterface(this, this, game);
+		gui = new GUIGameInterface(this, this, this, game);
 
 		gameClock = new Timer(10, this);
         gameClock.setActionCommand("TIMER");
@@ -81,6 +84,19 @@ public class GUIGameController implements ActionListener, KeyListener {
 	
 	public GUIGameInterface getGUI() {
 		return gui;
+	}
+	@Override
+	public void mouseDragged(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseMoved(MouseEvent arg0) {
+		int x = arg0.getX();
+		int y = arg0.getY() - 50;
+		
+		game.movePlayer(x,y);
+		
 	}
 
 }
