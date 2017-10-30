@@ -21,7 +21,7 @@ public class GUIGameController implements ActionListener, KeyListener {
 		
 		game = new GUIGame();
 		gui = new GUIGameInterface(this, this, game);
-		
+
 		gameClock = new Timer(10, this);
         gameClock.setActionCommand("TIMER");
         gameClock.start();
@@ -30,23 +30,21 @@ public class GUIGameController implements ActionListener, KeyListener {
 	}
 	@Override
 	public void keyPressed(KeyEvent e) {
-        switch (e.getKeyCode()) {
-            case 'W':
+        if (e.getKeyCode() == KeyEvent.VK_W){
                 System.out.println("Up");
                 game.movePlayer("W");
-                break;
-            case 'A':
-                System.out.println("Left");
-                game.movePlayer("A");
-                break;
-            case 'S':
+        }
+        if (e.getKeyCode() == KeyEvent.VK_A) {
+             System.out.println("Left");
+             game.movePlayer("A");
+        }
+        if (e.getKeyCode() == KeyEvent.VK_S) {
                 System.out.println("Down");
                 game.movePlayer("S");
-                break;
-            case 'D':
+        }            
+        if (e.getKeyCode() == KeyEvent.VK_D) {
                 System.out.println("Right");
                 game.movePlayer("D");
-                break;
         }
     }
 

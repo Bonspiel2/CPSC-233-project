@@ -24,6 +24,7 @@ public class GUIGameInterface extends JPanel {
     	game = g;
     	frame = new JFrame("Space Invaders");
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    
     	
         frame.setSize(Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT);
         frame.setVisible(true);
