@@ -37,6 +37,8 @@ public class Main {
         	System.out.println("You chose the gooey game! Control your ship using WASD.");
         	GUIGameInterface gui = guiGame.getGUI();
         	gui.setVisible(true);
+
+        	
         	
         }
 

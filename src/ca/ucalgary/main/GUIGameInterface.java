@@ -10,13 +10,17 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class GUIGameInterface extends JPanel {
 
 	private JFrame frame;
+	private JButton playAgain;
 	private GUIGame game;
+	private boolean gameOver;
+	private Cursor blankCursor;
 
 	public GUIGameInterface(ActionListener a, KeyListener k,
 			MouseMotionListener m, GUIGame g) {
@@ -29,6 +33,13 @@ public class GUIGameInterface extends JPanel {
 
 		frame.getContentPane().addKeyListener(k);
 		frame.addKeyListener(k);
+		
+		playAgain = new JButton("Play Again");
+		playAgain.addActionListener(a);
+		playAgain.setVisible(false);
+		playAgain.setEnabled(false);
+		
+		add(playAgain);
 
 		addMouseMotionListener(m);
 
@@ -46,29 +57,49 @@ public class GUIGameInterface extends JPanel {
 		BufferedImage cursorImg = new BufferedImage(16, 16,
 				BufferedImage.TYPE_INT_ARGB);
 
-		Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(
+		blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(
 				cursorImg, new Point(0, 0), "blank cursor");
 
-		frame.getContentPane().setCursor(blankCursor);
+		//frame.getContentPane().setCursor(blankCursor);
 
 	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-		game.player.draw(g);
+		if (!gameOver) {
 
-		for (Enemy enemy : game.enemies) {
-			enemy.draw(g);
+			game.player.draw(g);
+
+			for (Enemy enemy : game.enemies) {
+				enemy.draw(g);
+			}
+
+			for (Projectile projectile : game.projectiles) {
+				projectile.draw(g);
+			}
+
+			for (Collectable collectable : game.collectables) {
+				collectable.draw(g);
+			}
 		}
-
-		for (Projectile projectile : game.projectiles) {
-			projectile.draw(g);
-		}
-
-		for (Collectable collectable : game.collectables) {
-			collectable.draw(g);
-		}
-
+	}
+	
+	public void gameOver() {
+		gameOver = true;
+		playAgain.setVisible(true);
+		playAgain.setEnabled(true);
+		frame.getContentPane().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+	}
+	
+	public void newGame() {
+		gameOver = false;
+		playAgain.setVisible(false);
+		playAgain.setEnabled(false);
+		frame.getContentPane().setCursor(blankCursor);
+	}
+	
+	public void setGame(GUIGame g) {
+		this.game = g;
 	}
 }

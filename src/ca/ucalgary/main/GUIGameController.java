@@ -77,7 +77,15 @@ public class GUIGameController implements ActionListener, KeyListener, MouseMoti
 			game.enemiesShoot();
 			game.checkCollisions();
 			gui.repaint();
+			
+			if (game.playerIsDead()) {
+				gui.gameOver();
+			}
 
+		} else if (e.getActionCommand().equals("Play Again")) {
+			gui.newGame();
+			game = new GUIGame();
+			gui.setGame(game);
 		}
 		
 	}
