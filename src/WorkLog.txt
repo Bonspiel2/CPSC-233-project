@@ -76,4 +76,6 @@ Group 3 Work Log
 30/10/17 - Matt
 	Changed from grid layout to nicer version
 	enemies and player shoot (~2 hours)
-	
+
+30/10/17 - Quinn
+	Player moves with new implementation. (~.25 hours)
