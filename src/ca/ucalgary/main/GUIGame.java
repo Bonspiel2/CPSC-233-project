@@ -51,8 +51,8 @@ public class GUIGame extends Game{
 	}
 
 	public void movePlayer(int x, int y) {
-		player.setX(x);
-		player.setY(y);
+		player.setX(x- player.getWidth()/2);
+		player.setY(y - player.getHeight()/2);
 		
 	}
 

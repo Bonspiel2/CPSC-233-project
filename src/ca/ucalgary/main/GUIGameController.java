@@ -93,7 +93,7 @@ public class GUIGameController implements ActionListener, KeyListener, MouseMoti
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
 		int x = arg0.getX();
-		int y = arg0.getY() - 50;
+		int y = arg0.getY();
 		
 		game.movePlayer(x,y);
 		
