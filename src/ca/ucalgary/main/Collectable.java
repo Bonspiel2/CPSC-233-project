@@ -88,7 +88,7 @@ public class Collectable {
 	 */
 	public boolean move() {
 		boolean onScreen = true;
-		if (y == TextGame.ROWS - 1) {
+		if (y >= maxY) {
 			onScreen = false;
 		} else {
 			y++;
