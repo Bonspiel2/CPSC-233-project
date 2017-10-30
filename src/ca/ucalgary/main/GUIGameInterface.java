@@ -1,6 +1,7 @@
 package ca.ucalgary.main;
 
 import java.awt.Color;
+
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -13,6 +14,14 @@ import java.awt.image.BufferedImage;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
+
+/**
+ * The GUIGameInterface class controls all aspects of displaying the game graphically.
+ * It sets up the JFrame as well as handles the drawing of all enemies, projectiles, 
+ * collectables, and the player. 
+ *
+ */
 
 public class GUIGameInterface extends JPanel {
 
@@ -64,6 +73,11 @@ public class GUIGameInterface extends JPanel {
 
 	}
 
+	/**
+	 * The paintComponent method draws all projectiles, enemies, collectables, and the player
+	 * by drawing to a graphics object.
+	 * @param g the given graphics object.
+	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 

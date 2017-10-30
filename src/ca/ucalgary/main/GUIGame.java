@@ -1,17 +1,21 @@
 package ca.ucalgary.main;
 
-import javax.swing.Timer;
+/**
+ * The GUIGame class extends the Game class and handles the set up of
+ * game. It initializes the board and player.
+ *
+ */
+public class GUIGame extends Game {
 
-public class GUIGame extends Game{
-
-	Timer gameClock;
 	GUIGameInterface gui;
 	
 	public static final int SCREEN_WIDTH = 350;
 	public static final int SCREEN_HEIGHT = 500;
 
-
-	// constructor
+/**
+ * The main constructor for the GUIGame. Handles initialization 
+ * of the board dimensions and the player,
+ */
 	public GUIGame() {
 		super();
 
@@ -26,38 +30,47 @@ public class GUIGame extends Game{
 	}
 
 	@Override
+	/**
+	 * Overriden run method. No functionality.
+	 */
 	public void run() {
 	}
 
 	@Override
+	/**
+	 * Overriden draw method. No functionality.
+	 */
 	public void draw() {
 	}
 
 	@Override
+	/**
+	 * Overriden method to get input. No functionality.
+	 * @return null returns nothing.
+	 */
 	public String getInput() {
 		return null;
 	}
-	// sets up the board with enemies
+	
+	/**
+	 * Handles the set-up of the board through spawning
+	 * the initial enemies.
+	 */
 	public void initBoard() {
 		for(int i = 0; i < TextGame.ROWS-6; i++) {
 			Enemy enemy = new Enemy(i);
 			addEnemy(enemy);
 		}
-
 	}
 
-	public void movePlayer(String string) {
-		player.move(string);
-	}
-
+	/**
+	 * Updates the x and y coordinates of the player.
+	 * Called to move the player based on mouse input.
+	 * @param x the given x value for the player
+	 * @param y the given y value for the player
+	 */
 	public void movePlayer(int x, int y) {
 		player.setX(x- player.getWidth()/2);
 		player.setY(y - player.getHeight()/2);
-		
 	}
-	
-
-
-
-
 }

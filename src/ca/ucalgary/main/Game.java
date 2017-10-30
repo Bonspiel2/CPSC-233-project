@@ -20,10 +20,7 @@ public abstract class Game {
     
 
 	/**
-	 * Updates the game every iteration as well as creates new objects when needed
-	 * If the players health reaches zero, this method will quit the game
-	 * 
-	 * @author Cole
+	 * Abstract method that indicates a subclass must include a run method. 
 	 */
 	public abstract void run();
 
@@ -32,8 +29,6 @@ public abstract class Game {
 	 * between collectables and the player, or between enemies and the player.
 	 * If a collision occurs, the given object(s) is/are removed from their 
 	 * array list (and therefore the board).
-	 *
-	 * @author Quinn
 	 *
 	 */
 	public void checkCollisions() {
@@ -76,6 +71,7 @@ public abstract class Game {
 		// check collisions between enemies and player
 		for (Iterator<Enemy> enemyItr = enemies.iterator(); enemyItr.hasNext();) {
 			Enemy enemy = enemyItr.next();
+			
 			// decrease player health by one if collision occurs
 			if (enemy.collidedWith(player)) {
 				int health = player.getHealth() - 1;
@@ -86,36 +82,19 @@ public abstract class Game {
 	}
 
 	/**
-	 * Draws the enemies, projectiles, collectables, and player on the gameboard.
-	 *
-	 * @author Quinn
-	 * @return board the fully drawn gameboard.
+	 * Abstract method that indicates a subclass must include a draw method.
 	 */
 	public abstract void draw();
 
 	/**
-	 * Prints the game board, the player's health 
-	 * and the players score for each turn.
-	 * @author Lily and Quinn
-	 */
-
-	/**
-	 * Reads user input with every turn to determine whether 
-	 * the player moves the the right or to to the left.
-	 * @return String that indicates the direction the player 
-	 * desires to move.
-	 * 
-	 * @author Lily
+	 * Abstract method that indicates a subclass must include a method to
+	 * get input from the user.
 	 */
 	public abstract String getInput();
 
 	/**
-	 * Moves each object to its next location on the screen
-	 * @param s The string command given as input for the direction 
-	 * for the player to move
-	 * @author Matt
+	 * Moves each object to its next location on the screen.
 	 */
-
 	public void move() {
 
 		for(int i = 0; i < enemies.size(); i++) {
@@ -142,19 +121,17 @@ public abstract class Game {
 		}
 	}
 
-	
-
 	/**
-	 * Initializes the board blank and then with enemies up to the 6th
-	 * row from the bottom
-	 * @return board The text board after being initialized
-	 * @author Matt
+	 * Adds an enemy.
+	 * @param e the given enemy to add
 	 */
-
 	public void addEnemy(Enemy e) {
 		enemies.add(e);
 	}
-
+	
+	/**
+	 * Causes the player to fire a projectile.
+	 */
 	public void playerShoot() {
 		Projectile p = player.shoot();
 
@@ -162,7 +139,9 @@ public abstract class Game {
 			projectiles.add(p);
 		}
 	}
-
+	/**
+	 * Causes an enemy to fire a projectile.
+	 */
 	public void enemiesShoot() {
 		for (Enemy enemy : enemies) {
 			if (enemy.getHasAShot()) {
@@ -172,26 +151,50 @@ public abstract class Game {
 		}
 	}
 	
+	/**
+	 * Indicates whether the player is still alive or not.
+	 * @return boolean returns true if the player's health is zero (or less)
+	 */
 	public boolean playerIsDead() {
 		return player.getHealth() <= 0;
 	}
 
+	/**
+	 * Retrieves the ArrayList of enemies
+	 * @return enemies the ArrayList of enemies
+	 */
 	public ArrayList<Enemy> getEnemies() {
 		return enemies;
 	}
-
+	
+	/**
+	 * Retrieves the ArrayList of collectables
+	 * @return collectables the ArrayList of collectables
+	 */
 	public ArrayList<Collectable> getCollectables() {
 		return collectables;
 	}
 
+	/**
+	 * Retrieves the ArrayList of projectiles
+	 * @return projectiles the ArrayList of projectiles
+	 */
 	public ArrayList<Projectile> getProjectiles() {
 		return projectiles;
 	}
 
+	/** 
+	 * Retrieves the player
+	 * @return player the current player
+	 */
 	public Player getPlayer() {
 		return player;
 	}
     
+	/**
+	 * Sets the player
+	 * @param player the given player to set
+	 */
     public void setPlayer(Player player) {
         this.player = player;
     }
