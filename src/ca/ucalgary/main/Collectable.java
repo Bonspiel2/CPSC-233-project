@@ -17,12 +17,26 @@ public class Collectable {
 
 	private int x;
 	private int y;
+	private int maxY;
     private String symbol = "$";
+    
+    private int width;
+    private int height;
 	
-	Collectable(int x, int y) {
+	Collectable(int x, int y, int maxY) {
 		this.x = x;
 		this.y = y;
+		this.maxY = maxY;
 	}
+	
+	Collectable(int x, int y, int maxY, int lol) {
+		this.x = x;
+		this.y = y;
+		this.maxY = maxY;
+		this.width = 7;
+		this.height = 12;
+	}
+	
 	
 	/**
 	 * Gets integer column value the collectable.
@@ -31,7 +45,15 @@ public class Collectable {
 	public int getX() {
 		return x;
 	}
+	
+	public int getW() {
+		return width;
+	}
 
+	public int getH() {
+		return height;
+	}
+	
 	/**
 	 * Sets new integer column value for the collectable.
 	 * @param x new column value.
@@ -55,7 +77,7 @@ public class Collectable {
 	public void setY(int y) {
 		this.y = y;
 	}
-
+	
 	/**
 	 * Moves collectable down the screen by one row every turn 
 	 * until it is no longer within the range of the game board.
@@ -89,8 +111,10 @@ public class Collectable {
 //    }
     
     public void draw(Graphics g) {
+ 	
     	g.setColor(Color.YELLOW);
     	g.drawString("$", x, y);
+    	
     }
 
 }

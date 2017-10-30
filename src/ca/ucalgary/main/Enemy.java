@@ -109,6 +109,17 @@ public class Enemy {
 		return collided;
 	}
 	
+	public Collectable createCollectable() {
+		Collectable collectable = new Collectable(x,y,maxY);
+		if(height != 0) {
+			collectable = new Collectable(x,y,maxY,1);
+		}
+		else {
+			collectable = new Collectable(x,y,maxY);
+		}
+		return collectable;
+	}
+	
 	/**	Draws the enemy on the board at its current x and y coordinates
 	 * @param board	The text board on which the enemy is drawn.
 	 */
@@ -170,6 +181,9 @@ public class Enemy {
 		return width;
 	}
 
+	public int getMaxY() {
+		return maxY;
+	}
 	public void setWidth(int width) {
 		this.width = width;
 	}
