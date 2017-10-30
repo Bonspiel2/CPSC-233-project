@@ -110,9 +110,9 @@ public class Enemy {
 	}
 	
 	public Collectable createCollectable() {
-		Collectable collectable = new Collectable(x,y,maxY);
+		Collectable collectable;
 		if(height != 0) {
-			collectable = new Collectable(x,y,maxY,1);
+			collectable = new Collectable(x,y,maxY,7,10);
 		}
 		else {
 			collectable = new Collectable(x,y,maxY);

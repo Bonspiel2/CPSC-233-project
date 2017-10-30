@@ -29,12 +29,12 @@ public class Collectable {
 		this.maxY = maxY;
 	}
 	
-	Collectable(int x, int y, int maxY, int lol) {
+	Collectable(int x, int y, int maxY, int width, int height) {
 		this.x = x;
 		this.y = y;
 		this.maxY = maxY;
-		this.width = 7;
-		this.height = 12;
+		this.width = width;
+		this.height = height;
 	}
 	
 	
