@@ -3,23 +3,43 @@ package ca.ucalgary.main;
 import java.awt.Color;
 import java.awt.Graphics;
 
+/**
+ * EnemyProjectile class allows the game to create enemy projectiles which travel 
+ * down the screen with different implementation for GUI or TextGame 
+ * instances, where the GUI instance has a velocity parameter
+ * @author Matt
+ */
 public class EnemyProjectile extends Projectile {
 
 	private boolean collided;
 	private boolean edgy;
 	private String symbol = "*";
 
-	// Main constructor
+	/**
+	 * Constructor for the TextGame version
+	 * @param x x Coordinate of the enemyProjectile
+	 * @param y, y Coordinate of the EnemyProjectile
+	 */
 	public EnemyProjectile(int x, int y) {
 		super(x, y);
 	}
 
-	// Constructor with velocity parameter
+	/**
+	 * Constructor for the GUI version
+	 * @param x, x coordinate of the projectile
+	 * @param y, y coordinate of the projectile
+	 * @param velocity, velocity of the projectile or how much it moves each 'Tick'
+	 */
 	public EnemyProjectile(int x, int y, int velocity) {
 		super(x, y, velocity);
 		
 	}
-
+	
+	/**
+	 * Checks for collisions between the enemy and the 
+	 * @param player The player object the collision is being checked against
+	 * @return collided, true if collided, false if not
+	 */
 	public boolean collidedWith(Player player) {
 		collided = ((this.y + getHeight() >= player.getY() || this.y == player.getY() - 1)
 				&& this.y <= player.getY() + player.getHeight()
@@ -29,14 +49,12 @@ public class EnemyProjectile extends Projectile {
 
 	}
 
-	/**
-	 * Moves the projectile down one row and detects whether or not it has
-	 * reached the edge of the board.
-	 * 
-	 * @return edgy returns true if the projectile has reached the edge of the
-	 *         board.
-	 */
 	@Override
+	/**
+	 * Moves the projectile down one row or pixel and detects whether or not it has
+	 * reached the edge of the board/ screen.
+	 * @return edgy, boolean of whether it is at the edge of the screen or not
+	 */
 	public boolean move() {
 		if (collided) {
 			edgy = true;
@@ -49,12 +67,20 @@ public class EnemyProjectile extends Projectile {
 		}
 		return edgy;
 	}
-
+	
+	/**
+	 * Draws the symbol of the EnemyProjectile on the text board
+	 * @param board the 2D array that represents the board
+	 */
 	@Override
 	public void draw(String[][] board) {
 		board[y][x] = "*";
 	}
 
+	/**
+	 * Draws the EnemyProjectile as a thin rectangle at its current x and y coordinates
+	 * @param g the graphics object which the EnemyProjectile is drawn to
+	 */
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(Color.PINK);

@@ -83,4 +83,5 @@ Group 3 Work Log
 30/10/17 - Matt
 	Collectables now collide with player (~1 hour)
 	More things, bugs etc (~2 hours)	
+	Updates Javadocs in Collectable, Enemy, and EnemyProjectile (~2 hours)
 

@@ -23,7 +23,13 @@ public class Collectable {
     private int width;
     private int height;
 	
-    
+    /**
+     * Collectable constructor for the TextBased version of the game, initializes all variables that are 
+	 * needed when a collectable is created
+	 * @param x, x coordinate of the collectable
+	 * @param y, y coordinate of the collectable
+	 * @param maxY, the farthest down a collectable can travel before being removed
+     */
 	Collectable(int x, int y, int maxY) {
 		this.x = x;
 		this.y = y;
@@ -32,6 +38,15 @@ public class Collectable {
 		this.height = 0;
 	}
 	
+	/**
+	 * Collectable constructor for the GUI version of the game, initializes all variables that are 
+	 * needed when a collectable is created
+	 * @param x, x coordinate of the collectable
+	 * @param y, y coordinate of the collectable
+	 * @param maxY, the farthest down a collectable can travel before being removed
+	 * @param width, width of the collectable
+	 * @param height, height of the collectable
+	 */
 	Collectable(int x, int y, int maxY, int width, int height) {
 		this.x = x;
 		this.y = y;
@@ -49,10 +64,18 @@ public class Collectable {
 		return x;
 	}
 	
+	/**
+	 * Gets integer value of the width of the collectable;
+	 * @return width of the collectable
+	 */
 	public int getW() {
 		return width;
 	}
-
+	
+	/**
+	 * Getter for the height of the collectable
+	 * @return height of the collectable
+	 */
 	public int getH() {
 		return height;
 	}
@@ -108,11 +131,11 @@ public class Collectable {
 		board[y][x] = "$";
         
 	}
-//    
-//    public void draw(Board board) {
-//        board.draw(symbol, x, y);
-//    }
-    
+
+	/**
+	 * Draws the collectable to a graphics object, as a yellow "$"
+	 * @param g the graphics object being drawn to
+	 */
     public void draw(Graphics g) {
     	g.setColor(Color.YELLOW);
     	g.drawString("$", x, y);
