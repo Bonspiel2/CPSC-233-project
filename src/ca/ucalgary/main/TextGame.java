@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 
 /**
- * The TextGame program implements a space invaders game which can be
- * played on the console.
+ * The TextGame program implements a text based game similar to 
+ * space invaders which can be played on the console.
  * 
  * @author Group 3
  */
@@ -20,7 +20,12 @@ public class TextGame extends Game {
 	private String[][] board;
 
 	private boolean running;
-
+	
+	/**
+	 * Default Constructor for TextGame
+	 * Creates a player, and sets its maxY and maxX to ROWS and COLUMNS
+	 * Initializes the board and the player on it
+	 */
 	public TextGame() {
 		super();
         
@@ -66,16 +71,6 @@ public class TextGame extends Game {
 
 
 	}
-
-	/**
-	 * Checks if collisions have occured between enemies and projectiles, 
-	 * between collectables and the player, or between enemies and the player.
-	 * If a collision occurs, the given object(s) is/are removed from their 
-	 * array list (and therefore the board).
-	 *
-	 * @author Quinn
-	 *
-	 */
 
 	/**
 	 * Draws the enemies, projectiles, collectables, and player on the gameboard.
@@ -144,13 +139,15 @@ public class TextGame extends Game {
 	 * for the player to move
 	 * @author Matt
 	 */
-
 	public void move(String s) {
 		super.move();
 		Player player = getPlayer();
 		player.move(s);
 	}
 
+	/**
+	 * Clears the board before each time the board is redrawn
+	 */
 	public void clearBoard() {
 		board = new String[ROWS][COLUMNS];
 		for(int row = 0; row < ROWS; row++) {
