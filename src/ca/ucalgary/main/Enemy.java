@@ -172,7 +172,7 @@ public class Enemy {
 
     
     public EnemyProjectile shoot() {
-        EnemyProjectile shot = new EnemyProjectile(x + width / 2, y+ height + 5);
+        EnemyProjectile shot = new EnemyProjectile(x + width / 2, y+1 +height);
         hasAShot = false;
         return shot;
     }

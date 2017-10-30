@@ -2,6 +2,7 @@ package ca.ucalgary.main;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 import java.util.Scanner;
 
 
@@ -49,12 +50,14 @@ public class TextGame extends Game {
 			String input = getInput();
 			move(input);
 			checkCollisions();
-			addEnemy(new Enemy(0));
+			addEnemy(new Enemy(new Random().nextInt(COLUMNS), 0));
 			playerShoot();
-            enemiesShoot();
+			enemiesShoot();
+            
 
 			draw();
 			print();
+			
 			if (playerIsDead()) {
 				System.out.println("GAME OVER!");
 				running = false;
@@ -166,7 +169,7 @@ public class TextGame extends Game {
 	public String[][] initBoard(){
 		clearBoard();
 		for(int i = 0; i < ROWS-6; i++) {
-			Enemy enemy = new Enemy(i);
+			Enemy enemy = new Enemy(i, new Random().nextInt(TextGame.COLUMNS-1));
 			addEnemy(enemy);
 		}
 

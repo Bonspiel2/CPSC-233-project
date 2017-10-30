@@ -43,9 +43,9 @@ public class EnemyProjectile extends Projectile {
 			edgy = true;
 		}
 		if (this.y == TextGame.ROWS - 1) {
-			edgy = true;
-		} else {
 			edgy = false;
+		} else {
+			edgy = true;
 			this.y = this.y + 1;
 		}
 		return edgy;

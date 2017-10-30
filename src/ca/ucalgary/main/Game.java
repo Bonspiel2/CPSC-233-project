@@ -127,8 +127,9 @@ public abstract class Game {
 		}
 		for(int i = 0; i < projectiles.size(); i++) {
 			Projectile projectile = projectiles.get(i);
-			if(projectile.move()) {
+			if(!projectile.move()) {
 				projectiles.remove(i);
+				i--;
 			}
 		}
 
@@ -136,6 +137,7 @@ public abstract class Game {
 			Collectable collectable = collectables.get(i);
 			if(!collectable.move()) {
 				collectables.remove(i);
+				i--;
 			}
 		}
 	}
