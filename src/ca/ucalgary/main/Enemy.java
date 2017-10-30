@@ -20,8 +20,10 @@ public class Enemy {
 	private int y;
 	
 	private int guiX;
+    
+    private int size;
 	
-	private static final int SIZE = 20;
+//	private static final int SIZE = 20;
 
 	private boolean alive;
     
@@ -133,7 +135,7 @@ public class Enemy {
     
 	public void draw(Graphics g) {
 		g.setColor(Color.RED);
-		g.fillRect(guiX, y, SIZE, SIZE);
+		g.fillRect(guiX, y, size, size);
 	}
 	
 	
@@ -143,10 +145,23 @@ public class Enemy {
 
     
     public EnemyProjectile shoot() {
-        EnemyProjectile shot = new EnemyProjectile(x, y+1);
+        EnemyProjectile shot = new EnemyProjectile(guiX + size / 2, y+ size + 5 );
         hasAShot = false;
         return shot;
     }
+    
+    public void setSize(int size) {
+        this.size = size;
+    }
+    
+    public int getSize() {
+        return this.size;
+    }
+    
+    public int getGUIX() {
+        return this.guiX;
+    }
+
 
 
 }

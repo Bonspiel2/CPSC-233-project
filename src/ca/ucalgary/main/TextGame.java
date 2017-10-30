@@ -28,6 +28,7 @@ public class TextGame extends Game {
         player.setMaxY(ROWS);
         
         player.setStep(1);
+        
 
         super.setPlayer(player);
         
@@ -90,6 +91,7 @@ public class TextGame extends Game {
 		player.draw(board);
 
 		for (Enemy enemy : enemies) {
+            enemy.setSize(1);
 			enemy.draw(board);
 		}
 
