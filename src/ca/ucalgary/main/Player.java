@@ -227,30 +227,58 @@ public class Player {
 		return score;
 	}
 
+	/**
+	 * Sets the player's maxX value
+	 * @param max the new maxX value for the player
+	 */
 	public void setMaxX(int max) {
 		this.maxX = max;
 	}
-
+	
+	/**
+	 * Sets the player's maxY value
+	 * @param max the new maxY value
+	 */
 	public void setMaxY(int max) {
 		this.maxY = max;
 	}
-
+	
+	/**
+	 * Sets the players step or distance moved per button press 
+	 * @param step the amount moved 
+	 */
 	public void setStep(int step) {
 		this.step = step;
 	}
-
+	
+	/**
+	 * Gets the player's width 
+	 * @return width the player's width
+	 */
 	public int getWidth() {
 		return width;
 	}
 
+	/**
+	 * Sets the player's width 
+	 * @param width the player's new width
+	 */
 	public void setWidth(int width) {
 		this.width = width;
 	}
-
+	
+	/**
+	 * Gets the player's height 
+	 * @return height the players height
+	 */
 	public int getHeight() {
 		return height;
 	}
-
+	
+	/**
+	 * Sets the player's height value
+	 * @param height the player's height value
+	 */
 	public void setHeight(int height) {
 		this.height = height;
 	}
