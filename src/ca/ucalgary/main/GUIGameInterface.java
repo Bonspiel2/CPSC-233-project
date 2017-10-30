@@ -47,7 +47,6 @@ public class GUIGameInterface extends JPanel {
         game.player.draw(g);
         
         for (Enemy enemy : game.enemies) {
-            enemy.setSize(20);
             enemy.draw(g);
         }
                 

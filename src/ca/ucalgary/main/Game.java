@@ -50,7 +50,7 @@ public abstract class Game {
 					Enemy e = enemies.get(enemyIndex);
 					
 					if (((PlayerProjectile) p).collidedWith(e)) {
-						collectables.add(new Collectable(e.getGUIX(),e.getY()));
+						collectables.add(new Collectable(e.getX(),e.getY()));
 						projectiles.remove(projIndex);
 						projIndex--;
 						enemies.remove(enemyIndex);

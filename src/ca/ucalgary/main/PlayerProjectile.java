@@ -21,10 +21,10 @@ public class PlayerProjectile extends Projectile {
     
     public boolean collidedWith(Enemy enemy) {
         collided = ((this.y >= enemy.getY() &&
-                     this.y <= enemy.getY() + enemy.getSize())
+                     this.y <= enemy.getY() + enemy.getWidth())
                     &&
-                    (this.x >= enemy.getGUIX() &&
-                    this.x <= enemy.getGUIX() + enemy.getSize()));
+                    (this.x >= enemy.getX() &&
+                    this.x <= enemy.getX() + enemy.getHeight()));
 
 //        collided = ((this.y == enemy.getY() || this.y == enemy.getY()-1)
 //                    && this.x == enemy.getX());

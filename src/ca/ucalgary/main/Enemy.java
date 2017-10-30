@@ -18,12 +18,8 @@ public class Enemy {
 
 	private int x;
 	private int y;
-	
-	private int guiX;
-    
-    private int size;
-	
-//	private static final int SIZE = 20;
+	private int width;
+	private int height;
 
 	private boolean alive;
     
@@ -36,21 +32,34 @@ public class Enemy {
 	 * Creates an enemy at the top of the screen in a
 	 * (psuedo)random column, and sets it to alive
 	 */
-	Enemy() {
-		this.x = new Random().nextInt(TextGame.COLUMNS - 1);
-		this.guiX = new Random().nextInt(Game.SCREEN_WIDTH - 1);
-		this.y = 0;
+	public Enemy(int x, int y) {
+		this.x = x;
+		this.y = y;
+		this.width = 0;
+		this.height = 0;
+		
 		this.alive = true;
         this.hasAShot = true;
-
 	}
+	
+	public Enemy(int x, int y, int width, int height) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		
+		this.alive = true;
+        this.hasAShot = true;
+	}
+	
+	
 	
 	/**
 	 * Board initializer constructor, used to initialize the
 	 * enemies on the board on different rows
 	 * @param y y Coordinate of the enemy 
 	 */
-	Enemy(int y) {
+	public Enemy(int y) {
 		this.x = new Random().nextInt(TextGame.COLUMNS - 1);
 		this.y = y;
 		this.alive = true;
@@ -85,7 +94,8 @@ public class Enemy {
 	public boolean collidedWith(Player player) {
 		boolean collided = false;
 
-		if (x == player.getX() && y == player.getY()) {
+		if (x >= player.getX() && x < player.getX() + player.getWidth() && 
+				y >= player.getY() && y < player.getY() + player.getHeight()) {
 			collided = true;
 			alive = false;
 		}
@@ -135,7 +145,7 @@ public class Enemy {
     
 	public void draw(Graphics g) {
 		g.setColor(Color.RED);
-		g.fillRect(guiX, y, size, size);
+		g.fillRect(x, y, width, height);
 	}
 	
 	
@@ -145,22 +155,26 @@ public class Enemy {
 
     
     public EnemyProjectile shoot() {
-        EnemyProjectile shot = new EnemyProjectile(guiX + size / 2, y+ size + 5 );
+        EnemyProjectile shot = new EnemyProjectile(x + width / 2, y+ height + 5);
         hasAShot = false;
         return shot;
     }
-    
-    public void setSize(int size) {
-        this.size = size;
-    }
-    
-    public int getSize() {
-        return this.size;
-    }
-    
-    public int getGUIX() {
-        return this.guiX;
-    }
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
 
 
 

@@ -22,7 +22,7 @@ public class GUIGameController implements ActionListener, KeyListener {
 		game = new GUIGame();
 		gui = new GUIGameInterface(this, this, game);
 		
-		gameClock = new Timer(50, this);
+		gameClock = new Timer(10, this);
         gameClock.setActionCommand("TIMER");
         gameClock.start();
         
@@ -67,7 +67,7 @@ public class GUIGameController implements ActionListener, KeyListener {
 		if (e.getActionCommand().equals("TIMER")) {
 			enemyCounter++;
 			if(enemyCounter >= 20) {
-				game.addEnemy(new Enemy());
+				game.addEnemy(new Enemy(0,0,10,10));
 				enemyCounter = 0;
 			}
 			game.move();
