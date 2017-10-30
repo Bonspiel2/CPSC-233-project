@@ -17,12 +17,15 @@ public class Collectable {
 
 	private int x;
 	private int y;
+	private int maxY;
     private String symbol = "$";
 	
-	Collectable(int x, int y) {
+	Collectable(int x, int y, int maxY) {
 		this.x = x;
 		this.y = y;
+		this.maxY = maxY;
 	}
+	
 	
 	/**
 	 * Gets integer column value the collectable.
@@ -56,6 +59,10 @@ public class Collectable {
 		this.y = y;
 	}
 
+	public int getMaxY() {
+		return maxY;
+	}
+	
 	/**
 	 * Moves collectable down the screen by one row every turn 
 	 * until it is no longer within the range of the game board.
