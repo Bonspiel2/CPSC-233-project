@@ -17,6 +17,8 @@ public class Player {
     private int y;
     private int width;
     private int height;
+    
+    private int step;
 		
     
     private int maxX; //columns
@@ -48,7 +50,7 @@ public class Player {
 			this.score = 0;
 			
 			this.ship = "A";
-			
+            
 			firerate = 5;
 			fireCount = 6;
 			fireTimer = fireCount * firerate;
@@ -86,20 +88,20 @@ public class Player {
 		 */
 		public void move(String s) {
 			 if (s.equals("A")) {
-				 if (x - 1 >= 0) {
-					 x--;
+				 if (x - step >= 0) {
+					 x-= step;
 				 }
 			 } else if (s.equals("D")) {
-				 if ((x + 1) < maxX) {
-					 x++;
+				 if ((x + step) < maxX) {
+					 x+= step;
 				 }
 			 } else if (s.equals("W")) {
-				 if ((y - 1) >= 0) {
-					 y--;
+				 if ((y - step) >= 0) {
+					 y-= step;
 				 }
 			 } else if (s.equals("S")) {
-				 if ((y + 1) < maxY) {
-					 y++;
+				 if ((y + step) < maxY) {
+					 y+= step;
 				 }
 			 }
 		}
@@ -149,10 +151,10 @@ public class Player {
          * Draws the projectile for the GUI Game.
          * @param board the current GUI gameboard.
          */
-        public void draw(Board board) {
-            board.draw(ship, x, y);
-        }
-        
+//        public void draw(Board board) {
+//            board.draw(ship, x, y);
+//        }
+    
         public void draw(Graphics g) {
         	g.setColor(Color.CYAN);
         	g.fillOval(x, y, 15, 15);
@@ -220,5 +222,9 @@ public class Player {
     
     public void setMaxY(int max) {
         this.maxY = max;
+    }
+    
+    public void setStep(int step) {
+        this.step = step;
     }
 }

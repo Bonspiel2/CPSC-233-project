@@ -78,9 +78,9 @@ public abstract class Projectile {
      * Draws the projectile for the GUI Game.
      * @param board the current GUI gameboard.
      */
-    public void draw(Board board) {
-        board.draw(symbol, x, y);
-    }
+//    public void draw(Board board) {
+//        board.draw(symbol, x, y);
+//    }
     
     /**
      * Gets the projectile's current x (column) coordinate.

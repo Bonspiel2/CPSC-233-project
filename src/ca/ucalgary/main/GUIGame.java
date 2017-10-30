@@ -16,6 +16,8 @@ public class GUIGame extends Game{
 
 		player.setMaxX(Game.SCREEN_WIDTH);
 		player.setMaxY(Game.SCREEN_HEIGHT);
+        
+        player.setStep(5);
 
 		super.setPlayer(player);
 	}

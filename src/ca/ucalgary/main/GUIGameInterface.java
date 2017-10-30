@@ -28,13 +28,13 @@ public class GUIGameInterface extends JPanel {
         frame.setSize(Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT);
         frame.setVisible(true);
         
-        frame.addKeyListener(k);
+        frame.getContentPane().addKeyListener(k);
         
         setSize(Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT);
 
         setBackground(Color.BLACK);
         
-        setFocusable(true);
+        frame.getContentPane().setFocusable(true);
         requestFocus();
         
         frame.getContentPane().add(this);

@@ -83,10 +83,10 @@ public class Collectable {
 		board[y][x] = "$";
         
 	}
-    
-    public void draw(Board board) {
-        board.draw(symbol, x, y);
-    }
+//    
+//    public void draw(Board board) {
+//        board.draw(symbol, x, y);
+//    }
     
     public void draw(Graphics g) {
     	g.setColor(Color.YELLOW);

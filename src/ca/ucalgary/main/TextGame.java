@@ -26,6 +26,8 @@ public class TextGame extends Game {
         Player player = new Player(COLUMNS/2, ROWS - 2, 5);
         player.setMaxX(COLUMNS);
         player.setMaxY(ROWS);
+        
+        player.setStep(1);
 
         super.setPlayer(player);
         
