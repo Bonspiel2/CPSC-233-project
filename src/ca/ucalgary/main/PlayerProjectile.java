@@ -1,33 +1,43 @@
 package ca.ucalgary.main;
 
+/**
+ * The PlayerProjectile class controls all the behaviour of projectiles friendly to the player 
+ * by checking for collisions with enemies as well as moving in the correct direction
+ * 
+ */
 public class PlayerProjectile extends Projectile {
     
-    private int velocity;
-    private boolean collided;
-    private boolean edgy;
-    
-    // Main constructor
+    /**
+     * Main constructor for the text game
+     * @param x Projectile's initial x value
+     * @param y Projectile's initial y value
+     */
     public PlayerProjectile(int x, int y) {
             super(x, y);
-            this.velocity = 0;
         }
     
-    // GUI constructor
+    /**
+     * Main constructor for the GUI game
+     * @param x Projectile's initial x value
+     * @param y Projectile's initial y value
+     * @param velocity 
+     */
     public PlayerProjectile(int x, int y, int velocity) {
         super(x, y, velocity);
-        this.velocity = 0;
     }
 
-    
+    /**
+     * Checks if the projectile and a given enemy have collided
+     * @param enemy Potential enemy collision
+     * @return true if the two objects have collided
+     */
     public boolean collidedWith(Enemy enemy) {
-        collided = (((this.y >= enemy.getY() || this.y == enemy.getY()-1) &&
-                     this.y <= enemy.getY() + enemy.getHeight())
+        boolean collided = (((getY() >= enemy.getY() || getY() == enemy.getY()-1) &&
+                     getY() <= enemy.getY() + enemy.getHeight())
                     &&
-                    (this.x >= enemy.getX() &&
-                    this.x <= enemy.getX() + enemy.getWidth()));
+                    (getX() >= enemy.getX() &&
+                    getX() <= enemy.getX() + enemy.getWidth()));
 
-//        collided = ((this.y == enemy.getY() || this.y == enemy.getY()-1)
-//                    && this.x == enemy.getX());
         return collided;
         
     }
@@ -39,14 +49,12 @@ public class PlayerProjectile extends Projectile {
      */
     @Override
     public boolean move() {
-        if (collided) {
-            edgy = false;
-        }
-        if (this.y == 0) {
+    	boolean edgy;
+        if (getY() == 0) {
             edgy = false;
         } else {
             edgy = true;
-            this.y = this.y - 1;
+            setY(getY() - getVelocity());
         }
         return edgy;
     }

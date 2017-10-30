@@ -15,27 +15,19 @@ import java.awt.Graphics;
 
 public abstract class Projectile {
 	
-    /**
-     * The x coordinate of the projectile (columns)
-     */
-	protected int x;
+	private int x;
+	private int y;
     
 	private int width;
 	private int height;
-    /**
-     * The y coordinate of the projectile (rows)
-     */
-	protected int y;
     
     private int velocity;
-    
-    private boolean collided;
-	private boolean edgy;
+
         
     protected String symbol = "|";
 	
-        /**
-     * Main constructor
+    /**
+     * Main constructor for text game. Defaults projectile's velocity to 1
      * @param newX new projectile's column value
      * @param newY new projectile's row value
      */
@@ -45,8 +37,6 @@ public abstract class Projectile {
 		this.width = 0;
 		this.height = 0;
 		this.velocity = 1;
-        collided = false;
-		
 	}
     
     /**
@@ -61,7 +51,6 @@ public abstract class Projectile {
         this.height = 10;
         this.width = 2;
         this.velocity = vel;
-        collided = false;
         
     }
 
@@ -72,19 +61,22 @@ public abstract class Projectile {
     public abstract boolean move();
     
     /**
-     * Draws the projectile.
+     * Draws the projectile on a string array.
      * @param board the current gameboard.
      */
     public void draw(String[][] board) {
 		board[y][x] = "|";
 	}
-    /**
+    
+	/**
      * Draws the projectile for the GUI Game.
-     * @param board the current GUI gameboard.
+     * @param g Graphics object that the projectile is drawn to.
      */
-//    public void draw(Board board) {
-//        board.draw(symbol, x, y);
-//    }
+    
+	public void draw(Graphics g) {
+		g.setColor(Color.white);
+		g.fillRect(x, y, width, height);
+	}
     
     /**
      * Gets the projectile's current x (column) coordinate.
@@ -109,20 +101,28 @@ public abstract class Projectile {
 	public int getY() {
 		return y;
 	}
-    
-	public void draw(Graphics g) {
-		g.setColor(Color.white);
-		g.fillRect(x, y, width, height);
-	}
 	
+
+	/**
+	 * Gets the projectile's width.
+	 * @return width the projectile's width value
+	 */
 	public int getWidth() {
 		return width;
 	}
 	
+	/**
+	 * Gets the projectile's height.
+	 * @return height the projectile's height value
+	 */
 	public int getHeight() {
 		return height;
 	}
 	
+	/**
+	 * Gets the projectile's velocity.
+	 * @return velocity the projectile's velocity value
+	 */
 	public int getVelocity() {
 		return velocity;
 	}

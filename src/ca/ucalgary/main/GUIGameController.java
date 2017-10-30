@@ -37,7 +37,6 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
         
         game.initBoard();
 	}
-	
 
 	@Override
 	/**
