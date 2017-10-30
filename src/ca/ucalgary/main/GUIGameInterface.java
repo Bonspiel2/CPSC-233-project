@@ -69,7 +69,7 @@ public class GUIGameInterface extends JPanel {
 		blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(
 				cursorImg, new Point(0, 0), "blank cursor");
 
-		//frame.getContentPane().setCursor(blankCursor);
+		frame.getContentPane().setCursor(blankCursor);
 
 	}
 
