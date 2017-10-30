@@ -27,6 +27,8 @@ public class Collectable {
 		this.x = x;
 		this.y = y;
 		this.maxY = maxY;
+		this.width = 0;
+		this.height = 0;
 	}
 	
 	Collectable(int x, int y, int maxY, int width, int height) {
