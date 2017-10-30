@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /**
  * Main prompts user to choose which game they want to play 
- * and launches either the text or the gooey game based on 
+ * and launches either the text or the GUI game based on 
  * user input.
  *
  * @author Group 3
