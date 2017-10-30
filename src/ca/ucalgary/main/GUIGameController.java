@@ -22,7 +22,7 @@ public class GUIGameController implements ActionListener, KeyListener {
 		game = new GUIGame();
 		gui = new GUIGameInterface(this, this, game);
 		
-		gameClock = new Timer(50, this);
+		gameClock = new Timer(25, this);
         gameClock.setActionCommand("TIMER");
         gameClock.start();
         

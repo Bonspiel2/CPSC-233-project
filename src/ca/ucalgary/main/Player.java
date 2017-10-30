@@ -51,7 +51,7 @@ public class Player {
 			
 			this.ship = "A";
             
-			firerate = 5;
+			firerate = 0.5;
 			fireCount = 6;
 			fireTimer = fireCount * firerate;
 		}
@@ -132,8 +132,12 @@ public class Player {
 		public PlayerProjectile shoot() {
 			PlayerProjectile newShot = null;
 			fireTimer--;
+			boolean gui = false;
+			if(width != 0) {
+				gui = true;
+			}
 			if (fireTimer <= 0) {
-				newShot = new PlayerProjectile(x, y-1);
+				newShot = new PlayerProjectile(x+(width/2), y-1);
 				fireTimer = firerate * fireCount;
 			}
 			return newShot;
@@ -149,15 +153,11 @@ public class Player {
     
         /**
          * Draws the projectile for the GUI Game.
-         * @param board the current GUI gameboard.
+         * @param g the current GUI graphics object.
          */
-//        public void draw(Board board) {
-//            board.draw(ship, x, y);
-//        }
-    
         public void draw(Graphics g) {
         	g.setColor(Color.CYAN);
-        	g.fillOval(x, y, 15, 15);
+        	g.fillOval(x, y, width, height);
         }
 		
 		/**
