@@ -32,7 +32,7 @@ public class GUIGameInterface extends JPanel {
         frame.getContentPane().addKeyListener(k);
         frame.addKeyListener(k);
         
-        frame.addMouseMotionListener(m);
+        addMouseMotionListener(m);
         
         setSize(GUIGame.SCREEN_WIDTH, GUIGame.SCREEN_HEIGHT);
 
