@@ -19,12 +19,13 @@ public class EnemyProjectile extends Projectile {
 	// Constructor with velocity parameter
 	public EnemyProjectile(int x, int y, int velocity) {
 		super(x, y, velocity);
+		
 	}
 
 	public boolean collidedWith(Player player) {
-		collided = ((this.y + Projectile.HEIGHT >= player.getY() || this.y == player.getY() - 1)
+		collided = ((this.y + getHeight() >= player.getY() || this.y == player.getY() - 1)
 				&& this.y <= player.getY() + player.getHeight()
-				&& this.x + Projectile.WIDTH >= player.getX() 
+				&& this.x + getWidth() >= player.getX() 
 				&& this.x <= player.getX() + player.getWidth());
 		return collided;
 
@@ -59,7 +60,7 @@ public class EnemyProjectile extends Projectile {
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(Color.BLUE);
-		g.fillRect(x, y, WIDTH, HEIGHT);
+		g.fillRect(x, y, getWidth(), getHeight());
 	}
 
 }

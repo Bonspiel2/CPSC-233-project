@@ -20,9 +20,8 @@ public abstract class Projectile {
      */
 	protected int x;
     
-	public static final int HEIGHT = 10;
-	public static final int WIDTH = 2;
-
+	private int width;
+	private int height;
     /**
      * The y coordinate of the projectile (rows)
      */
@@ -56,6 +55,8 @@ public abstract class Projectile {
     public Projectile(int x, int y, int vel){
         this.x = x;
         this.y = y;
+        this.height = 10;
+        this.width = 2;
         this.velocity = vel;
         collided = false;
         
@@ -108,7 +109,15 @@ public abstract class Projectile {
     
 	public void draw(Graphics g) {
 		g.setColor(Color.pink);
-		g.fillRect(x, y, WIDTH, HEIGHT);
+		g.fillRect(x, y, width, height);
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+	
+	public int getHeight() {
+		return height;
 	}
     /**
      * Sets the projectile's y (row) coordinate to a given value.
