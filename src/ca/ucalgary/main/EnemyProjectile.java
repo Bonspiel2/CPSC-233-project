@@ -41,10 +41,10 @@ public class EnemyProjectile extends Projectile {
 	 * @return collided, true if collided, false if not
 	 */
 	public boolean collidedWith(Player player) {
-		collided = ((this.y + getHeight() >= player.getY() || this.y == player.getY() - 1)
-				&& this.y <= player.getY() + player.getHeight()
-				&& this.x + getWidth() >= player.getX() 
-				&& this.x <= player.getX() + player.getWidth());
+		collided = ((getY() + getHeight() >= player.getY() || getY() == player.getY() - 1)
+				&& getY() <= player.getY() + player.getHeight()
+				&& getX() + getWidth() >= player.getX() 
+				&& getX() <= player.getX() + player.getWidth());
 		return collided;
 
 	}
@@ -59,11 +59,11 @@ public class EnemyProjectile extends Projectile {
 		if (collided) {
 			edgy = true;
 		}
-		if (this.y == TextGame.ROWS - 1) {
+		if (getY() == TextGame.ROWS - 1) {
 			edgy = false;
 		} else {
 			edgy = true;
-			this.y = this.y + getVelocity();
+			setY(getY()+ getVelocity());
 		}
 		return edgy;
 	}
@@ -74,7 +74,7 @@ public class EnemyProjectile extends Projectile {
 	 */
 	@Override
 	public void draw(String[][] board) {
-		board[y][x] = "*";
+		board[getY()][getX()] = "*";
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class EnemyProjectile extends Projectile {
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(Color.PINK);
-		g.fillRect(x, y, getWidth(), getHeight());
+		g.fillRect(getX(), getY(), getWidth(), getHeight());
 	}
 
 }

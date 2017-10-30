@@ -34,22 +34,22 @@ public class GUIGameController implements ActionListener, KeyListener, MouseMoti
 	}
 	@Override
 	public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_W){
-                System.out.println("Up");
-                game.movePlayer("W");
-        }
-        if (e.getKeyCode() == KeyEvent.VK_A) {
-             System.out.println("Left");
-             game.movePlayer("A");
-        }
-        if (e.getKeyCode() == KeyEvent.VK_S) {
-                System.out.println("Down");
-                game.movePlayer("S");
-        }            
-        if (e.getKeyCode() == KeyEvent.VK_D) {
-                System.out.println("Right");
-                game.movePlayer("D");
-        }
+//        if (e.getKeyCode() == KeyEvent.VK_W){
+//                System.out.println("Up");
+//                game.movePlayer("W");
+//        }
+//        if (e.getKeyCode() == KeyEvent.VK_A) {
+//             System.out.println("Left");
+//             game.movePlayer("A");
+//        }
+//        if (e.getKeyCode() == KeyEvent.VK_S) {
+//                System.out.println("Down");
+//                game.movePlayer("S");
+//        }            
+//        if (e.getKeyCode() == KeyEvent.VK_D) {
+//                System.out.println("Right");
+//                game.movePlayer("D");
+//        }
     }
 
 	@Override
