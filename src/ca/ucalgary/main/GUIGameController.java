@@ -12,7 +12,6 @@ import javax.swing.Timer;
 /**
  * The GUIGameController class allows the game to respond to user input.
  * It reacts to user-given mouse events and refreshes the board based on a timer.
- *
  */
 public class GUIGameController implements ActionListener, MouseMotionListener {
 	
@@ -25,6 +24,7 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 	
 	/**
 	 * The main constructor for the GUIGameController class.
+	 * It instantiates GUIGame and GUIGameInterface as well as starts a timer for the game.
 	 */
 	public GUIGameController() {
 		
@@ -40,6 +40,15 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 	
 
 	@Override
+	/**
+	 * This method refreshes the game board based on a timer. It checks 
+	 * for collisions, causes enemies and the player to shoot, and terminates the game
+	 * if the player is no longer alive. Provides the option for the user to instantly play
+	 * again upon dying.
+	 * 
+	 * @param e the given ActionEvent (in this case, always a timer)
+	 * 
+	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("TIMER")) {
 			enemyCounter++;
@@ -64,19 +73,29 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 		}
 		
 	}
-	
+	/**
+	 * Retrieves the GUIGameInterface
+	 * @return gui the GUIGameInterface currently in use
+	 */
 	public GUIGameInterface getGUI() {
 		return gui;
 	}
 	@Override
+	/**
+	 * Overidden method for a mouse dragged event. No functionality.
+	 */
 	public void mouseDragged(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
+	
 	@Override
-	public void mouseMoved(MouseEvent arg0) {
-		int x = arg0.getX();
-		int y = arg0.getY();
+	/**
+	 * Updates the x and y coordinates of the player based on the
+	 * coordinates of the user's cursor.
+	 * @param e the given mouse event
+	 */
+	public void mouseMoved(MouseEvent e) {
+		int x = e.getX();
+		int y = e.getY();
 		
 		game.movePlayer(x,y);
 		
