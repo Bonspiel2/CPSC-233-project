@@ -58,7 +58,7 @@ Group 3 Work Log
 24/10/17 - Quinn
 	Divided projectile class into parent Projectile and subclasses EnemyProjectile and PlayerProjectile. Added ability for enemies to shoot. (~2 hours)
 26/10/17 - Lily
-	Updated main class to display main menu to choose game type. (~.25 hrs)
+	Updated main class to display main menu to choose game type. (~.5 hrs)
 	
 27/10/17 - Cole	
 	Converted TextGame to Game
@@ -84,4 +84,13 @@ Group 3 Work Log
 	Collectables now collide with player (~1 hour)
 	More things, bugs etc (~2 hours)	
 	Updates Javadocs in Collectable, Enemy, and EnemyProjectile (~2 hours)
+
+30/10/17 - Quinn
+    Added score to GUI. Fixed various bugs. JavaDocs. (~2 hours)
+
+30/10/17 - Cole
+    Updated Javadocs. Tons of bug fixes. (~4 hours)
+    
+31/10/17 - Lily
+	Prepare documents for demo. (~.25 hrs)
 
