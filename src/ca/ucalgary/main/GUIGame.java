@@ -70,7 +70,7 @@ public class GUIGame extends Game {
 	 * @param y the given y value for the player
 	 */
 	public void movePlayer(int x, int y) {
-		player.setX(x- player.getWidth()/2);
-		player.setY(y - player.getHeight()/2);
+		super.getPlayer().setX(x- super.getPlayer().getWidth()/2);
+		super.getPlayer().setY(y - super.getPlayer().getHeight()/2);
 	}
 }

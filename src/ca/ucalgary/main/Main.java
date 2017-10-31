@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Main {
 	public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-		System.out.print("Type 1 to play the text game or 2 to play the gui game.");
+		System.out.print("Type 1 to play the text game or 2 to play the GUI game.");
         int gameChoice = in.nextInt();
         
         

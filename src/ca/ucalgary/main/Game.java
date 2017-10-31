@@ -9,7 +9,7 @@ public abstract class Game {
 	public ArrayList<Collectable> collectables;
 	public ArrayList<Projectile> projectiles;
 
-	public Player player;
+	private Player player;
 
 	public Game() {
 		enemies = new ArrayList<Enemy>();

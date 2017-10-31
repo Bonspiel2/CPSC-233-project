@@ -82,7 +82,7 @@ public class GUIGameInterface extends JPanel {
 
 		if (!gameOver) {
 
-			game.player.draw(g);
+			game.getPlayer().draw(g);
 
 			for (Enemy enemy : game.enemies) {
 				enemy.draw(g);
@@ -96,9 +96,12 @@ public class GUIGameInterface extends JPanel {
 				collectable.draw(g);
 			}
 			g.setColor(Color.WHITE);
-			g.drawString("Score: " + game.player.getScore(), 10, 15);
+			g.drawString("Score: " + game.getPlayer().getScore(), 10, 15);
 		}
 		else {
+            g.setColor(Color.RED);
+            g.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+            g.drawString("You Died", 100, 150);
 			g.setColor(Color.WHITE);
 			g.setFont(new Font("Helvetica", Font.BOLD, 30));
 			g.drawString("Score: " + finalScore, 100, 200);
@@ -110,7 +113,7 @@ public class GUIGameInterface extends JPanel {
 		playAgain.setVisible(true);
 		playAgain.setEnabled(true);
 		frame.getContentPane().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-		finalScore = game.player.getScore();
+		finalScore = game.getPlayer().getScore();
 		
 	}
 	
