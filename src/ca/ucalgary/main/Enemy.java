@@ -126,12 +126,21 @@ public class Enemy {
 	 * @return collectable object that was created
 	 */
 	public Collectable createCollectable() {
+        int decider = new Random().nextInt(2) + 1;
 		Collectable collectable;
 		if(height != 0) {
-			collectable = new Collectable(x,y,maxY,7,10);
+            if (decider == 2) {
+                collectable = new HealthCollectable(x,y,maxY,7,10);
+            } else {
+                collectable = new Money(x,y,maxY, 7, 10);
+            }
 		}
 		else {
-			collectable = new Collectable(x,y,maxY);
+            if (decider == 2) {
+                collectable = new HealthCollectable(x,y,maxY);
+            } else {
+                collectable = new Money(x,y,maxY);
+            }
 		}
 		return collectable;
 	}

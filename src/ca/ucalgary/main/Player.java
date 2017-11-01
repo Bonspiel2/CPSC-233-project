@@ -123,7 +123,14 @@ public class Player {
 		int ch = c.getH();
 
 		if (cx + cw >= x && cx <= (x + width) && cy >= y && cy <= y + height ) {
-			score++;
+            if (c instanceof Money) {
+                score++;
+            } else if (c instanceof HealthCollectable) {
+                score++;
+                if (health + 1 < initialHealth) {
+                    health++;
+                }
+            }
 			collided = true;
 		}
 

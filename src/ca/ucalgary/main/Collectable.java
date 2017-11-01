@@ -13,7 +13,7 @@ import java.awt.Graphics;
  * @author lilypollreis
  *
  */
-public class Collectable {
+public abstract class Collectable {
 
 	private int x;
 	private int y;
@@ -123,23 +123,16 @@ public class Collectable {
 	}
 
 	/**
-	 * Prints the character '$' at the current X and Y 
-	 * value on the array list that is the game board.
+	 * Abstract method indicating subclases must contain a draw method for
+     * the TextBased game.
 	 * @param board array list that is the game board.
 	 */
-	public void draw(String[][] board) {
-		board[y][x] = "$";
-        
-	}
-
+    public abstract void draw(String[][] board);
+    
 	/**
-	 * Draws the collectable to a graphics object, as a yellow "$"
+	 * Abstract method indicating subclasses must contain a draw method
+     * for the GUI game
 	 * @param g the graphics object being drawn to
 	 */
-    public void draw(Graphics g) {
-    	g.setColor(Color.YELLOW);
-    	g.drawString("$", x, y);
-    	
-    }
-
+    public abstract void draw(Graphics g);
 }
