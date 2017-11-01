@@ -93,4 +93,6 @@ Group 3 Work Log
     
 31/10/17 - Lily
 	Prepare documents for demo. (~.25 hrs)
+1/11/17 - Quinn
+	Encapsulated player. Added different types of collectables (health and money). (~.75 hours)
 
