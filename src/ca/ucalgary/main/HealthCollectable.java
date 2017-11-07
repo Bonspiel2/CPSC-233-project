@@ -6,7 +6,6 @@ import java.awt.Graphics;
 public class HealthCollectable extends Collectable {
 
     private String symbol = "+";
-    private int probability;
     
     /**
      * Collectable constructor for the TextBased version of the game, 

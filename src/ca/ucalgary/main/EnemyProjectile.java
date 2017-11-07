@@ -70,7 +70,7 @@ public class EnemyProjectile extends Projectile {
 	 */
 	@Override
 	public void draw(String[][] board) {
-		board[getY()][getX()] = "*";
+		board[getY()][getX()] = symbol;
 	}
 
 	/**
