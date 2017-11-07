@@ -1,9 +1,0 @@
-
-- Convert TextGame to Game
-- GUIGame extends Game (convert GooeyLogic to GUIGame) and TextGame extends Game
-- Main Menu
-- Add player health and score to GUI
-- Enemy projectiles (different shape/character)
-	- new Enemy Projectile class that extends projectile, override collide and movement
-- Add GUI constructors to each class
-
