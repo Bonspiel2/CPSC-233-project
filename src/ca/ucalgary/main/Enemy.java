@@ -1,7 +1,9 @@
 package ca.ucalgary.main;
 
+import java.io.*;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.FileReader;
 import java.util.Random;
 
 
@@ -17,6 +19,14 @@ import java.util.Random;
  */
 public class Enemy {
 
+	int[][] pathCords = new int[100][2];
+	
+	String[] paths = {"zigzag.txt", "path2.txt", "path3.txt"};
+	private int path = 0;
+	
+
+	private String line = null;
+	
 	private int x;
 	private int y;
 	private int width;
@@ -52,6 +62,28 @@ public class Enemy {
 	 */
 	public Enemy(int x, int y, int width, int height) {
 		this(x,y,width,height,GUIGame.SCREEN_HEIGHT);
+		
+		path = new Random().nextInt(2);
+		String filename = paths[path];
+		
+		try {
+			FileReader fileReader = new FileReader(filename);
+			
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			
+			int lineCount = 0;
+			while((line = bufferedReader.readLine()) != null) {
+				pathCords[lineCount][0] = line.charAt(0);
+				pathCords[lineCount][1] = line.charAt(1);
+			}
+			bufferedReader.close();
+		}
+		catch(FileNotFoundException ex) {
+			System.out.println("Unable to open " + filename);
+		}
+		catch(IOException ex) {
+			ex.printStackTrace(); //probably should have something else here tho
+		}
 	}
 	
 	
@@ -73,6 +105,7 @@ public class Enemy {
         this.hasAShot = true;
         
         this.maxY = maxY;
+        
 	}
 	
 	/**
@@ -113,6 +146,9 @@ public class Enemy {
 
 		return alive;
 	}
+	
+
+	
 	
 	/**
 	 * Checks whether the player and enemy have collided i.e. they have 
