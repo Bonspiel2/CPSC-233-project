@@ -84,15 +84,15 @@ public class GUIGameInterface extends JPanel {
 
 			game.getPlayer().draw(g);
 
-			for (Enemy enemy : game.enemies) {
+			for (Enemy enemy : game.getEnemies()) {
 				enemy.draw(g);
 			}
 
-			for (Projectile projectile : game.projectiles) {
+			for (Projectile projectile : game.getProjectiles()) {
 				projectile.draw(g);
 			}
 
-			for (Collectable collectable : game.collectables) {
+			for (Collectable collectable : game.getCollectables()) {
 				collectable.draw(g);
 			}
 			g.setColor(Color.WHITE);

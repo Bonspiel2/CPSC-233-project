@@ -5,9 +5,9 @@ import java.util.Iterator;
 
 public abstract class Game {
 
-	public ArrayList<Enemy> enemies;
-	public ArrayList<Collectable> collectables;
-	public ArrayList<Projectile> projectiles;
+	private ArrayList<Enemy> enemies;
+	private ArrayList<Collectable> collectables;
+	private ArrayList<Projectile> projectiles;
 
 	private Player player;
 
@@ -16,13 +16,6 @@ public abstract class Game {
 		projectiles = new ArrayList<Projectile>();
 		collectables = new ArrayList<Collectable>();
 	}
-    
-    
-
-	/**
-	 * Abstract method that indicates a subclass must include a run method. 
-	 */
-	public abstract void run();
 
 	/**
 	 * Checks if collisions have occured between enemies and projectiles, 
@@ -82,17 +75,6 @@ public abstract class Game {
 	}
 
 	/**
-	 * Abstract method that indicates a subclass must include a draw method.
-	 */
-	public abstract void draw();
-
-	/**
-	 * Abstract method that indicates a subclass must include a method to
-	 * get input from the user.
-	 */
-	public abstract String getInput();
-
-	/**
 	 * Moves each object to its next location on the screen.
 	 */
 	public void move() {
@@ -126,7 +108,7 @@ public abstract class Game {
 	 * @param e the given enemy to add
 	 */
 	public void addEnemy(Enemy e) {
-		enemies.add(e);
+		enemies.add(new Enemy(e));
 	}
 	
 	/**
@@ -184,11 +166,19 @@ public abstract class Game {
 	}
 
 	/** 
-	 * Retrieves the player
+	 * Retrieves the player object
 	 * @return player the current player
 	 */
-	public Player getPlayer() {
+	protected Player player() {
 		return player;
+	}
+	
+	/**
+	 * Retrieves a copy of the player object
+	 * @return player copy of current player
+	 */
+	public Player getPlayer() {
+		return new Player(player);
 	}
     
 	/**
@@ -196,7 +186,7 @@ public abstract class Game {
 	 * @param player the given player to set
 	 */
     public void setPlayer(Player player) {
-        this.player = player;
+        this.player = new Player(player);
     }
 
 }

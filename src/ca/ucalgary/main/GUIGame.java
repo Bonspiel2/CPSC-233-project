@@ -7,7 +7,7 @@ package ca.ucalgary.main;
  */
 public class GUIGame extends Game {
 
-	GUIGameInterface gui;
+	private GUIGameInterface gui;
 	
 	public static final int SCREEN_WIDTH = 350;
 	public static final int SCREEN_HEIGHT = 500;
@@ -28,29 +28,6 @@ public class GUIGame extends Game {
 
 		super.setPlayer(player);
 	}
-
-	@Override
-	/**
-	 * Overriden run method. No functionality.
-	 */
-	public void run() {
-	}
-
-	@Override
-	/**
-	 * Overriden draw method. No functionality.
-	 */
-	public void draw() {
-	}
-
-	@Override
-	/**
-	 * Overriden method to get input. No functionality.
-	 * @return null returns nothing.
-	 */
-	public String getInput() {
-		return null;
-	}
 	
 	/**
 	 * Handles the set-up of the board through spawning
@@ -70,7 +47,8 @@ public class GUIGame extends Game {
 	 * @param y the given y value for the player
 	 */
 	public void movePlayer(int x, int y) {
-		super.getPlayer().setX(x- super.getPlayer().getWidth()/2);
-		super.getPlayer().setY(y - super.getPlayer().getHeight()/2);
+		super.player().setX(x- super.getPlayer().getWidth()/2);
+		super.player().setY(y - super.getPlayer().getHeight()/2);
 	}
+
 }

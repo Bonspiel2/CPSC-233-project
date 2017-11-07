@@ -31,32 +31,39 @@ public class Enemy {
 	private String symbol = "V";
 
 	/**
-	 * Enemy Constructor for the TextBased version of the game, creates an enemy that is alive
-	 * has the ability to shoot and initializes its width and height as 0 
+	 * Enemy Constructor for the TextBased version of the game, calls other constructor
+	 * to create an enemy that is alive has the ability to shoot, has a width and height of 0,
+	 * and has a max y value of the number of rows in the text game.
 	 * @param x x coordinate of the enemy or column in which is resides
 	 * @param y y coordinate of the enemy or row in which is resides
 	 */
 	public Enemy(int x, int y) {
-		this.x = x;
-		this.y = y;
-		this.width = 0;
-		this.height = 0;
-		
-		this.alive = true;
-        this.hasAShot = true;
-        
-        this.maxY = TextGame.ROWS;
+		this(x,y,0,0,TextGame.ROWS);
 	}
 	
-	
 	/**
-	 * Enemy constructor for the GUI version of the game, initializes all required variables
+	 * Enemy constructor for the GUI version of the game, calss other constructor
+	 * to create an enemy with the given x, y, width and height as well as the height
+	 * of the GUI screen
 	 * @param x x coordinate of the enemy
 	 * @param y y coordinate of the enemy
 	 * @param width Width of the enemy
 	 * @param height Height of the enemy
 	 */
 	public Enemy(int x, int y, int width, int height) {
+		this(x,y,width,height,GUIGame.SCREEN_HEIGHT);
+	}
+	
+	
+	/**
+	 * Main enemy constructor, initializes all required variables
+	 * @param x x coordinate of the enemy
+	 * @param y y coordinate of the enemy
+	 * @param width Width of the enemy
+	 * @param height Height of the enemy
+	 * @param maxY Last y value before the enemy exits the screen
+	 */
+	private Enemy(int x, int y, int width, int height, int maxY) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -65,9 +72,16 @@ public class Enemy {
 		this.alive = true;
         this.hasAShot = true;
         
-        this.maxY = GUIGame.SCREEN_HEIGHT;
+        this.maxY = maxY;
 	}
 	
+	/**
+	 * Copy constructor
+	 * @param e Enemy to copy
+	 */
+	public Enemy(Enemy e) {
+		this(e.getX(), e.getY(), e.getWidth(), e.getHeight(), e.getMaxY());
+	}
 	
 	
 	/**
@@ -151,7 +165,7 @@ public class Enemy {
 	public void draw(String[][] board) {
 
 		if (this.alive) {
-			board[y][x] = symbol;
+			board[y][x] = new String(symbol);
 		}
 	}
 

@@ -11,7 +11,6 @@ import java.awt.Graphics;
  */
 public class EnemyProjectile extends Projectile {
 
-	private boolean collided;
 	private boolean edgy;
 	private String symbol = "*";
 
@@ -41,7 +40,7 @@ public class EnemyProjectile extends Projectile {
 	 * @return collided, true if collided, false if not
 	 */
 	public boolean collidedWith(Player player) {
-		collided = ((getY() + getHeight() >= player.getY() || getY() == player.getY() - 1)
+		boolean collided = ((getY() + getHeight() >= player.getY() || getY() == player.getY() - 1)
 				&& getY() <= player.getY() + player.getHeight()
 				&& getX() + getWidth() >= player.getX() 
 				&& getX() <= player.getX() + player.getWidth());
@@ -56,9 +55,6 @@ public class EnemyProjectile extends Projectile {
 	 * @return edgy, boolean of whether it is at the edge of the screen or not
 	 */
 	public boolean move() {
-		if (collided) {
-			edgy = true;
-		}
 		if (getY() == TextGame.ROWS - 1) {
 			edgy = false;
 		} else {

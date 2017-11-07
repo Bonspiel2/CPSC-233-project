@@ -36,30 +36,19 @@ public class Player {
 
 
 	/**
-	 * Main constructor for textgame
+	 * Main constructor for textgame. Initializes with given x,y and health as well as 0 width/height,
+	 * 0.5 firerate, and 6 fireCount
 	 * @param x new player's column value
 	 * @param y new player's row value
 	 * @param health new player's total health
 	 */
 	public Player(int x, int y, int health) {
-		this.x = x;
-		this.y = y;
-		this.width = 0;
-		this.height = 0;
-
-		this.health = health;
-		this.initialHealth = health;
-		this.score = 0;
-
-		this.ship = "A";
-
-		firerate = 0.5;
-		fireCount = 6;
-		fireTimer = fireCount * firerate;
+		this(x,y,0,0,health,0.5,6,TextGame.COLUMNS, TextGame.ROWS);
 	}
 
 	/**
-	 * Main constructor for GUI game
+	 * Main constructor for GUI game. Initializes with given x,y,width,height, and health as well as
+	 * 0.5 firerate, and 100 foreCount
 	 * @param x new player's column value
 	 * @param y new player's row value
 	 * @param width new player's width
@@ -67,6 +56,24 @@ public class Player {
 	 * @param health new player's total health
 	 */
 	public Player(int x, int y, int width, int height, int health) {
+		this(x,y,width,height,health,0.5,100, GUIGame.SCREEN_WIDTH, GUIGame.SCREEN_HEIGHT);
+	}
+	
+	/**
+	 * Main constructor
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 * @param health
+	 * @param firerate
+	 * @param fireCount
+	 * @param maxX
+	 * @param maxY
+	 */
+	private Player(int x, int y, int width, int height, int health, 
+			double firerate, double fireCount,
+			int maxX, int maxY) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -75,12 +82,42 @@ public class Player {
 		this.health = health;
 		this.initialHealth = health;
 		this.score = 0;
-
+		
 		this.ship = "A";
+		this.step = 1;
+		
+		this.maxX = maxX;
+		this.maxY = maxY;
 
-		firerate = 0.5;
-		fireCount = 100;
+		this.firerate = firerate;
+		this.fireCount = fireCount;
 		fireTimer = fireCount * firerate;
+	}
+	
+	/**
+	 * Copy Constructor
+	 * @param p Player to copy
+	 */
+	public Player(Player p) {
+		this.x = p.getX();
+		this.y = p.getY();
+		this.width = p.getWidth();
+		this.height = p.getHeight();
+		
+		this.maxX = p.getMaxX();
+		this.maxY = p.getMaxY();
+
+		this.step = 1;
+		
+		this.health = p.getHealth();
+		this.initialHealth = p.getInitialHealth();
+		this.score = p.getScore();
+
+		this.firerate = p.getFirerate();
+		this.fireCount = p.getFireCount();
+		this.fireTimer = p.getFireTimer();
+		
+		this.ship = "A";
 	}
 
 
@@ -288,5 +325,49 @@ public class Player {
 	 */
 	public void setHeight(int height) {
 		this.height = height;
+	}
+	
+	/**
+	 * Gets the player's firerate
+	 * @return firerate The player's firerate
+	 */
+	public double getFirerate() {
+		return firerate;
+	}
+
+	/**
+	 * Gets the player's fireCounter
+	 * @return fireCount The player's total fire count
+	 */
+	public double getFireCount() {
+		return fireCount;
+	}
+
+	/**
+	 * @return the maxX
+	 */
+	public int getMaxX() {
+		return maxX;
+	}
+
+	/**
+	 * @return the maxY
+	 */
+	public int getMaxY() {
+		return maxY;
+	}
+
+	/**
+	 * @return the initialHealth
+	 */
+	public int getInitialHealth() {
+		return initialHealth;
+	}
+
+	/**
+	 * @return the fireTimer
+	 */
+	public double getFireTimer() {
+		return fireTimer;
 	}
 }

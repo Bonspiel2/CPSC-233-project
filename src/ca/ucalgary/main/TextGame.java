@@ -30,11 +30,6 @@ public class TextGame extends Game {
 		super();
         
         Player player = new Player(COLUMNS/2, ROWS - 2, 5);
-        player.setMaxX(COLUMNS);
-        player.setMaxY(ROWS);
-        
-        player.setStep(1);
-        
 
         super.setPlayer(player);
         
@@ -141,7 +136,7 @@ public class TextGame extends Game {
 	 */
 	public void move(String s) {
 		super.move();
-		Player player = getPlayer();
+		Player player = player();
 		player.move(s);
 	}
 
