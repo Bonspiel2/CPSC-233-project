@@ -3,6 +3,7 @@ package ca.ucalgary.main;
 import java.io.*;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.geom.Arc2D;
 import java.io.FileReader;
 import java.util.Random;
 
@@ -20,8 +21,13 @@ import java.util.Random;
 public class Enemy {
 
 	int[][] pathCords = new int[100][2];
+	private int nextX;
+	private int nextY;
+	private int nextCount;
 	
-	String[] paths = {"zigzag.txt", "path2.txt", "path3.txt"};
+	int velocity = 1;
+	
+	static String[] paths = {"zigzag.txt"};//, "path2.txt", "path3.txt"};
 	private int path = 0;
 	
 
@@ -63,7 +69,7 @@ public class Enemy {
 	public Enemy(int x, int y, int width, int height) {
 		this(x,y,width,height,GUIGame.SCREEN_HEIGHT);
 		
-		path = new Random().nextInt(2);
+		path = new Random().nextInt(1);
 		String filename = paths[path];
 		
 		try {
@@ -74,8 +80,13 @@ public class Enemy {
 			int lineCount = 0;
 			while((line = bufferedReader.readLine()) != null) {
 				pathCords[lineCount][0] = line.charAt(0);
-				pathCords[lineCount][1] = line.charAt(1);
+				pathCords[lineCount][1] = line.charAt(2);
+				lineCount++;
 			}
+			nextX = pathCords[0][0];
+			nextY = pathCords[0][1];
+			nextCount++;
+			
 			bufferedReader.close();
 		}
 		catch(FileNotFoundException ex) {
@@ -137,17 +148,26 @@ public class Enemy {
 	 * it or not
 	 */
 	public boolean move() {
-
-		y++;
-
+		if(nextX == x && nextY == y) {
+			nextX = pathCords[nextCount][0];
+			nextY = pathCords[nextCount][1];
+			nextCount++;
+		}
+		try {
+			int butts = 1/(nextX - x);
+		} catch(ArithmeticException ex) {
+			System.out.println("FUCK ME");
+		}
+		double theta = (double) Math.atan((nextY - y) / (nextX - x));
+		System.out.println(theta);
+		x = (int) ((Math.sin(theta)*velocity) + x);
+		y = (int) ((Math.cos(theta)*velocity) + y);
+		
 		if (y >= maxY) {
 			alive = false;
 		}
-
 		return alive;
 	}
-	
-
 	
 	
 	/**
