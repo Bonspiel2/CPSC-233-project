@@ -51,8 +51,8 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("TIMER")) {
 			enemyCounter++;
-			if(enemyCounter >= 20) {
-				game.addEnemy(new Enemy(new Random().nextInt(GUIGame.SCREEN_WIDTH),0,10,10));
+			if(enemyCounter >= 40) {
+				game.addEnemy(new Enemy(new Random().nextInt(GUIGame.SCREEN_WIDTH),0,32,32));
 				enemyCounter = 0;
 			}
 			if (game.playerIsDead()) {

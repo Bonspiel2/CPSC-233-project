@@ -136,7 +136,7 @@ public class TextGame extends Game {
 	 */
 	public void move(String s) {
 		super.move();
-		Player player = player();
+		Player player = getPlayer();
 		player.move(s);
 	}
 
