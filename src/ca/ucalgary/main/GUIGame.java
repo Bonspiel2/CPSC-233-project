@@ -6,8 +6,6 @@ package ca.ucalgary.main;
  *
  */
 public class GUIGame extends Game {
-
-	private GUIGameInterface gui;
 	
 	public static final int SCREEN_WIDTH = 350;
 	public static final int SCREEN_HEIGHT = 500;

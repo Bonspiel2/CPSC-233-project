@@ -177,12 +177,12 @@ public class Player {
 		int cw = c.getW();
 		int ch = c.getH();
 
-		if (cx + cw >= x && cx <= (x + width) && cy >= y && cy <= y + height ) {
+		if (cx + cw >= x && cx <= (x + width) && cy + ch >= y && cy <= y + height ) {
             if (c instanceof Money) {
                 score++;
             } else if (c instanceof HealthCollectable) {
                 score++;
-                if (health + 1 < initialHealth) {
+                if (health + 1 <= initialHealth) {
                     health++;
                 }
             }

@@ -34,7 +34,7 @@ public class Main {
         }
         else if (gameChoice == 2){
             GUIGameController guiGame = new GUIGameController();
-        	System.out.println("You chose the gooey game! Control your ship using WASD.");
+        	System.out.println("You chose the GUI game! Control your ship using the mouse");
         	GUIGameInterface gui = guiGame.getGUI();
         	gui.setVisible(true);
 
