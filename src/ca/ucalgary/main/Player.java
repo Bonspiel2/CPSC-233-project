@@ -3,6 +3,11 @@ package ca.ucalgary.main;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
 /**
  * The player class allows the game to interact with the 
  * player's position, their health as well as their score.
@@ -33,6 +38,8 @@ public class Player {
 	private double firerate;
 	private double fireCount;
 	private double fireTimer;
+    
+    private BufferedImage img;
 
 
 	/**
@@ -44,11 +51,12 @@ public class Player {
 	 */
 	public Player(int x, int y, int health) {
 		this(x,y,0,0,health,0.5,6,TextGame.COLUMNS, TextGame.ROWS);
+        
 	}
 
 	/**
-	 * Main constructor for GUI game. Initializes with given x,y,width,height, and health as well as
-	 * 0.5 firerate, and 100 foreCount
+	 * Main constructor for GUI game. Initializes with given x, y, width, height, 
+     * and health as well as 0.5 firerate, and 100 fireCount
 	 * @param x new player's column value
 	 * @param y new player's row value
 	 * @param width new player's width
@@ -57,6 +65,7 @@ public class Player {
 	 */
 	public Player(int x, int y, int width, int height, int health) {
 		this(x,y,width,height,health,0.5,100, GUIGame.SCREEN_WIDTH, GUIGame.SCREEN_HEIGHT);
+
 	}
 	
 	/**
@@ -92,6 +101,13 @@ public class Player {
 		this.firerate = firerate;
 		this.fireCount = fireCount;
 		fireTimer = fireCount * firerate;
+        
+        try {
+            img = ImageIO.read(new File("ca/ucalgary/main/PlayerShip.png"));
+        } catch (IOException e) {
+            System.out.println("Could not load player image.");
+        }
+
 	}
 	
 	/**
@@ -118,6 +134,8 @@ public class Player {
 		this.fireTimer = p.getFireTimer();
 		
 		this.ship = "A";
+    
+
 	}
 
 
@@ -206,14 +224,29 @@ public class Player {
 	 * Draws the projectile for the GUI Game.
 	 * @param g the current GUI graphics object.
 	 */
-	public void draw(Graphics g) {
-		g.setColor(Color.CYAN);
-		g.fillOval(x, y, width, height);
-		g.setColor(Color.RED);
-		g.fillRect(x, y + height + 5, width, 5);
-		g.setColor(Color.GREEN);
-		g.fillRect(x, y + height + 5, (int) (width * ((double)health/(double)initialHealth)), 5);
-	}
+//	public void draw(Graphics g) {
+//		g.setColor(Color.CYAN);
+//		g.fillOval(x, y, width, height);
+//		g.setColor(Color.RED);
+//		g.fillRect(x, y + height + 5, width, 5);
+//		g.setColor(Color.GREEN);
+//		g.fillRect(x, y + height + 5, (int) (width * ((double)health/(double)initialHealth)), 5);
+//	}
+    
+    public void draw(Graphics g) {
+        if (img != null) {
+            g.drawImage(img, x, y, null);
+            
+        } else {
+            g.setColor(Color.CYAN);
+            g.fillOval(x, y, width, height);
+        }
+        g.setColor(Color.RED);
+        g.fillRect(x, y + height + 5, width, 5);
+        g.setColor(Color.GREEN);
+        g.fillRect(x, y + height + 5, (int)(width * ((double)health/(double)initialHealth)), 5);
+
+    }
 
 	/**
 	 * Gets the player's column value

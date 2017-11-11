@@ -169,7 +169,7 @@ public abstract class Game {
 	 * Retrieves the player object
 	 * @return player the current player
 	 */
-	protected Player player() {
+	protected Player getPlayer() {
 		return player;
 	}
 	
@@ -177,7 +177,7 @@ public abstract class Game {
 	 * Retrieves a copy of the player object
 	 * @return player copy of current player
 	 */
-	public Player getPlayer() {
+	public Player getNewPlayer() {
 		return new Player(player);
 	}
     
@@ -186,7 +186,16 @@ public abstract class Game {
 	 * @param player the given player to set
 	 */
     public void setPlayer(Player player) {
+        this.player = player;
+    }
+    
+    /**
+     * Sets the player to a copy of the player
+     * @param player the given player to set
+     */
+    public void setNewPlayer(Player player) {
         this.player = new Player(player);
     }
+
 
 }

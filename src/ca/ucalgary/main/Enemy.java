@@ -7,6 +7,11 @@ import java.awt.geom.Arc2D;
 import java.io.FileReader;
 import java.util.Random;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
 
 
 /**
@@ -45,6 +50,8 @@ public class Enemy {
     private boolean hasAShot;
 
 	private String symbol = "V";
+    
+    private BufferedImage enemyImg;
 
 	/**
 	 * Enemy Constructor for the TextBased version of the game, calls other constructor
@@ -117,6 +124,12 @@ public class Enemy {
         
         this.maxY = maxY;
         
+        try {
+            enemyImg = ImageIO.read(new File("ca/ucalgary/main/EnemyShip.png"));
+        } catch (IOException e) {
+            System.out.println("Could not load enemy image.");
+        }
+
 	}
 	
 	/**
@@ -196,7 +209,7 @@ public class Enemy {
 	 * @return collectable object that was created
 	 */
 	public Collectable createCollectable() {
-        int decider = new Random().nextInt(2) + 1;
+        int decider = new Random().nextInt(6);
 		Collectable collectable;
 		if(height != 0) {
             if (decider == 2) {
@@ -260,8 +273,12 @@ public class Enemy {
 	 * @param g the graphics object being drawn to
 	 */
 	public void draw(Graphics g) {
-		g.setColor(Color.RED);
-		g.fillRect(x, y, width, height);
+        if (enemyImg != null) {
+            g.drawImage(enemyImg, x, y, null);
+        } else {
+            g.setColor(Color.RED);
+            g.fillRect(x, y, width, height);
+        }
 	}
 	
 	/**
