@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
  * 
  * @author Cole
  */
-public class Player {
+public class Player implements Collidable{
 
 	private int x;
 	private int y;
@@ -103,7 +103,7 @@ public class Player {
 		fireTimer = fireCount * firerate;
         
         try {
-            img = ImageIO.read(new File("ca/ucalgary/main/PlayerShip.png"));
+            img = ImageIO.read(new File("src/ca/ucalgary/main/PlayerShip.png"));
         } catch (IOException e) {
             System.out.println("Could not load player image.");
         }
@@ -165,17 +165,18 @@ public class Player {
 	}
 
 	/**
-	 * Checks to see if the player has collided with a given collectable.
+	 * Checks to see if the player has collided with a given collidable.
+	 * increases score/health if the collidable is also a collectable
 	 * @param c Object to check for collision
-	 * @return Returns true if the player and the collectable occupy the
+	 * @return Returns true if the player and the object occupy the
 	 * same space
 	 */
-	public boolean collidedWith(Collectable c) {
+	public boolean collidedWith(Collidable c) {
 		boolean collided = false;
 		int cx = c.getX();
 		int cy = c.getY();
-		int cw = c.getW();
-		int ch = c.getH();
+		int cw = c.getWidth();
+		int ch = c.getHeight();
 
 		if (cx + cw >= x && cx <= (x + width) && cy + ch >= y && cy <= y + height ) {
             if (c instanceof Money) {

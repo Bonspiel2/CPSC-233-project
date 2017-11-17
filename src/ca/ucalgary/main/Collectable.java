@@ -13,7 +13,7 @@ import java.awt.Graphics;
  * @author lilypollreis
  *
  */
-public abstract class Collectable {
+public abstract class Collectable implements Collidable{
 
 	private int x;
 	private int y;
@@ -56,6 +56,16 @@ public abstract class Collectable {
 	}
 	
 	
+	public boolean collidedWith(Collidable c) {
+		int cx = c.getX();
+		int cy = c.getY();
+		int ch = c.getHeight();
+		int cw = c.getWidth();
+		return (cx + cw >= this.x) && (cy + ch >= this.y) &&
+				(cx <= this.x + this.width) && (cy <= this.y + this.height);
+	}
+	
+	
 	/**
 	 * Gets integer column value the collectable.
 	 * @return integer column value the collectable.
@@ -68,7 +78,7 @@ public abstract class Collectable {
 	 * Gets integer value of the width of the collectable;
 	 * @return width of the collectable
 	 */
-	public int getW() {
+	public int getWidth() {
 		return width;
 	}
 	
@@ -76,7 +86,7 @@ public abstract class Collectable {
 	 * Getter for the height of the collectable
 	 * @return height of the collectable
 	 */
-	public int getH() {
+	public int getHeight() {
 		return height;
 	}
 	

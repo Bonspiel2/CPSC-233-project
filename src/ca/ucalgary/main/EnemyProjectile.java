@@ -9,7 +9,7 @@ import java.awt.Graphics;
  * instances, where the GUI instance has a velocity parameter
  * @author Matt
  */
-public class EnemyProjectile extends Projectile {
+public class EnemyProjectile extends Projectile{
 
 	private boolean edgy;
 	private String symbol = "*";
@@ -34,20 +34,6 @@ public class EnemyProjectile extends Projectile {
 		
 	}
 	
-	/**
-	 * Checks for collisions between the enemy and the 
-	 * @param player The player object the collision is being checked against
-	 * @return collided, true if collided, false if not
-	 */
-	public boolean collidedWith(Player player) {
-		boolean collided = ((getY() + getHeight() >= player.getY() || getY() == player.getY() - 1)
-				&& getY() <= player.getY() + player.getHeight()
-				&& getX() + getWidth() >= player.getX() 
-				&& getX() <= player.getX() + player.getWidth());
-		return collided;
-
-	}
-
 	@Override
 	/**
 	 * Moves the projectile down one row or pixel and detects whether or not it has

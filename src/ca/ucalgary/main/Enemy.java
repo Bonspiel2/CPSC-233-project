@@ -20,22 +20,20 @@ import javax.imageio.ImageIO;
  * 
  * @author Matt
  */
-public class Enemy {
+public class Enemy implements Collidable{
 
 	private int x;
 	private int y;
 	private int width;
 	private int height;
-	
+
 	private int maxY;
 
-	private boolean alive;
-    
-    private boolean hasAShot;
+	private boolean hasAShot;
 
 	private String symbol = "V";
-    
-    private BufferedImage enemyImg;
+
+	private BufferedImage enemyImg;
 
 	/**
 	 * Enemy Constructor for the TextBased version of the game, calls other constructor
@@ -47,7 +45,7 @@ public class Enemy {
 	public Enemy(int x, int y) {
 		this(x,y,0,0,TextGame.ROWS);
 	}
-	
+
 	/**
 	 * Enemy constructor for the GUI version of the game, calss other constructor
 	 * to create an enemy with the given x, y, width and height as well as the height
@@ -60,8 +58,8 @@ public class Enemy {
 	public Enemy(int x, int y, int width, int height) {
 		this(x,y,width,height,GUIGame.SCREEN_HEIGHT);
 	}
-	
-	
+
+
 	/**
 	 * Main enemy constructor, initializes all required variables
 	 * @param x x coordinate of the enemy
@@ -75,20 +73,19 @@ public class Enemy {
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		
-		this.alive = true;
-        this.hasAShot = true;
-        
-        this.maxY = maxY;
-        
-        try {
-            enemyImg = ImageIO.read(new File("ca/ucalgary/main/EnemyShip.png"));
-        } catch (IOException e) {
-            System.out.println("Could not load enemy image.");
-        }
+
+		this.hasAShot = true;
+
+		this.maxY = maxY;
+
+		try {
+			enemyImg = ImageIO.read(new File("src/ca/ucalgary/main/EnemyShip.png"));
+		} catch (IOException e) {
+			System.out.println("Could not load enemy image.");
+		}
 
 	}
-	
+
 	/**
 	 * Copy constructor
 	 * @param e Enemy to copy
@@ -96,8 +93,8 @@ public class Enemy {
 	public Enemy(Enemy e) {
 		this(e.getX(), e.getY(), e.getWidth(), e.getHeight(), e.getMaxY());
 	}
-	
-	
+
+
 	/**
 	 * Board initializer constructor, used to initialize the
 	 * enemies on the board on different rows
@@ -106,8 +103,7 @@ public class Enemy {
 	public Enemy(int y) {
 		this.x = new Random().nextInt(TextGame.COLUMNS - 1);
 		this.y = y;
-		this.alive = true;
-        this.hasAShot = true;
+		this.hasAShot = true;
 
 	}
 
@@ -118,7 +114,7 @@ public class Enemy {
 	 * it or not
 	 */
 	public boolean move() {
-
+		boolean alive = true;
 		y++;
 
 		if (y >= maxY) {
@@ -127,26 +123,25 @@ public class Enemy {
 
 		return alive;
 	}
-	
+
 	/**
 	 * Checks whether the player and enemy have collided i.e. they have 
 	 * the same x and y values
-	 * @param player The player object which collision is checked 
+	 * @param c The player object which collision is checked 
 	 * for with
 	 * @return True if it has collided, false if it has not
 	 */
-	public boolean collidedWith(Player player) {
+	public boolean collidedWith(Collidable c) {
 		boolean collided = false;
 
-		if (x + width >= player.getX() && x <= player.getX() + player.getWidth() && 
-				y + height >= player.getY() && y <= player.getY() + player.getHeight()) {
+		if (x + width >= c.getX() && x <= c.getX() + c.getWidth() && 
+				y + height >= c.getY() && y <= c.getY() + c.getHeight()) {
 			collided = true;
-			alive = false;
 		}
 
 		return collided;
 	}
-	
+
 	/**
 	 * Creates a collectable when the enemy is killed, at the enemies current location
 	 * depending on whether it is a Gui instance or a textgame instance a different 
@@ -154,33 +149,30 @@ public class Enemy {
 	 * @return collectable object that was created
 	 */
 	public Collectable createCollectable() {
-        int decider = new Random().nextInt(6);
+		int decider = new Random().nextInt(6);
 		Collectable collectable;
 		if(height != 0) {
-            if (decider == 2) {
-                collectable = new HealthCollectable(x,y,maxY,7,10);
-            } else {
-                collectable = new Money(x,y,maxY, 7, 10);
-            }
+			if (decider == 2) {
+				collectable = new HealthCollectable(x,y,maxY,7,10);
+			} else {
+				collectable = new Money(x,y,maxY, 7, 10);
+			}
 		}
 		else {
-            if (decider == 2) {
-                collectable = new HealthCollectable(x,y,maxY);
-            } else {
-                collectable = new Money(x,y,maxY);
-            }
+			if (decider == 2) {
+				collectable = new HealthCollectable(x,y,maxY);
+			} else {
+				collectable = new Money(x,y,maxY);
+			}
 		}
 		return collectable;
 	}
-	
+
 	/**	Draws the enemy on the board at its current x and y coordinates
 	 * @param board	The text board on which the enemy is drawn.
 	 */
 	public void draw(String[][] board) {
-
-		if (this.alive) {
-			board[y][x] = new String(symbol);
-		}
+		board[y][x] = new String(symbol);
 	}
 
 	/** Gets the current column/ x value
@@ -189,7 +181,7 @@ public class Enemy {
 	public int getX() {
 		return x;
 	}
-	
+
 	/** Sets the enemy's current column/ x value
 	 * @param x New x value
 	 */
@@ -212,47 +204,47 @@ public class Enemy {
 	public void setY(int y) {
 		this.y = y;
 	}
-    
+
 	/**
 	 * Draws a red square as the enemy at its current x,y,width and height
 	 * @param g the graphics object being drawn to
 	 */
 	public void draw(Graphics g) {
-        if (enemyImg != null) {
-            g.drawImage(enemyImg, x, y, null);
-        } else {
-            g.setColor(Color.RED);
-            g.fillRect(x, y, width, height);
-        }
+		if (enemyImg != null) {
+			g.drawImage(enemyImg, x, y, null);
+		} else {
+			g.setColor(Color.RED);
+			g.fillRect(x, y, width, height);
+		}
 	}
-	
+
 	/**
 	 * a getter for hasAShot which indicates whether the enemy has shot
 	 * @return hasAShot, whether the enemy has shot yet
 	 */
-    public boolean getHasAShot() {
-        return hasAShot;
-    }
+	public boolean getHasAShot() {
+		return hasAShot;
+	}
 
-    /**
-     * Creates a new EnemyProjectile object at the enemy's location
-     * @return shot, Projectile that was created
-     */
-    public EnemyProjectile shoot() {
-    	EnemyProjectile shot;
-    	if(width != 0) {
-            shot = new EnemyProjectile(x + width / 2, y + 1 + height, 2);
-    	} else {
-            shot = new EnemyProjectile(x + width / 2, y + 1 + height);
-    	}
-        hasAShot = false;
-        return shot;
-    }
+	/**
+	 * Creates a new EnemyProjectile object at the enemy's location
+	 * @return shot, Projectile that was created
+	 */
+	public EnemyProjectile shoot() {
+		EnemyProjectile shot;
+		if(width != 0) {
+			shot = new EnemyProjectile(x + width / 2, y + 1 + height, 2);
+		} else {
+			shot = new EnemyProjectile(x + width / 2, y + 1 + height);
+		}
+		hasAShot = false;
+		return shot;
+	}
 
-    /**
-     * getter for enemy width
-     * @return width of the enemy
-     */
+	/**
+	 * getter for enemy width
+	 * @return width of the enemy
+	 */
 	public int getWidth() {
 		return width;
 	}
@@ -264,7 +256,7 @@ public class Enemy {
 	public int getMaxY() {
 		return maxY;
 	}
-	
+
 	/**
 	 * setter for enemy width
 	 * @param width width of the enemy
