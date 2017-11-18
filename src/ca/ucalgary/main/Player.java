@@ -224,15 +224,6 @@ public class Player {
 	 * Draws the projectile for the GUI Game.
 	 * @param g the current GUI graphics object.
 	 */
-//	public void draw(Graphics g) {
-//		g.setColor(Color.CYAN);
-//		g.fillOval(x, y, width, height);
-//		g.setColor(Color.RED);
-//		g.fillRect(x, y + height + 5, width, 5);
-//		g.setColor(Color.GREEN);
-//		g.fillRect(x, y + height + 5, (int) (width * ((double)health/(double)initialHealth)), 5);
-//	}
-    
     public void draw(Graphics g) {
         if (img != null) {
             g.drawImage(img, x, y, null);
