@@ -95,6 +95,9 @@ Group 3 Work Log
 	Prepare documents for demo. (~.25 hrs)
 1/11/17 - Quinn
 	Encapsulated player. Added different types of collectables (health and money). (~.75 hours)
-06/11/16 - Cole
+06/11/17 - Cole
 	Fixed privacy leaks with objects in Game (1 hour)
+
+11/11/17 - Quinn
+	Added graphics. Changed collectable probabilities. (1 hour)
 
