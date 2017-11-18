@@ -25,22 +25,6 @@ public class PlayerProjectile extends Projectile {
     public PlayerProjectile(int x, int y, int velocity) {
         super(x, y, velocity);
     }
-
-    /**
-     * Checks if the projectile and a given enemy have collided
-     * @param enemy Potential enemy collision
-     * @return true if the two objects have collided
-     */
-    public boolean collidedWith(Enemy enemy) {
-        boolean collided = (((getY() >= enemy.getY() || getY() == enemy.getY()-1) &&
-                     getY() <= enemy.getY() + enemy.getHeight())
-                    &&
-                    (getX() >= enemy.getX() &&
-                    getX() <= enemy.getX() + enemy.getWidth()));
-
-        return collided;
-        
-    }
     
     /**
      * Moves the projectile up one row and detects whether or not it has reached

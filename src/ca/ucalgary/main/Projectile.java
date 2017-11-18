@@ -13,7 +13,7 @@ import java.awt.Graphics;
  *
  */
 
-public abstract class Projectile {
+public abstract class Projectile implements Collidable {
 	
 	private int x;
 	private int y;
@@ -77,6 +77,23 @@ public abstract class Projectile {
 		g.setColor(Color.white);
 		g.fillRect(x, y, width, height);
 	}
+	
+	
+	/**
+     * Checks if the projectile and a given collidable have collided
+     * @param c Potential enemy collision
+     * @return true if the two objects have collided
+     */
+    public boolean collidedWith(Collidable c) {
+        boolean collided = (((getY() >= c.getY() || getY() == c.getY()-1) &&
+                     getY() <= c.getY() + c.getHeight())
+                    &&
+                    (getX() >= c.getX() &&
+                    getX() <= c.getX() + c.getWidth()));
+
+        return collided;
+        
+    }
     
     /**
      * Gets the projectile's current x (column) coordinate.
