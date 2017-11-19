@@ -101,3 +101,9 @@ Group 3 Work Log
 11/11/17 - Quinn
 	Added graphics. Changed collectable probabilities. (1 hour)
 
+17/11/17 - Cole
+	Added collidable interface (0.5 hours)
+
+18/11/17 - Quinn
+	Unit test for player class. (1 hour)
+
