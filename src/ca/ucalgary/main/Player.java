@@ -285,7 +285,11 @@ public class Player implements Collidable{
 	 * @param health New health value
 	 */
 	public void setHealth(int health) {
-		this.health = health;
+        if (health >= 0) {
+            this.health = health;
+        } else {
+            this.health = this.health;
+        }
 	}
 
 	/**
