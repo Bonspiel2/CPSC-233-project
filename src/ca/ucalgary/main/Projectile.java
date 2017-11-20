@@ -17,6 +17,9 @@ public abstract class Projectile implements Collidable {
 	
 	private int x;
 	private int y;
+	
+	private int maxY;
+	private int maxX;
     
 	private int width;
 	private int height;
@@ -32,9 +35,11 @@ public abstract class Projectile implements Collidable {
      * @param newY new projectile's row value
      */
     public Projectile(int x, int y) {
-		this.x = x;
-		this.y = y;
-		this.width = 0;
+    	maxY = TextGame.ROWS-1;
+    	maxX = TextGame.COLUMNS-1;
+    	setX(x);
+    	setY(y);		
+    	this.width = 0;
 		this.height = 0;
 		this.velocity = 1;
 	}
@@ -46,11 +51,18 @@ public abstract class Projectile implements Collidable {
      * @param newVelocity new projectile's velocity
      */
     public Projectile(int x, int y, int vel){
-        this.x = x;
-        this.y = y;
+    	maxX = GUIGame.SCREEN_WIDTH-1;
+    	maxY = GUIGame.SCREEN_HEIGHT-1;
+    	setX(x);
+    	setY(y);
         this.height = 10;
         this.width = 2;
-        this.velocity = vel;
+        
+        if(vel >= 0) {
+        	this.velocity = vel;
+        } else {
+        	this.velocity = 1;
+        }
         
     }
 
@@ -65,7 +77,9 @@ public abstract class Projectile implements Collidable {
      * @param board the current gameboard.
      */
     public void draw(String[][] board) {
-		board[y][x] = "|";
+    	if( (x >= 0 && x <= maxX) && (y >= 0 && y <= maxY) ) {
+    		board[y][x] = "|";
+    	}
 	}
     
 	/**
@@ -85,14 +99,15 @@ public abstract class Projectile implements Collidable {
      * @return true if the two objects have collided
      */
     public boolean collidedWith(Collidable c) {
-        boolean collided = (((getY() >= c.getY() || getY() == c.getY()-1) &&
-                     getY() <= c.getY() + c.getHeight())
-                    &&
-                    (getX() >= c.getX() &&
-                    getX() <= c.getX() + c.getWidth()));
+      
+        boolean collided = false;
+    	
+    	if (x + width >= c.getX() && x <= c.getX() + c.getWidth() && 
+				(y + height >= c.getY() || y + height == c.getY()-1) && y <= c.getY() + c.getHeight()) {
+			collided = true;
+		}
 
         return collided;
-        
     }
     
     /**
@@ -108,7 +123,13 @@ public abstract class Projectile implements Collidable {
      * @param x the new x coordinate.
      */
 	public void setX(int x) {
-		this.x = x;
+		if(x > maxX) {
+			this.x = maxX;
+		} else if(x <= 0) {
+			this.x = 0;
+		} else {
+			this.x = x;
+		}
 	}
     
     /**
@@ -148,7 +169,13 @@ public abstract class Projectile implements Collidable {
      * @param y the new y coordinate.
      */
 	public void setY(int y) {
-		this.y = y;
+		if(y > maxY) {
+			this.y = maxY;
+		} else if(y <= 0) {
+			this.y = 0;
+		} else {
+			this.y = y;
+		}
 	}
 
 }

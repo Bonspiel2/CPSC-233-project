@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import ca.ucalgary.main.ProjTest.Collision;
+
 
 /**
  * @author matthew.lee4
@@ -29,7 +29,7 @@ public class ProjectileTest {
 		public Proj(int x, int y) {
 			super(x, y);
 		}
-
+		
 
 		@Override
 		public boolean move() {
@@ -73,10 +73,16 @@ public class ProjectileTest {
 			return y;
 		}
 
-		// Not implemented
 		@Override
 		public boolean collidedWith(Collidable c) {
-			return false;
+			boolean collided = false;
+	    	
+	    	if (x + width >= c.getX() && x <= c.getX() + c.getWidth() && 
+					(y + height >= c.getY() || y + height == c.getY()-1) && y <= c.getY() + c.getHeight()) {
+				collided = true;
+			}
+
+	        return collided;
 		}
 
 	}
@@ -113,7 +119,7 @@ public class ProjectileTest {
         assertEquals("Unexpected y coordinate.", 1, projectile.getY());
         assertEquals("Unexpected width value.", 2, projectile.getWidth());
         assertEquals("Unexpected height value.", 10, projectile.getHeight());
-        assertEquals("Unexpected velocity value.", 0, projectile.getVelocity());
+        assertEquals("Unexpected velocity value.", 1, projectile.getVelocity());
 
     }
     
@@ -125,7 +131,7 @@ public class ProjectileTest {
         assertEquals("Unexpected y coordinate.", 0, projectile.getY());
         assertEquals("Unexpected width value.", 2, projectile.getWidth());
         assertEquals("Unexpected height value.", 10, projectile.getHeight());
-        assertEquals("Unexpected velocity value.", 0, projectile.getVelocity());
+        assertEquals("Unexpected velocity value.", 1, projectile.getVelocity());
     }
     
     // test GUI constructor with values too large
@@ -135,23 +141,7 @@ public class ProjectileTest {
         assertEquals("Unexpected x coordinate.", GUIGame.SCREEN_WIDTH-1, projectile.getX());
         assertEquals("Unexpected y coordinate.", GUIGame.SCREEN_HEIGHT-1, projectile.getY());
     }
-    
-
-    // test regular projectile movement
-    @Test
-    public void test_Move() {
-    	Proj projectile = new Proj(0,0);
-    	assertTrue("Proj removed while still on board", projectile.move());
-    	assertEquals("Proj did not move the correct amount", 1, projectile.getY());
-    }
-    
-    // test off board projectile movement
-    @Test
-    public void test_Move_offBoard() {
-    	Proj projectile = new Proj(TextGame.ROWS-1,0);
-    	assertFalse("Proj not removed from board", projectile.move());
-    	assertEquals("Proj moved over max", TextGame.ROWS-1, projectile.getY());
-    }
+   
     
  // test collision on top
     @Test
@@ -188,7 +178,7 @@ public class ProjectileTest {
     // test collision bottom right
     @Test
     public void test_CollisionBottomRight() {
-        Proj projectile = new Proj(9, 5, 10);
+        Proj projectile = new Proj(10, 9, 10);
         Collidable collide = new Collision(10, 10,10,10);
         assertTrue("Created projectile testing collsion with bottom right corner", projectile.collidedWith(collide));
     }
@@ -196,7 +186,7 @@ public class ProjectileTest {
     // test collision above
     @Test
     public void test_CollisionAbove() {
-        Proj projectile = new Proj(5, 5, 10);
+        Proj projectile = new Proj(0, 0, 10);
         Collidable collide = new Collision(5,15,10,4);
         assertFalse("Created projectile testing collsion above", projectile.collidedWith(collide));
     }
@@ -204,7 +194,7 @@ public class ProjectileTest {
  // test collision left
     @Test
     public void test_CollisionLeft() {
-        Proj projectile = new Proj(3,5, 10);
+        Proj projectile = new Proj(0,0, 10);
         Collidable collide = new Collision(5,5,4,10);
         assertFalse("Created projectile testing collsion to the left", projectile.collidedWith(collide));
     }
@@ -212,7 +202,7 @@ public class ProjectileTest {
  // test collision right
     @Test
     public void test_CollisionRight() {
-        Proj projectile = new Proj(20, 16, 10);
+        Proj projectile = new Proj(0, 0, 10);
         Collidable collide = new Collision(10, 16,10,10);
         assertFalse("Created projectile testing collsion to the right", projectile.collidedWith(collide));
     }
@@ -223,16 +213,6 @@ public class ProjectileTest {
         Proj projectile = new Proj(10, 19, 10);
         Collidable collide = new Collision(10, 16,10,2);
         assertFalse("Created projectile testing collsion below", projectile.collidedWith(collide));
-    }
-    
-    
-  //test text draw method board too small
-    @Test
-    public void test_DrawTextSmallBoard() {
-    	Proj projectile = new Proj(5,6);
-    	String[][] board = new String[3][3];
-    	projectile.draw(board);
-    	assertArrayEquals("Generated projectile, drew to small text board. Testing placement", new String[3][3], board);
     }
     
     //test x getter
