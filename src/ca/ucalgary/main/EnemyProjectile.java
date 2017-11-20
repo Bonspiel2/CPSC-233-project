@@ -56,7 +56,9 @@ public class EnemyProjectile extends Projectile{
 	 */
 	@Override
 	public void draw(String[][] board) {
-		board[getY()][getX()] = symbol;
+		if( (getX() >= 0 && getX() <= getMaxX()) && (getY() >= 0 && getY() <= getMaxY()) ) {
+    		board[getY()][getX()] = symbol;
+    	}
 	}
 
 	/**

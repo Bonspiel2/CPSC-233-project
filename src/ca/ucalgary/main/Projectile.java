@@ -66,7 +66,9 @@ public abstract class Projectile implements Collidable {
         
     }
 
-    /**
+
+
+	/**
      * Abstract method that dictates how projectile moves
      */
     
@@ -178,6 +180,13 @@ public abstract class Projectile implements Collidable {
 		}
 	}
 
+	public int getMaxY() {
+		return maxY;
+	}
+
+	public int getMaxX() {
+		return maxX;
+	}
 }
 
 
