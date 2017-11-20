@@ -8,6 +8,8 @@ import java.util.Random;
 
 import javax.swing.Timer;
 
+import java.io.*;
+
 /**
  * The GUIGameController class allows the game to respond to user input.
  * It reacts to user-given mouse events and refreshes the board based on a timer.
@@ -35,6 +37,16 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 		gameClock.start();
 
 		game.initBoard();
+        
+        try {
+            FileWriter writer = new FileWriter("ca/ucalgary/main/HighScore.txt");
+            BufferedWriter buffWriter = new BufferedWriter(writer);
+            buffWriter.write("0");
+            buffWriter.close();
+        } catch (IOException e) {
+            System.out.println("Could not initialize high score");
+        }
+
 	}
 
 	@Override

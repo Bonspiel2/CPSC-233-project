@@ -15,6 +15,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import java.io.*;
+
 /**
  * The GUIGameInterface class controls all aspects of displaying the game graphically.
  * It sets up the JFrame as well as handles the drawing of all enemies, projectiles, 
@@ -30,6 +32,8 @@ public class GUIGameInterface extends JPanel {
 	private boolean gameOver;
 	private Cursor blankCursor;
 	private int finalScore;
+    private int highScore;
+    private int displayScore;
 
 	public GUIGameInterface(ActionListener a,
 			MouseMotionListener m, GUIGame g) {
@@ -103,6 +107,8 @@ public class GUIGameInterface extends JPanel {
 			g.setColor(Color.WHITE);
 			g.setFont(new Font("Helvetica", Font.BOLD, 30));
 			g.drawString("Score: " + finalScore, 100, 200);
+            g.drawString("High Score: " + displayScore, 70, 300);
+
 		}
 	}
 	
@@ -112,7 +118,32 @@ public class GUIGameInterface extends JPanel {
 		playAgain.setEnabled(true);
 		frame.getContentPane().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		finalScore = game.getPlayer().getScore();
-		
+        
+        try {
+            FileReader reader = new FileReader("src/ca/ucalgary/main/HighScore.txt");
+            BufferedReader buffReader = new BufferedReader(reader);
+            String line = buffReader.readLine();
+            highScore = Integer.parseInt(line);
+            buffReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Could not find high score");
+        } catch (IOException e) {
+            System.out.println("Error reading high score");
+        }
+        
+        if (finalScore > highScore) {
+            displayScore = finalScore;
+            try {
+                FileWriter writer = new FileWriter("src/ca/ucalgary/main/HighScore.txt", false);
+                BufferedWriter buffWriter = new BufferedWriter(writer);
+                buffWriter.write(Integer.toString(finalScore));
+                buffWriter.close();
+            } catch (IOException e) {
+                System.out.println("Could not record high score.");
+            }
+        } else {
+            displayScore = highScore;
+        }
 	}
 	
 	public void newGame() {
