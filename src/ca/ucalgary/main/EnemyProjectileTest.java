@@ -30,5 +30,19 @@ public class EnemyProjectileTest {
     	assertFalse("EnemyProjectile not removed from board", projectile.move());
     	assertEquals("EnemyProjectile moved over max", TextGame.ROWS-1, projectile.getY());
     }
-
+    
+    @Test
+    public void test_set_negativeX() {
+    	EnemyProjectile projectile = new EnemyProjectile(1,1,1);
+    	projectile.setX(-5);
+    	assertEquals("Projectile set to negative X value", 0, projectile.getY());
+    }
+    
+    @Test
+    public void test_set_negativeY() {
+    	EnemyProjectile projectile = new EnemyProjectile(1,1,1);
+    	projectile.setY(-5);
+    	assertEquals("Projectile set to negative Y value", 0, projectile.getY());
+    }
+    
 }
