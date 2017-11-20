@@ -109,7 +109,7 @@ public class EnemyTest {
         assertEquals("Unexpected y coordinate.", 20, enemyCopy.getY());
         assertEquals("Unexpected width.", 15, enemyCopy.getWidth());
         assertEquals("Unexpected height.", 13, enemyCopy.getHeight());
-        assertTrue("Copy is a reference to the original object", enemy.equals(enemyCopy));
+        assertTrue("Copy is a reference to the original object", enemy != enemyCopy);
     }
     
     // test regular enemy movement
@@ -123,7 +123,7 @@ public class EnemyTest {
     // test off board enemy movement
     @Test
     public void test_Move_offBoard() {
-    	Enemy enemy = new Enemy(TextGame.ROWS-1,0);
+    	Enemy enemy = new Enemy(0,TextGame.ROWS-1);
     	assertFalse("Enemy not removed from board", enemy.move());
     	assertEquals("Enemy moved over max", TextGame.ROWS-1, enemy.getY());
     }
@@ -371,5 +371,19 @@ public class EnemyTest {
     public void test_maxY_getter_Text() {
     	Enemy enemy = new Enemy(5,5);
     	assertEquals("Created enemy, testing max y getter", TextGame.ROWS, enemy.getMaxY());
+    }
+    
+  //test max x getter gui
+    @Test
+    public void test_maxX_getter_GUI() {
+    	Enemy enemy = new Enemy(10,10,10,10);
+    	assertEquals("Created enemy, testing max x getter", GUIGame.SCREEN_WIDTH, enemy.getMaxX());
+    }
+    
+    //test max x getter text
+    @Test
+    public void test_maxX_getter_Text() {
+    	Enemy enemy = new Enemy(5,5);
+    	assertEquals("Created enemy, testing max x getter", TextGame.COLUMNS, enemy.getMaxX());
     }
 }
