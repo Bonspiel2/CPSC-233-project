@@ -113,7 +113,7 @@ public abstract class Collectable implements Collidable{
 	public void setY(int y) {
 		this.y = y;
 	}
-	
+
 	/**
 	 * Gets max Y value for the collectable
 	 * @return maxY maximum y value
