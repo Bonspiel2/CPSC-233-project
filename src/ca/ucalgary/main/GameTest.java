@@ -102,12 +102,14 @@ public class GameTest {
         Player player = new Player(1, 1, 5);
         ArrayList<Enemy> enemies = new ArrayList<Enemy>(Arrays.asList(new Enemy(0,0)));
         ArrayList<Projectile> projectiles = new ArrayList<Projectile>(Arrays.asList(new PlayerProjectile(0,0)));
-        ArrayList<Collectable> collectables = new ArrayList<Collectable>(Arrays.asList(new Money(1,2,4)));
+        ArrayList<Collectable> collectables = new ArrayList<Collectable>();
         
         GUIGame game = new GUIGame(enemies, collectables, projectiles, player);
         game.checkCollisions();
         assertEquals("Player projectile should kill enemy", 0, enemies.size());
         assertEquals("Player projectile should be removed", 0, projectiles.size());
+	assertEquals("Collectable should spawn with same x coordinate as enemy.", 0, collectables.get(0).getX());
+	assertEquals("Collectable should spawn with same y coordinate as enemy.", 0, collectables.get(0).getY());
     }
 
     /**
@@ -127,6 +129,38 @@ public class GameTest {
         assertEquals("Enemy projectile coordinate should be (6,7)", 7, projectiles.get(1).getY());
         assertEquals("Money coordinate should be (8,7)", 7, collectables.get(0).getY());
         assertEquals("Health coordinate should be (3,3)", 3, collectables.get(1).getY());
+    }
+    /**
+     * Tests that projectiles not added if enemy has no shot
+     */
+    @Test
+    public void test_noProjectileAdded() {
+        Player player = new Player(1, 1, 5);
+	Enemy enemy = new Enemy(0,0);
+	enemy.setHasAShot(false);
+        ArrayList<Enemy> enemies = new ArrayList<Enemy>(Arrays.asList(enemy));
+        ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
+        ArrayList<Collectable> collectables = new ArrayList<Collectable>();
+        
+        GUIGame game = new GUIGame(enemies, collectables, projectiles, player);
+        game.enemiesShoot();
+        assertEquals("List of projectiles should remain empty", 0, projectiles.size());
+    }
+
+    /**
+     * Tests that projectile added if enemy can shoot
+     */
+    @Test
+    public void test_enemyShootAddsProjectile() {
+        Player player = new Player(1, 1, 5);
+        ArrayList<Enemy> enemies = new ArrayList<Enemy>(Arrays.asList(new Enemy(0,0)));
+        ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
+        ArrayList<Collectable> collectables = new ArrayList<Collectable>();
+        
+        GUIGame game = new GUIGame(enemies, collectables, projectiles, player);
+        game.enemiesShoot();
+        assertEquals("List of projectiles should have one element", 1, projectiles.size());
+	assertTrue("Projectile should be of type enemy projectile.", projectiles.get(0) instanceof EnemyProjectile);
     }
 
 
