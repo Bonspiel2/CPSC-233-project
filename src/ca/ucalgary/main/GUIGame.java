@@ -1,5 +1,7 @@
 package ca.ucalgary.main;
 
+import java.util.ArrayList;
+
 /**
  * The GUIGame class extends the Game class and handles the set up of
  * game. It initializes the board and player.
@@ -10,6 +12,12 @@ public class GUIGame extends Game {
 	public static final int SCREEN_WIDTH = 350;
 	public static final int SCREEN_HEIGHT = 500;
 
+/**
+ * Constructor for testing
+ */
+    public GUIGame(ArrayList<Enemy> enemies, ArrayList<Collectable> collectables, ArrayList<Projectile> projectiles, Player player) {
+        super(enemies, collectables, projectiles, player);
+    }
 /**
  * The main constructor for the GUIGame. Handles initialization 
  * of the board dimensions and the player,

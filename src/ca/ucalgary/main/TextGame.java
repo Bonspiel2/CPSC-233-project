@@ -34,6 +34,14 @@ public class TextGame extends Game {
         
 		board = initBoard();
 	}
+    
+    /**
+     * Constructor for testing
+     */
+    public TextGame(ArrayList<Enemy> enemies, ArrayList<Collectable> collectables, ArrayList<Projectile> projectiles, Player player) {
+        super(enemies, collectables, projectiles, player);
+    }
+
 
 	/**
 	 * Updates the game every iteration as well as creates new objects when needed
