@@ -108,7 +108,25 @@ public class GameTest {
         game.checkCollisions();
         assertEquals("Player projectile should kill enemy", 0, enemies.size());
         assertEquals("Player projectile should be removed", 0, projectiles.size());
+    }
 
+    /**
+     * Tests to ensure move is working properly for all objects.
+     */
+    @Test
+    public void test_basicMovement() {
+        Player player = new Player(1, 1, 5);
+        ArrayList<Enemy> enemies = new ArrayList<Enemy>(Arrays.asList(new Enemy(0,0)));
+        ArrayList<Projectile> projectiles = new ArrayList<Projectile>(Arrays.asList(new PlayerProjectile(5,5), new EnemyProjectile(6,6)));
+        ArrayList<Collectable> collectables = new ArrayList<Collectable>(Arrays.asList(new Money(8,6,10), new HealthCollectable(3,2,4)));
+        
+        GUIGame game = new GUIGame(enemies, collectables, projectiles, player);
+        game.move();
+        assertEquals("Enemy coordinates should be (0,1)", 1, enemies.get(0).getY());
+        assertEquals("Player projectile coordinate should be (5,4)", 4, projectiles.get(0).getY());
+        assertEquals("Enemy projectile coordinate should be (6,7)", 7, projectiles.get(1).getY());
+        assertEquals("Money coordinate should be (8,7)", 7, collectables.get(0).getY());
+        assertEquals("Health coordinate should be (3,3)", 3, collectables.get(1).getY());
     }
 
 
