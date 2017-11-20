@@ -115,6 +115,15 @@ public abstract class Collectable implements Collidable{
 	}
 	
 	/**
+	 * Gets max Y value for the collectable
+	 * @return maxY maximum y value
+	 */
+	
+	public int getMaxY() {
+		return maxY;
+	}
+	
+	/**
 	 * Moves collectable down the screen by one row every turn 
 	 * until it is no longer within the range of the game board.
 	 * 
