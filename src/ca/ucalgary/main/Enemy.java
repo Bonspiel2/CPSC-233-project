@@ -93,7 +93,7 @@ public class Enemy implements Collidable{
 	 * @param e Enemy to copy
 	 */
 	public Enemy(Enemy e) {
-		this(e.getX(), e.getY(), e.getWidth(), e.getHeight(), e.getMaxY(), e.getMaxX());
+		this(e.getX(), e.getY(), e.getWidth(), e.getHeight(), e.getMaxX(), e.getMaxY());
 	}
 
 
