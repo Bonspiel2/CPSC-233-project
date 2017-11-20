@@ -106,4 +106,7 @@ Group 3 Work Log
 
 18/11/17 - Quinn
 	Unit test for player class. (1 hour)
+	
+19/11/17 - Cole
+    Unit test for enemy class. (1.5 hours)
 
