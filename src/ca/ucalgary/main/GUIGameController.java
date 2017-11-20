@@ -39,7 +39,7 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 		game.initBoard();
         
         try {
-            FileWriter writer = new FileWriter("ca/ucalgary/main/HighScore.txt");
+            FileWriter writer = new FileWriter("src/ca/ucalgary/main/HighScore.txt");
             BufferedWriter buffWriter = new BufferedWriter(writer);
             buffWriter.write("0");
             buffWriter.close();
