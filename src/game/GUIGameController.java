@@ -1,4 +1,4 @@
-package ca.ucalgary.main;
+package game;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +7,8 @@ import java.awt.event.MouseMotionListener;
 import java.util.Random;
 
 import javax.swing.Timer;
+
+import enemy.Enemy;
 
 import java.io.*;
 
@@ -39,7 +41,7 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 		game.initBoard();
         
         try {
-            FileWriter writer = new FileWriter("src/ca/ucalgary/main/HighScore.txt");
+            FileWriter writer = new FileWriter("src/lib/HighScore.txt");
             BufferedWriter buffWriter = new BufferedWriter(writer);
             buffWriter.write("0");
             buffWriter.close();

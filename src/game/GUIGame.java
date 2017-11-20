@@ -1,6 +1,11 @@
-package ca.ucalgary.main;
+package game;
 
 import java.util.ArrayList;
+
+import collectable.Collectable;
+import enemy.Enemy;
+import player.Player;
+import projectiles.Projectile;
 
 /**
  * The GUIGame class extends the Game class and handles the set up of

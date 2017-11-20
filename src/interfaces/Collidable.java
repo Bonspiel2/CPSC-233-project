@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ca.ucalgary.main;
+package interfaces;
 
 /**
  * @author Cole

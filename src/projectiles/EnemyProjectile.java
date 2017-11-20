@@ -1,7 +1,9 @@
-package ca.ucalgary.main;
+package projectiles;
 
 import java.awt.Color;
 import java.awt.Graphics;
+
+import game.TextGame;
 
 /**
  * EnemyProjectile class allows the game to create enemy projectiles which travel 

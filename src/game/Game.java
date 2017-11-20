@@ -1,7 +1,14 @@
-package ca.ucalgary.main;
+package game;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import collectable.Collectable;
+import enemy.Enemy;
+import player.Player;
+import projectiles.EnemyProjectile;
+import projectiles.PlayerProjectile;
+import projectiles.Projectile;
 
 public abstract class Game {
 

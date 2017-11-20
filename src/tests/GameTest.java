@@ -1,5 +1,16 @@
 
-package ca.ucalgary.main;
+package tests;
+import ca.ucalgary.main.*;
+import collectable.Collectable;
+import collectable.HealthCollectable;
+import collectable.Money;
+import enemy.Enemy;
+import game.GUIGame;
+import game.TextGame;
+import player.Player;
+import projectiles.EnemyProjectile;
+import projectiles.PlayerProjectile;
+import projectiles.Projectile;
 
 import static org.junit.Assert.*;
 import java.util.ArrayList;

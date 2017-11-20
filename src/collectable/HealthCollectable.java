@@ -1,7 +1,10 @@
-package ca.ucalgary.main;
+package collectable;
 
 import java.awt.Color;
 import java.awt.Graphics;
+
+import game.GUIGame;
+import game.TextGame;
 
 public class HealthCollectable extends Collectable {
 
@@ -14,7 +17,7 @@ public class HealthCollectable extends Collectable {
      * @param y, y coordinate of the collectable
      * @param maxY, the farthest down a collectable can travel before being removed
      */
-    HealthCollectable(int x, int y) {
+    public HealthCollectable(int x, int y) {
         super(x, y, TextGame.COLUMNS, TextGame.ROWS);
     }
     
@@ -28,7 +31,7 @@ public class HealthCollectable extends Collectable {
      * @param width, width of the collectable
      * @param height, height of the collectable
      */
-    HealthCollectable(int x, int y, int width, int height) {
+    public HealthCollectable(int x, int y, int width, int height) {
         super(x, y, width, height, GUIGame.SCREEN_WIDTH, GUIGame.SCREEN_HEIGHT);
     }
     

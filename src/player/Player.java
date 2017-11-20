@@ -1,8 +1,14 @@
-package ca.ucalgary.main;
+package player;
 
+import ca.ucalgary.*;
+import collectable.HealthCollectable;
+import collectable.Money;
+import game.GUIGame;
+import game.TextGame;
+import interfaces.Collidable;
+import projectiles.PlayerProjectile;
 import java.awt.Color;
 import java.awt.Graphics;
-
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -103,7 +109,7 @@ public class Player implements Collidable{
 		fireTimer = fireCount * firerate;
         
         try {
-            img = ImageIO.read(new File("src/ca/ucalgary/main/PlayerShip.png"));
+            img = ImageIO.read(new File("src/lib/PlayerShip.png"));
         } catch (IOException e) {
             System.out.println("Could not load player image.");
         }

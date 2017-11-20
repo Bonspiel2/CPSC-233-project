@@ -1,7 +1,9 @@
-package ca.ucalgary.main;
+package collectable;
 
 import java.awt.Color;
 import java.awt.Graphics;
+
+import interfaces.Collidable;
 
 /**
  * This Collectable class allows the game to interact with 
@@ -31,7 +33,7 @@ public abstract class Collectable implements Collidable{
 	 * @param y, y coordinate of the collectable
 	 * @param maxY, the farthest down a collectable can travel before being removed
      */
-	Collectable(int x, int y, int maxX, int maxY) {
+	public Collectable(int x, int y, int maxX, int maxY) {
 		this.x = Math.min(maxX - 1, Math.max(0, x));
 		this.y = Math.min(maxY - 1,Math.max(0, y));
 		
@@ -51,7 +53,7 @@ public abstract class Collectable implements Collidable{
 	 * @param width, width of the collectable
 	 * @param height, height of the collectable
 	 */
-	Collectable(int x, int y, int width, int height, int maxX, int maxY) {
+	public Collectable(int x, int y, int width, int height, int maxX, int maxY) {
 		this.x = Math.min(maxX - 1, Math.max(0, x));
 		this.y = Math.min(maxY - 1,Math.max(0, y));
 		

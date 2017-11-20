@@ -112,9 +112,10 @@ Group 3 Work Log
 
 19/11/17 - Quinn
     Unit test for Game class, updated unit test for player class (1 hour)
+    helped wrap everything neatly (put in packages) (~0.5hrs)
     
 19/11/17 - Matt
 	Unit tests for Projectile, PlayerProjectile and EnemyProjectile (3 hours)
 	Bug fixes (~1 hr)
 	Javadocs (~0.5 hrs)
-
+	Wrapped everything neatly (put in packages) (~0.5hrs)

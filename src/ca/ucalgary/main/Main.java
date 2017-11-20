@@ -2,6 +2,10 @@ package ca.ucalgary.main;
 
 import java.util.Scanner;
 
+import game.GUIGameController;
+import game.GUIGameInterface;
+import game.TextGame;
+
 /**
  * Main prompts user to choose which game they want to play 
  * and launches either the text or the GUI game based on 

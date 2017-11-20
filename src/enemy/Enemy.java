@@ -1,4 +1,4 @@
-package ca.ucalgary.main;
+package enemy;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -8,6 +8,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+
+import collectable.Collectable;
+import collectable.HealthCollectable;
+import collectable.Money;
+import game.GUIGame;
+import game.TextGame;
+import interfaces.Collidable;
+import projectiles.EnemyProjectile;
 
 
 
@@ -81,7 +89,7 @@ public class Enemy implements Collidable{
 		this.maxX = maxX;
 
 		try {
-			enemyImg = ImageIO.read(new File("src/ca/ucalgary/main/EnemyShip.png"));
+			enemyImg = ImageIO.read(new File("src/lib/EnemyShip.png"));
 		} catch (IOException e) {
 			System.out.println("Could not load enemy image.");
 		}

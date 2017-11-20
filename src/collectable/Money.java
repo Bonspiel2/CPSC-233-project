@@ -1,7 +1,10 @@
-package ca.ucalgary.main;
+package collectable;
 
 import java.awt.Color;
 import java.awt.Graphics;
+
+import game.GUIGame;
+import game.TextGame;
 
 public class Money extends Collectable {
 
@@ -15,7 +18,7 @@ public class Money extends Collectable {
      * @param y, y coordinate of the collectable
      * @param maxY, the farthest down a collectable can travel before being removed
      */
-    Money(int x, int y) {
+    public Money(int x, int y) {
         super(x, y, TextGame.COLUMNS, TextGame.ROWS);
     }
     
@@ -29,7 +32,7 @@ public class Money extends Collectable {
      * @param width, width of the collectable
      * @param height, height of the collectable
      */
-    Money(int x, int y, int width, int height) {
+    public Money(int x, int y, int width, int height) {
         super(x, y, width, height, GUIGame.SCREEN_WIDTH, GUIGame.SCREEN_HEIGHT);
     }
     

@@ -1,4 +1,4 @@
-package ca.ucalgary.main;
+package game;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -14,6 +14,10 @@ import java.awt.image.BufferedImage;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import collectable.Collectable;
+import enemy.Enemy;
+import projectiles.Projectile;
 
 import java.io.*;
 
@@ -120,7 +124,7 @@ public class GUIGameInterface extends JPanel {
 		finalScore = game.getPlayer().getScore();
         
         try {
-            FileReader reader = new FileReader("src/ca/ucalgary/main/HighScore.txt");
+            FileReader reader = new FileReader("src/lib/HighScore.txt");
             BufferedReader buffReader = new BufferedReader(reader);
             String line = buffReader.readLine();
             highScore = Integer.parseInt(line);
@@ -134,7 +138,7 @@ public class GUIGameInterface extends JPanel {
         if (finalScore > highScore) {
             displayScore = finalScore;
             try {
-                FileWriter writer = new FileWriter("src/ca/ucalgary/main/HighScore.txt", false);
+                FileWriter writer = new FileWriter("src/lib/HighScore.txt", false);
                 BufferedWriter buffWriter = new BufferedWriter(writer);
                 buffWriter.write(Integer.toString(finalScore));
                 buffWriter.close();
