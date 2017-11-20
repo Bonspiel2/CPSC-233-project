@@ -16,6 +16,21 @@ public abstract class Game {
 		projectiles = new ArrayList<Projectile>();
 		collectables = new ArrayList<Collectable>();
 	}
+    
+    /**
+     * Constructor used for testing purposes that takes given lists of enemies,
+     * projectiles, and collectables as parameters.
+     * @param enemies the ArrayList of enemies
+     * @param projectiles the ArrayList of projectiles
+     * @param collectables the ArrayList of collectables
+     * @param player the given player
+     */
+    public Game(ArrayList<Enemy> enemies, ArrayList<Collectable> collectables, ArrayList<Projectile> projectiles, Player player) {
+        this.enemies = enemies;
+        this.collectables = collectables;
+        this.projectiles = projectiles;
+        this.player = player;
+    }
 
 	/**
 	 * Checks if collisions have occured between enemies and projectiles, 
