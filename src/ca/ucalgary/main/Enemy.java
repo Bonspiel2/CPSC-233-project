@@ -226,6 +226,10 @@ public class Enemy implements Collidable{
 		return hasAShot;
 	}
 
+	public void setHasAShot(boolean shot) {
+		this.hasAShot = shot;
+	}
+
 	/**
 	 * Creates a new EnemyProjectile object at the enemy's location
 	 * @return shot, Projectile that was created
