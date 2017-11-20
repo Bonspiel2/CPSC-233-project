@@ -179,11 +179,17 @@ public abstract class Projectile implements Collidable {
 			this.y = y;
 		}
 	}
-
+	/**
+	 * Gets the projectile's maxY value
+	 * @return maxY the projectile's maximum Y
+	 */
 	public int getMaxY() {
 		return maxY;
 	}
-
+	/**
+	 * Gets the projectile's maxX value
+	 * @return maxX the projectile's maximum X
+	 */
 	public int getMaxX() {
 		return maxX;
 	}
