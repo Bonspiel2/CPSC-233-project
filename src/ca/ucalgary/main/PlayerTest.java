@@ -138,7 +138,7 @@ public class PlayerTest {
     @Test
     public void test_CollisionWithMoneyScoreIncrease() {
         Player player = new Player(0, 0, 5);
-        Money money = new Money(0, 0, 20);
+        Money money = new Money(0, 0);
         player.collidedWith(money);
         assertEquals(("Created money and player both at (0,0), expected score is 1 since player and money collide"), 1, player.getScore());
     }
@@ -150,7 +150,7 @@ public class PlayerTest {
     public void test_CollisionWithHealth() {
         Player player = new Player(0, 0, 5);
         player.setHealth(4);
-        HealthCollectable health = new HealthCollectable(0, 0, 20);
+        HealthCollectable health = new HealthCollectable(0, 0);
         player.collidedWith(health);
         assertEquals("Created money and player both at (0,0), should collide.", 5, player.getHealth());
     }

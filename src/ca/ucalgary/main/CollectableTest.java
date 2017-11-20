@@ -12,12 +12,12 @@ public class CollectableTest {
 	private class Collect extends Collectable{
 
 		public Collect(int x, int y) {
-			super(x, y, TextGame.ROWS);
+			super(x, y, TextGame.COLUMNS, TextGame.ROWS);
 
 		}
 		
 		public Collect(int x, int y, int width, int height) {
-			super(x,y,width,height, GUIGame.SCREEN_HEIGHT);
+			super(x,y,width,height, GUIGame.SCREEN_WIDTH, GUIGame.SCREEN_HEIGHT);
 		}
 		
 		//Unimplemented
@@ -137,7 +137,7 @@ public class CollectableTest {
 	// test off board collectable movement
 	@Test
 	public void test_Move_offBoard() {
-		Collectable collectable = new Collect(TextGame.ROWS-1,0);
+		Collectable collectable = new Collect(0,TextGame.ROWS-1);
 		assertFalse("Collectable not removed from board", collectable.move());
 		assertEquals("Collectable moved over max", TextGame.ROWS-1, collectable.getY());
 	}

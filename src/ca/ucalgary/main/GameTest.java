@@ -32,7 +32,7 @@ public class GameTest {
         Player player = new Player(0, 0, 5);
         ArrayList<Enemy> enemies = new ArrayList<Enemy>(Arrays.asList(new Enemy(0,0)));
         ArrayList<Projectile> projectiles = new ArrayList<Projectile>(Arrays.asList(new PlayerProjectile(1,1)));
-        ArrayList<Collectable> collectables = new ArrayList<Collectable>(Arrays.asList(new HealthCollectable(1,1,4)));
+        ArrayList<Collectable> collectables = new ArrayList<Collectable>(Arrays.asList(new HealthCollectable(1,1)));
 
         TextGame game = new TextGame(enemies, collectables, projectiles, player);
         game.checkCollisions();
@@ -47,7 +47,7 @@ public class GameTest {
         Player player = new Player(0, 0, 5);
         ArrayList<Enemy> enemies = new ArrayList<Enemy>(Arrays.asList(new Enemy(1,1)));
         ArrayList<Projectile> projectiles = new ArrayList<Projectile>(Arrays.asList(new EnemyProjectile(0,0)));
-        ArrayList<Collectable> collectables = new ArrayList<Collectable>(Arrays.asList(new HealthCollectable(2,2,4)));
+        ArrayList<Collectable> collectables = new ArrayList<Collectable>(Arrays.asList(new HealthCollectable(2,2)));
         
         TextGame game = new TextGame(enemies, collectables, projectiles, player);
         game.checkCollisions();
@@ -64,7 +64,7 @@ public class GameTest {
         Player player = new Player(0, 0, 5);
         ArrayList<Enemy> enemies = new ArrayList<Enemy>(Arrays.asList(new Enemy(1,1)));
         ArrayList<Projectile> projectiles = new ArrayList<Projectile>(Arrays.asList(new EnemyProjectile(0,0)));
-        ArrayList<Collectable> collectables = new ArrayList<Collectable>(Arrays.asList(new HealthCollectable(0,0,4)));
+        ArrayList<Collectable> collectables = new ArrayList<Collectable>(Arrays.asList(new HealthCollectable(0,0)));
         
         TextGame game = new TextGame(enemies, collectables, projectiles, player);
         game.checkCollisions();
@@ -83,7 +83,7 @@ public class GameTest {
         Player player = new Player(0, 0, 5);
         ArrayList<Enemy> enemies = new ArrayList<Enemy>(Arrays.asList(new Enemy(1,1)));
         ArrayList<Projectile> projectiles = new ArrayList<Projectile>(Arrays.asList(new EnemyProjectile(0,0)));
-        ArrayList<Collectable> collectables = new ArrayList<Collectable>(Arrays.asList(new Money(0,0,4)));
+        ArrayList<Collectable> collectables = new ArrayList<Collectable>(Arrays.asList(new Money(0,0)));
         
         TextGame game = new TextGame(enemies, collectables, projectiles, player);
         game.checkCollisions();
@@ -120,7 +120,7 @@ public class GameTest {
         Player player = new Player(1, 1, 5);
         ArrayList<Enemy> enemies = new ArrayList<Enemy>(Arrays.asList(new Enemy(0,0)));
         ArrayList<Projectile> projectiles = new ArrayList<Projectile>(Arrays.asList(new PlayerProjectile(5,5), new EnemyProjectile(6,6)));
-        ArrayList<Collectable> collectables = new ArrayList<Collectable>(Arrays.asList(new Money(8,6,10), new HealthCollectable(3,2,4)));
+        ArrayList<Collectable> collectables = new ArrayList<Collectable>(Arrays.asList(new Money(8,6), new HealthCollectable(3,2)));
         
         TextGame game = new TextGame(enemies, collectables, projectiles, player);
         game.move();
@@ -183,7 +183,7 @@ public class GameTest {
         Player player = new Player(0, 0, 5);
         ArrayList<Enemy> enemies = new ArrayList<Enemy>(Arrays.asList(new Enemy(0,0)));
         ArrayList<Projectile> projectiles = new ArrayList<Projectile>(Arrays.asList(new PlayerProjectile(1,1)));
-        ArrayList<Collectable> collectables = new ArrayList<Collectable>(Arrays.asList(new HealthCollectable(1,1,4)));
+        ArrayList<Collectable> collectables = new ArrayList<Collectable>(Arrays.asList(new HealthCollectable(1,1)));
 
         GUIGame game = new GUIGame(enemies, collectables, projectiles, player);
         game.checkCollisions();
@@ -198,7 +198,7 @@ public class GameTest {
         Player player = new Player(0, 0, 5);
         ArrayList<Enemy> enemies = new ArrayList<Enemy>(Arrays.asList(new Enemy(1,1)));
         ArrayList<Projectile> projectiles = new ArrayList<Projectile>(Arrays.asList(new EnemyProjectile(0,0)));
-        ArrayList<Collectable> collectables = new ArrayList<Collectable>(Arrays.asList(new HealthCollectable(2,2,4)));
+        ArrayList<Collectable> collectables = new ArrayList<Collectable>(Arrays.asList(new HealthCollectable(2,2)));
         
         GUIGame game = new GUIGame(enemies, collectables, projectiles, player);
         game.checkCollisions();
@@ -215,7 +215,7 @@ public class GameTest {
         Player player = new Player(0, 0, 5);
         ArrayList<Enemy> enemies = new ArrayList<Enemy>(Arrays.asList(new Enemy(1,1)));
         ArrayList<Projectile> projectiles = new ArrayList<Projectile>(Arrays.asList(new EnemyProjectile(0,0)));
-        ArrayList<Collectable> collectables = new ArrayList<Collectable>(Arrays.asList(new HealthCollectable(0,0,4)));
+        ArrayList<Collectable> collectables = new ArrayList<Collectable>(Arrays.asList(new HealthCollectable(0,0)));
         
         GUIGame game = new GUIGame(enemies, collectables, projectiles, player);
         game.checkCollisions();
@@ -234,7 +234,7 @@ public class GameTest {
         Player player = new Player(0, 0, 5);
         ArrayList<Enemy> enemies = new ArrayList<Enemy>(Arrays.asList(new Enemy(1,1)));
         ArrayList<Projectile> projectiles = new ArrayList<Projectile>(Arrays.asList(new EnemyProjectile(0,0)));
-        ArrayList<Collectable> collectables = new ArrayList<Collectable>(Arrays.asList(new Money(0,0,4)));
+        ArrayList<Collectable> collectables = new ArrayList<Collectable>(Arrays.asList(new Money(0,0)));
         
         GUIGame game = new GUIGame(enemies, collectables, projectiles, player);
         game.checkCollisions();
@@ -271,7 +271,7 @@ public class GameTest {
         Player player = new Player(1, 1, 5);
         ArrayList<Enemy> enemies = new ArrayList<Enemy>(Arrays.asList(new Enemy(0,0)));
         ArrayList<Projectile> projectiles = new ArrayList<Projectile>(Arrays.asList(new PlayerProjectile(5,5), new EnemyProjectile(6,6)));
-        ArrayList<Collectable> collectables = new ArrayList<Collectable>(Arrays.asList(new Money(8,6,10), new HealthCollectable(3,2,4)));
+        ArrayList<Collectable> collectables = new ArrayList<Collectable>(Arrays.asList(new Money(8,6), new HealthCollectable(3,2)));
         
         GUIGame game = new GUIGame(enemies, collectables, projectiles, player);
         game.move();

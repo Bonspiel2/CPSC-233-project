@@ -156,16 +156,16 @@ public class Enemy implements Collidable{
 		Collectable collectable;
 		if(height != 0) {
 			if (decider == 2) {
-				collectable = new HealthCollectable(x,y,maxY,7,10);
+				collectable = new HealthCollectable(x,y,7,10);
 			} else {
-				collectable = new Money(x,y,maxY, 7, 10);
+				collectable = new Money(x,y, 7, 10);
 			}
 		}
 		else {
 			if (decider == 2) {
-				collectable = new HealthCollectable(x,y,maxY);
+				collectable = new HealthCollectable(x,y);
 			} else {
-				collectable = new Money(x,y,maxY);
+				collectable = new Money(x,y);
 			}
 		}
 		return collectable;

@@ -18,6 +18,7 @@ public abstract class Collectable implements Collidable{
 	private int x;
 	private int y;
 	private int maxY;
+	private int maxX;
     private String symbol = "$";
     
     private int width;
@@ -30,12 +31,15 @@ public abstract class Collectable implements Collidable{
 	 * @param y, y coordinate of the collectable
 	 * @param maxY, the farthest down a collectable can travel before being removed
      */
-	Collectable(int x, int y, int maxY) {
-		this.x = x;
-		this.y = y;
-		this.maxY = maxY;
+	Collectable(int x, int y, int maxX, int maxY) {
+		this.x = Math.min(maxX - 1, Math.max(0, x));
+		this.y = Math.min(maxY - 1,Math.max(0, y));
+		
 		this.width = 0;
 		this.height = 0;
+		
+		this.maxX = maxX;
+		this.maxY = maxY;
 	}
 	
 	/**
@@ -47,12 +51,15 @@ public abstract class Collectable implements Collidable{
 	 * @param width, width of the collectable
 	 * @param height, height of the collectable
 	 */
-	Collectable(int x, int y, int maxY, int width, int height) {
-		this.x = x;
-		this.y = y;
+	Collectable(int x, int y, int width, int height, int maxX, int maxY) {
+		this.x = Math.min(maxX - 1, Math.max(0, x));
+		this.y = Math.min(maxY - 1,Math.max(0, y));
+		
+		this.width = Math.max(0, width);
+		this.height = Math.max(0,height);
+		
+		this.maxX = maxX;
 		this.maxY = maxY;
-		this.width = width;
-		this.height = height;
 	}
 	
 	
@@ -95,7 +102,13 @@ public abstract class Collectable implements Collidable{
 	 * @param x new column value.
 	 */
 	public void setX(int x) {
-		this.x = x;
+		if (x < maxX && x >= 0) {
+			this.x = x;
+		} else if (x < 0) {
+			this.x = 0;
+		} else if (x >= maxX) {
+			this.x = maxX - 1;
+		}
 	}
 
 	/**
@@ -111,7 +124,13 @@ public abstract class Collectable implements Collidable{
 	 * @param y new row value.
 	 */
 	public void setY(int y) {
-		this.y = y;
+		if (y < maxY && y >= 0) {
+			this.y = y;
+		} else if (y < 0) {
+			this.y = 0;
+		} else if (y >= maxY) {
+			this.y = maxY - 1;
+		}
 	}
 
 	/**
@@ -133,7 +152,7 @@ public abstract class Collectable implements Collidable{
 	 */
 	public boolean move() {
 		boolean onScreen = true;
-		if (y >= maxY-1) {
+		if (y+1 >= maxY) {
 			onScreen = false;
 		} else {
 			y++;
