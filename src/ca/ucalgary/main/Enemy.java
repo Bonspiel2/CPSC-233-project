@@ -28,6 +28,7 @@ public class Enemy implements Collidable{
 	private int height;
 
 	private int maxY;
+	private int maxX;
 
 	private boolean hasAShot;
 
@@ -43,7 +44,7 @@ public class Enemy implements Collidable{
 	 * @param y y coordinate of the enemy or row in which is resides
 	 */
 	public Enemy(int x, int y) {
-		this(x,y,0,0,TextGame.ROWS);
+		this(x,y,0,0,TextGame.COLUMNS, TextGame.ROWS);
 	}
 
 	/**
@@ -56,7 +57,7 @@ public class Enemy implements Collidable{
 	 * @param height Height of the enemy
 	 */
 	public Enemy(int x, int y, int width, int height) {
-		this(x,y,width,height,GUIGame.SCREEN_HEIGHT);
+		this(x,y,width,height,GUIGame.SCREEN_WIDTH, GUIGame.SCREEN_HEIGHT);
 	}
 
 
@@ -68,15 +69,16 @@ public class Enemy implements Collidable{
 	 * @param height Height of the enemy
 	 * @param maxY Last y value before the enemy exits the screen
 	 */
-	private Enemy(int x, int y, int width, int height, int maxY) {
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
+	private Enemy(int x, int y, int width, int height, int maxX, int maxY) {
+		this.x = Math.min(maxX-1, Math.max(0, x));
+		this.y = Math.min(maxY-1, Math.max(0, y));
+		this.width = Math.max(0, width);
+		this.height = Math.max(0, height);
 
 		this.hasAShot = true;
 
 		this.maxY = maxY;
+		this.maxX = maxX;
 
 		try {
 			enemyImg = ImageIO.read(new File("src/ca/ucalgary/main/EnemyShip.png"));
@@ -91,7 +93,7 @@ public class Enemy implements Collidable{
 	 * @param e Enemy to copy
 	 */
 	public Enemy(Enemy e) {
-		this(e.getX(), e.getY(), e.getWidth(), e.getHeight(), e.getMaxY());
+		this(e.getX(), e.getY(), e.getWidth(), e.getHeight(), e.getMaxY(), e.getMaxX());
 	}
 
 
@@ -115,10 +117,11 @@ public class Enemy implements Collidable{
 	 */
 	public boolean move() {
 		boolean alive = true;
-		y++;
 
-		if (y >= maxY) {
+		if (y+1 >= maxY) {
 			alive = false;
+		} else {
+			y++;
 		}
 
 		return alive;
@@ -172,7 +175,9 @@ public class Enemy implements Collidable{
 	 * @param board	The text board on which the enemy is drawn.
 	 */
 	public void draw(String[][] board) {
-		board[y][x] = new String(symbol);
+		if (board.length > y && board[0].length > x) {
+			board[y][x] = new String(symbol);
+		}
 	}
 
 	/** Gets the current column/ x value
@@ -186,7 +191,13 @@ public class Enemy implements Collidable{
 	 * @param x New x value
 	 */
 	public void setX(int x) {
-		this.x = x;
+		if (x < maxX && x >= 0) {
+			this.x = x;
+		} else if (x < 0) {
+			this.x = 0;
+		} else if (x >= maxX) {
+			this.x = maxX - 1;
+		}
 	}
 
 	/**
@@ -202,7 +213,13 @@ public class Enemy implements Collidable{
 	 * @param y New y value
 	 */
 	public void setY(int y) {
-		this.y = y;
+		if (y < maxY && y >= 0) {
+			this.y = y;
+		} else if (y < 0) {
+			this.y = 0;
+		} else if (y >= maxY) {
+			this.y = maxY - 1;
+		}
 	}
 
 	/**
@@ -262,11 +279,21 @@ public class Enemy implements Collidable{
 	}
 
 	/**
+	 * getter for enemy maxX
+	 * @return the maxX, or how far to the right the enemy can go before being removed
+	 */
+	public int getMaxX() {
+		return maxX;
+	}
+
+	/**
 	 * setter for enemy width
 	 * @param width width of the enemy
 	 */
 	public void setWidth(int width) {
-		this.width = width;
+		if (width >= 0) {
+			this.width = width;
+		}
 	}
 
 	/**
@@ -282,9 +309,9 @@ public class Enemy implements Collidable{
 	 * @param height of the enemy
 	 */
 	public void setHeight(int height) {
-		this.height = height;
+		if (height >= 0) {
+			this.height = height;
+		}
 	}
-
-
 
 }
