@@ -113,7 +113,7 @@ public abstract class Collectable implements Collidable{
 	public void setY(int y) {
 		this.y = y;
 	}
-	
+
 	/**
 	 * Moves collectable down the screen by one row every turn 
 	 * until it is no longer within the range of the game board.
