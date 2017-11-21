@@ -5,4 +5,3 @@
 	- create new Enemy Projectile class and player projectile class with parent projectile class
 - Add GUI constructors to each class
 
-Lily Test
