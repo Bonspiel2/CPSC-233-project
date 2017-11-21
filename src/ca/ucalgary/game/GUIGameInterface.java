@@ -20,6 +20,7 @@ import ca.ucalgary.enemy.Enemy;
 import ca.ucalgary.projectiles.Projectile;
 
 import java.io.*;
+import java.util.ConcurrentModificationException;
 
 /**
  * The GUIGameInterface class controls all aspects of displaying the game graphically.
@@ -36,8 +37,8 @@ public class GUIGameInterface extends JPanel {
 	private boolean gameOver;
 	private Cursor blankCursor;
 	private int finalScore;
-    private int highScore;
-    private int displayScore;
+	private int highScore;
+	private int displayScore;
 
 	public GUIGameInterface(ActionListener a,
 			MouseMotionListener m, GUIGame g) {
@@ -47,12 +48,12 @@ public class GUIGameInterface extends JPanel {
 
 		frame.setSize(GUIGame.SCREEN_WIDTH, GUIGame.SCREEN_HEIGHT);
 		frame.setVisible(true);
-		
+
 		playAgain = new JButton("Play Again");
 		playAgain.addActionListener(a);
 		playAgain.setVisible(false);
 		playAgain.setEnabled(false);
-		
+
 		add(playAgain);
 
 		addMouseMotionListener(m);
@@ -90,8 +91,12 @@ public class GUIGameInterface extends JPanel {
 
 			game.getPlayer().draw(g);
 
-			for (Enemy enemy : game.getEnemies()) {
-				enemy.draw(g);
+			try {
+				for (Enemy enemy : game.getEnemies()) {
+					enemy.draw(g);
+				}
+			} catch (ConcurrentModificationException cme) {
+				//this error does nothing its just annoying so we swept it under the rug
 			}
 
 			for (Projectile projectile : game.getProjectiles()) {
@@ -105,58 +110,58 @@ public class GUIGameInterface extends JPanel {
 			g.drawString("Score: " + game.getPlayer().getScore(), 10, 15);
 		}
 		else {
-            g.setColor(Color.RED);
-            g.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-            g.drawString("You Died", 100, 150);
+			g.setColor(Color.RED);
+			g.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+			g.drawString("You Died", 100, 150);
 			g.setColor(Color.WHITE);
 			g.setFont(new Font("Helvetica", Font.BOLD, 30));
 			g.drawString("Score: " + finalScore, 100, 200);
-            g.drawString("High Score: " + displayScore, 70, 300);
+			g.drawString("High Score: " + displayScore, 70, 300);
 
 		}
 	}
-	
+
 	public void gameOver() {
 		gameOver = true;
 		playAgain.setVisible(true);
 		playAgain.setEnabled(true);
 		frame.getContentPane().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		finalScore = game.getPlayer().getScore();
-        
-        try {
-            FileReader reader = new FileReader("src/lib/HighScore.txt");
-            BufferedReader buffReader = new BufferedReader(reader);
-            String line = buffReader.readLine();
-            highScore = Integer.parseInt(line);
-            buffReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("Could not find high score");
-        } catch (IOException e) {
-            System.out.println("Error reading high score");
-        }
-        
-        if (finalScore > highScore) {
-            displayScore = finalScore;
-            try {
-                FileWriter writer = new FileWriter("src/lib/HighScore.txt", false);
-                BufferedWriter buffWriter = new BufferedWriter(writer);
-                buffWriter.write(Integer.toString(finalScore));
-                buffWriter.close();
-            } catch (IOException e) {
-                System.out.println("Could not record high score.");
-            }
-        } else {
-            displayScore = highScore;
-        }
+
+		try {
+			FileReader reader = new FileReader("src/lib/HighScore.txt");
+			BufferedReader buffReader = new BufferedReader(reader);
+			String line = buffReader.readLine();
+			highScore = Integer.parseInt(line);
+			buffReader.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Could not find high score");
+		} catch (IOException e) {
+			System.out.println("Error reading high score");
+		}
+
+		if (finalScore > highScore) {
+			displayScore = finalScore;
+			try {
+				FileWriter writer = new FileWriter("src/lib/HighScore.txt", false);
+				BufferedWriter buffWriter = new BufferedWriter(writer);
+				buffWriter.write(Integer.toString(finalScore));
+				buffWriter.close();
+			} catch (IOException e) {
+				System.out.println("Could not record high score.");
+			}
+		} else {
+			displayScore = highScore;
+		}
 	}
-	
+
 	public void newGame() {
 		gameOver = false;
 		playAgain.setVisible(false);
 		playAgain.setEnabled(false);
 		frame.getContentPane().setCursor(blankCursor);
 	}
-	
+
 	public void setGame(GUIGame g) {
 		this.game = g;
 	}

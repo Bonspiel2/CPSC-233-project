@@ -34,20 +34,20 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 		game = new GUIGame();
 		gui = new GUIGameInterface(this, this, game);
 
-		gameClock = new Timer(10, this);
+		gameClock = new Timer(7, this);
 		gameClock.setActionCommand("TIMER");
 		gameClock.start();
 
 		game.initBoard();
         
-        try {
-            FileWriter writer = new FileWriter("src/lib/HighScore.txt");
-            BufferedWriter buffWriter = new BufferedWriter(writer);
-            buffWriter.write("0");
-            buffWriter.close();
-        } catch (IOException e) {
-            System.out.println("Could not initialize high score");
-        }
+//        try {
+//            FileWriter writer = new FileWriter("src/lib/HighScore.txt");
+//            BufferedWriter buffWriter = new BufferedWriter(writer);
+//            buffWriter.write("0");
+//            buffWriter.close();
+//        } catch (IOException e) {
+//            System.out.println("Could not initialize high score");
+//        }
 
 	}
 

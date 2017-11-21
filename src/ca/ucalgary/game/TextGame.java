@@ -1,5 +1,11 @@
 package ca.ucalgary.game;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -72,6 +78,36 @@ public class TextGame extends Game {
 			
 			if (playerIsDead()) {
 				System.out.println("GAME OVER!");
+				int highScore = 0;
+				int finalScore = getPlayer().getScore();
+				int displayScore;
+				try {
+		            FileReader reader = new FileReader("src/lib/HighScore.txt");
+		            BufferedReader buffReader = new BufferedReader(reader);
+		            String line = buffReader.readLine();
+		            highScore = Integer.parseInt(line);
+		            buffReader.close();
+		        } catch (FileNotFoundException e) {
+		            System.out.println("Could not find high score");
+		        } catch (IOException e) {
+		            System.out.println("Error reading high score");
+		        }
+		        
+		        if (finalScore > highScore) {
+		            displayScore = finalScore;
+		            try {
+		                FileWriter writer = new FileWriter("src/lib/HighScore.txt", false);
+		                BufferedWriter buffWriter = new BufferedWriter(writer);
+		                buffWriter.write(Integer.toString(finalScore));
+		                buffWriter.close();
+		            } catch (IOException e) {
+		                System.out.println("Could not record high score.");
+		            }
+		        } else {
+		            displayScore = highScore;
+		        }
+		        
+		        System.out.println("HIGH SCORE: " + displayScore);
 				running = false;
 			}
 		}
