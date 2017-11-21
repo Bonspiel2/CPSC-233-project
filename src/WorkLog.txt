@@ -56,7 +56,7 @@ Group 3 Work Log
 	Allowed player to move in all directions (total ~.75 hours)
 
 24/10/17 - Quinn
-	Divided projectile class into parent Projectile and subclasses EnemyProjectile and PlayerProjectile. Added ability for enemies to shoot. (~2 hours)
+	Divided projectile class into parent Projectile and subclasses EnemyProjectile and 		PlayerProjectile. Added ability for enemies to shoot. (~2 hours)
 26/10/17 - Lily
 	Updated main class to display main menu to choose game type. (~.5 hrs)
 	
@@ -65,7 +65,7 @@ Group 3 Work Log
 	Implemented Text-only code in TextGame (~1.5 hours)
 
 29/10/17 - Quinn
-	Added a keyboard listener so that the player now moves in response to user input without going through the command line.
+	Added a keyboard listener so that the player now moves in response to user input 		without going through the command line.
 	Updated how draw was called. Edited run method.
 	Edited player constructor and move method so that the movement is in terms of maximum x and y rather than columns and rows. (~2.5 hours)
 	
@@ -93,6 +93,7 @@ Group 3 Work Log
     
 31/10/17 - Lily
 	Prepare documents for demo. (~.25 hrs)
+
 1/11/17 - Quinn
 	Encapsulated player. Added different types of collectables (health and money). (~.75 hours)
 06/11/17 - Cole
@@ -108,14 +109,25 @@ Group 3 Work Log
 	Unit test for player class. (1 hour)
 	
 19/11/17 - Cole
-    Unit test for enemy class. (1.5 hours)
+    	Unit test for enemy class. (1.5 hours)
 
 19/11/17 - Quinn
-    Unit test for Game class, updated unit test for player class (1 hour)
-    helped wrap everything neatly (put in packages) (~0.5hrs)
+    	Unit test for Game class, updated unit test for player class (1 hour)
+
+20/11/17 - Lily
+	Unit test for collectables (1 hour)
     
-19/11/17 - Matt
+20/11/17 - Quinn
+	Added high score. (0.75 hours)
+    	Updated GameTest (0.5 hours)
+    	Packages (0.5 hours)
+    
+20/11/17 - Matt
 	Unit tests for Projectile, PlayerProjectile and EnemyProjectile (3 hours)
 	Bug fixes (~1 hr)
 	Javadocs (~0.5 hrs)
 	Wrapped everything neatly (put in packages) (~0.5hrs)
+
+20/11/17 - Cole
+    	Unit tests for Collectable, fixed enemy and projectile classes (4 hours)
+    	Packages (0.5 hours)
