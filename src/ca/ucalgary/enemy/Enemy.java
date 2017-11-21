@@ -1,4 +1,4 @@
-package enemy;
+package ca.ucalgary.enemy;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -9,13 +9,13 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-import collectable.Collectable;
-import collectable.HealthCollectable;
-import collectable.Money;
-import game.GUIGame;
-import game.TextGame;
-import interfaces.Collidable;
-import projectiles.EnemyProjectile;
+import ca.ucalgary.collectable.Collectable;
+import ca.ucalgary.collectable.HealthCollectable;
+import ca.ucalgary.collectable.Money;
+import ca.ucalgary.game.GUIGame;
+import ca.ucalgary.game.TextGame;
+import ca.ucalgary.interfaces.Collidable;
+import ca.ucalgary.projectiles.EnemyProjectile;
 
 
 

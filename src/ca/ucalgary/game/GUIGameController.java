@@ -1,4 +1,4 @@
-package game;
+package ca.ucalgary.game;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,7 +8,7 @@ import java.util.Random;
 
 import javax.swing.Timer;
 
-import enemy.Enemy;
+import ca.ucalgary.enemy.Enemy;
 
 import java.io.*;
 

@@ -1,15 +1,15 @@
 
-package tests;
+package ca.ucalgary.tests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import collectable.HealthCollectable;
-import collectable.Money;
-import enemy.Enemy;
-import game.GUIGame;
-import player.Player;
+import ca.ucalgary.collectable.HealthCollectable;
+import ca.ucalgary.collectable.Money;
+import ca.ucalgary.enemy.Enemy;
+import ca.ucalgary.game.GUIGame;
+import ca.ucalgary.player.Player;
 
 /**
  * Tests functionality of the player class (movement, constructors, and collisions).

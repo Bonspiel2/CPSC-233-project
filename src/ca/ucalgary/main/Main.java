@@ -2,9 +2,9 @@ package ca.ucalgary.main;
 
 import java.util.Scanner;
 
-import game.GUIGameController;
-import game.GUIGameInterface;
-import game.TextGame;
+import ca.ucalgary.game.GUIGameController;
+import ca.ucalgary.game.GUIGameInterface;
+import ca.ucalgary.game.TextGame;
 
 /**
  * Main prompts user to choose which game they want to play 

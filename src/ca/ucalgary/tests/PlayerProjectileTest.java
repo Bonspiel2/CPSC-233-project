@@ -1,7 +1,7 @@
 /**
  * 
  */
-package tests;
+package ca.ucalgary.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -9,8 +9,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import game.TextGame;
-import projectiles.PlayerProjectile;
+import ca.ucalgary.game.TextGame;
+import ca.ucalgary.projectiles.PlayerProjectile;
 
 /**
  * @author matthew.lee4

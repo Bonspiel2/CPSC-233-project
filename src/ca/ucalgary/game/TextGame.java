@@ -1,13 +1,13 @@
-package game;
+package ca.ucalgary.game;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-import collectable.Collectable;
-import enemy.Enemy;
-import player.Player;
-import projectiles.Projectile;
+import ca.ucalgary.collectable.Collectable;
+import ca.ucalgary.enemy.Enemy;
+import ca.ucalgary.player.Player;
+import ca.ucalgary.projectiles.Projectile;
 
 
 /**

@@ -1,10 +1,10 @@
-package collectable;
+package ca.ucalgary.collectable;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
-import game.GUIGame;
-import game.TextGame;
+import ca.ucalgary.game.GUIGame;
+import ca.ucalgary.game.TextGame;
 
 public class Money extends Collectable {
 

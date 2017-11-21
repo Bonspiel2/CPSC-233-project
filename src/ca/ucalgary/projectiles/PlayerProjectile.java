@@ -1,4 +1,4 @@
-package projectiles;
+package ca.ucalgary.projectiles;
 
 /**
  * The PlayerProjectile class controls all the behaviour of projectiles friendly to the player 

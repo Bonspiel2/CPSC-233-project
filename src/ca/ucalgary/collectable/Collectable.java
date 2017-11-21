@@ -1,9 +1,9 @@
-package collectable;
+package ca.ucalgary.collectable;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
-import interfaces.Collidable;
+import ca.ucalgary.interfaces.Collidable;
 
 /**
  * This Collectable class allows the game to interact with 

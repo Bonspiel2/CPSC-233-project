@@ -1,16 +1,16 @@
 
-package tests;
+package ca.ucalgary.tests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import collectable.Collectable;
-import enemy.Enemy;
-import game.GUIGame;
-import game.TextGame;
-import interfaces.Collidable;
-import projectiles.EnemyProjectile;
+import ca.ucalgary.collectable.Collectable;
+import ca.ucalgary.enemy.Enemy;
+import ca.ucalgary.game.GUIGame;
+import ca.ucalgary.game.TextGame;
+import ca.ucalgary.interfaces.Collidable;
+import ca.ucalgary.projectiles.EnemyProjectile;
 
 public class EnemyTest {
 	

@@ -1,11 +1,11 @@
-package projectiles;
+package ca.ucalgary.projectiles;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
-import game.GUIGame;
-import game.TextGame;
-import interfaces.Collidable;
+import ca.ucalgary.game.GUIGame;
+import ca.ucalgary.game.TextGame;
+import ca.ucalgary.interfaces.Collidable;
 
 /**
  *

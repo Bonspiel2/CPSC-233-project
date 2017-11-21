@@ -1,16 +1,16 @@
 
-package tests;
+package ca.ucalgary.tests;
+import ca.ucalgary.collectable.Collectable;
+import ca.ucalgary.collectable.HealthCollectable;
+import ca.ucalgary.collectable.Money;
+import ca.ucalgary.enemy.Enemy;
+import ca.ucalgary.game.GUIGame;
+import ca.ucalgary.game.TextGame;
 import ca.ucalgary.main.*;
-import collectable.Collectable;
-import collectable.HealthCollectable;
-import collectable.Money;
-import enemy.Enemy;
-import game.GUIGame;
-import game.TextGame;
-import player.Player;
-import projectiles.EnemyProjectile;
-import projectiles.PlayerProjectile;
-import projectiles.Projectile;
+import ca.ucalgary.player.Player;
+import ca.ucalgary.projectiles.EnemyProjectile;
+import ca.ucalgary.projectiles.PlayerProjectile;
+import ca.ucalgary.projectiles.Projectile;
 
 import static org.junit.Assert.*;
 import java.util.ArrayList;

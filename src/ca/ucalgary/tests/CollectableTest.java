@@ -1,11 +1,11 @@
 
-package tests;
+package ca.ucalgary.tests;
 
+import ca.ucalgary.collectable.Collectable;
+import ca.ucalgary.game.GUIGame;
+import ca.ucalgary.game.TextGame;
+import ca.ucalgary.interfaces.Collidable;
 import ca.ucalgary.main.*;
-import collectable.Collectable;
-import game.GUIGame;
-import game.TextGame;
-import interfaces.Collidable;
 
 import static org.junit.Assert.*;
 

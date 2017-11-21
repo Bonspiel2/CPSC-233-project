@@ -1,4 +1,4 @@
-package game;
+package ca.ucalgary.game;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -15,9 +15,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import collectable.Collectable;
-import enemy.Enemy;
-import projectiles.Projectile;
+import ca.ucalgary.collectable.Collectable;
+import ca.ucalgary.enemy.Enemy;
+import ca.ucalgary.projectiles.Projectile;
 
 import java.io.*;
 

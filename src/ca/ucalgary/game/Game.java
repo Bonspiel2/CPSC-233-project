@@ -1,14 +1,14 @@
-package game;
+package ca.ucalgary.game;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import collectable.Collectable;
-import enemy.Enemy;
-import player.Player;
-import projectiles.EnemyProjectile;
-import projectiles.PlayerProjectile;
-import projectiles.Projectile;
+import ca.ucalgary.collectable.Collectable;
+import ca.ucalgary.enemy.Enemy;
+import ca.ucalgary.player.Player;
+import ca.ucalgary.projectiles.EnemyProjectile;
+import ca.ucalgary.projectiles.PlayerProjectile;
+import ca.ucalgary.projectiles.Projectile;
 
 public abstract class Game {
 
