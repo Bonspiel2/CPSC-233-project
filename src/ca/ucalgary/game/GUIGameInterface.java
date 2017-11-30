@@ -108,6 +108,7 @@ public class GUIGameInterface extends JPanel {
 			}
 			g.setColor(Color.WHITE);
 			g.drawString("Score: " + game.getPlayer().getScore(), 10, 15);
+            
 		}
 		else {
 			g.setColor(Color.RED);

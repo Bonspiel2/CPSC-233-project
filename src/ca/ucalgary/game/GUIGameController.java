@@ -24,6 +24,9 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 	private int enemyCounter = 0;
 
 	private Timer gameClock;
+    private Timer levelClock;
+    
+    private int currentLevel = 1;
 
 	/**
 	 * The main constructor for the GUIGameController class.
@@ -37,6 +40,10 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 		gameClock = new Timer(7, this);
 		gameClock.setActionCommand("TIMER");
 		gameClock.start();
+        
+        levelClock = new Timer(30000, this);
+        levelClock.setActionCommand("LEVEL");
+        levelClock.start();
 
 		game.initBoard();
         
@@ -78,14 +85,22 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 			}
 
 			gui.repaint();
-
+            
+        } else if (e.getActionCommand().equals("LEVEL")) {
+            if (currentLevel <= 5) {
+                this.currentLevel ++;
+                System.out.println("************************\nLevel " + this.currentLevel + "\n************************");
+            }
 		} else if (e.getActionCommand().equals("Play Again")) {
 			gui.newGame();
 			game = new GUIGame();
 			gui.setGame(game);
 		}
+        
+        
 
 	}
+    
 	/**
 	 * Retrieves the GUIGameInterface
 	 * @return gui the GUIGameInterface currently in use
@@ -112,5 +127,5 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 
 		game.movePlayer(x,y);
 	}
-
+    
 }
