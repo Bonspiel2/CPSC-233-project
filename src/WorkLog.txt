@@ -131,3 +131,6 @@ Group 3 Work Log
 20/11/17 - Cole
     	Unit tests for Collectable, fixed enemy and projectile classes (4 hours)
     	Packages (0.5 hours)
+
+30/11/17 - Quinn
+	Added level timer (30s). More enemies spawn in later levels. Added level display in GUI. (~0.5 hours).

@@ -109,6 +109,15 @@ public class GUIGameInterface extends JPanel {
 			g.setColor(Color.WHITE);
 			g.drawString("Score: " + game.getPlayer().getScore(), 10, 15);
             
+            g.setColor(Color.WHITE);
+            g.drawString("Level: " + GUIGameController.currentLevel, 290, 15);
+            
+            if(GUIGameController.currentLevel == 2) {
+                setBackground(Color.BLUE);
+            } else {
+                setBackground(Color.BLACK);
+            }
+            
 		}
 		else {
 			g.setColor(Color.RED);

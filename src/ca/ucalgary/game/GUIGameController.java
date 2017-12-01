@@ -26,7 +26,7 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 	private Timer gameClock;
     private Timer levelClock;
     
-    private int currentLevel = 1;
+    static int currentLevel = 1;
 
 	/**
 	 * The main constructor for the GUIGameController class.
@@ -71,12 +71,25 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("TIMER")) {
 			enemyCounter++;
-			if(enemyCounter >= 40) {
-				game.addEnemy(new Enemy(new Random().nextInt(GUIGame.SCREEN_WIDTH),0,32,32));
-				enemyCounter = 0;
-			}
+            if (currentLevel == 1) {
+                if(enemyCounter >= 40) {
+                    game.addEnemy(new Enemy(new Random().nextInt(GUIGame.SCREEN_WIDTH),0,32,32));
+                    enemyCounter = 0;
+                }
+            } else if (currentLevel == 2) {
+                if(enemyCounter >= 25) {
+                    game.addEnemy(new Enemy(new Random().nextInt(GUIGame.SCREEN_WIDTH),0,32,32));
+                    enemyCounter = 0;
+                }
+            } else {
+                if(enemyCounter >= 5) {
+                    game.addEnemy(new Enemy(new Random().nextInt(GUIGame.SCREEN_WIDTH),0,32,32));
+                    enemyCounter = 0;
+                 }
+            }
 			if (game.playerIsDead()) {
 				gui.gameOver();
+                currentLevel = 1;
 			} else {
 				game.move();
 				game.playerShoot();
@@ -108,6 +121,11 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 	public GUIGameInterface getGUI() {
 		return gui;
 	}
+    
+    public int getLevel() {
+        return currentLevel;
+    }
+    
 	@Override
 	/**
 	 * Overidden method for a mouse dragged event. No functionality.
