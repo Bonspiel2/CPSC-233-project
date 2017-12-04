@@ -90,6 +90,7 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 			if (game.playerIsDead()) {
 				gui.gameOver();
                 currentLevel = 1;
+                levelClock.stop();
 			} else {
 				game.move();
 				game.playerShoot();
@@ -108,6 +109,10 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 			gui.newGame();
 			game = new GUIGame();
 			gui.setGame(game);
+			levelClock = new Timer(30000, this);
+	        levelClock.setActionCommand("LEVEL");
+	        levelClock.start();
+
 		}
         
         
