@@ -24,6 +24,9 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 	private int enemyCounter = 0;
 
 	private Timer gameClock;
+    private Timer levelClock;
+    
+    static int currentLevel = 1;
 
 	/**
 	 * The main constructor for the GUIGameController class.
@@ -34,20 +37,24 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 		game = new GUIGame();
 		gui = new GUIGameInterface(this, this, game);
 
-		gameClock = new Timer(10, this);
+		gameClock = new Timer(7, this);
 		gameClock.setActionCommand("TIMER");
 		gameClock.start();
+        
+        levelClock = new Timer(30000, this);
+        levelClock.setActionCommand("LEVEL");
+        levelClock.start();
 
 		game.initBoard();
         
-        try {
-            FileWriter writer = new FileWriter("src/lib/HighScore.txt");
-            BufferedWriter buffWriter = new BufferedWriter(writer);
-            buffWriter.write("0");
-            buffWriter.close();
-        } catch (IOException e) {
-            System.out.println("Could not initialize high score");
-        }
+//        try {
+//            FileWriter writer = new FileWriter("src/lib/HighScore.txt");
+//            BufferedWriter buffWriter = new BufferedWriter(writer);
+//            buffWriter.write("0");
+//            buffWriter.close();
+//        } catch (IOException e) {
+//            System.out.println("Could not initialize high score");
+//        }
 
 	}
 
@@ -64,12 +71,25 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("TIMER")) {
 			enemyCounter++;
-			if(enemyCounter >= 40) {
-				game.addEnemy(new Enemy(new Random().nextInt(GUIGame.SCREEN_WIDTH),0,32,32));
-				enemyCounter = 0;
-			}
+            if (currentLevel == 1) {
+                if(enemyCounter >= 40) {
+                    game.addEnemy(new Enemy(new Random().nextInt(GUIGame.SCREEN_WIDTH),0,32,32));
+                    enemyCounter = 0;
+                }
+            } else if (currentLevel == 2) {
+                if(enemyCounter >= 25) {
+                    game.addEnemy(new Enemy(new Random().nextInt(GUIGame.SCREEN_WIDTH),0,32,32));
+                    enemyCounter = 0;
+                }
+            } else {
+                if(enemyCounter >= 5) {
+                    game.addEnemy(new Enemy(new Random().nextInt(GUIGame.SCREEN_WIDTH),0,32,32));
+                    enemyCounter = 0;
+                 }
+            }
 			if (game.playerIsDead()) {
 				gui.gameOver();
+                currentLevel = 1;
 			} else {
 				game.move();
 				game.playerShoot();
@@ -78,14 +98,22 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 			}
 
 			gui.repaint();
-
+            
+        } else if (e.getActionCommand().equals("LEVEL")) {
+            if (currentLevel <= 5) {
+                this.currentLevel ++;
+                System.out.println("************************\nLevel " + this.currentLevel + "\n************************");
+            }
 		} else if (e.getActionCommand().equals("Play Again")) {
 			gui.newGame();
 			game = new GUIGame();
 			gui.setGame(game);
 		}
+        
+        
 
 	}
+    
 	/**
 	 * Retrieves the GUIGameInterface
 	 * @return gui the GUIGameInterface currently in use
@@ -93,6 +121,11 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 	public GUIGameInterface getGUI() {
 		return gui;
 	}
+    
+    public int getLevel() {
+        return currentLevel;
+    }
+    
 	@Override
 	/**
 	 * Overidden method for a mouse dragged event. No functionality.
@@ -112,5 +145,5 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 
 		game.movePlayer(x,y);
 	}
-
+    
 }

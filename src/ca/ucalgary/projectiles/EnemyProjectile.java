@@ -43,7 +43,7 @@ public class EnemyProjectile extends Projectile{
 	 * @return edgy, boolean of whether it is at the edge of the screen or not
 	 */
 	public boolean move() {
-		if (getY() == TextGame.ROWS - 1) {
+		if (getY() >= getMaxY()) {
 			edgy = false;
 		} else {
 			edgy = true;
