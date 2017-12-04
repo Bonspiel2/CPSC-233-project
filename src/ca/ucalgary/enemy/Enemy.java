@@ -29,6 +29,9 @@ import ca.ucalgary.projectiles.EnemyProjectile;
  * @author Matt
  */
 public class Enemy implements Collidable{
+	
+	private static final String ENEMY_SYMBOL = "V";
+	private static final int TEXT_DIMENSION = 0;
 
 	private int x;
 	private int y;
@@ -40,8 +43,6 @@ public class Enemy implements Collidable{
 
 	private boolean hasAShot;
 
-	private String symbol = "V";
-
 	private BufferedImage enemyImg;
 
 	/**
@@ -52,7 +53,7 @@ public class Enemy implements Collidable{
 	 * @param y y coordinate of the enemy or row in which is resides
 	 */
 	public Enemy(int x, int y) {
-		this(x,y,0,0,TextGame.COLUMNS, TextGame.ROWS);
+		this(x,y,TEXT_DIMENSION,TEXT_DIMENSION,TextGame.COLUMNS, TextGame.ROWS);
 	}
 
 	/**
@@ -184,7 +185,7 @@ public class Enemy implements Collidable{
 	 */
 	public void draw(String[][] board) {
 		if (board.length > y && board[0].length > x) {
-			board[y][x] = new String(symbol);
+			board[y][x] = new String(ENEMY_SYMBOL);
 		}
 	}
 
