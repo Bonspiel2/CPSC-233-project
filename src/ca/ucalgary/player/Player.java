@@ -24,14 +24,20 @@ import javax.imageio.ImageIO;
  * @author Cole
  */
 public class Player implements Collidable{
+	
+	private static final int TEXT_DIMENSION = 0;
+	private static final double DEFAULT_FIRE_RATE = 0.5;
+	private static final double DEFAULT_TEXT_FIRE_COUNT = 6;
+	private static final double DEFAULT_GUI_FIRE_COUNT = 100;
+	
+	private static final String PLAYER_SYMBOL = "A";
+	
+	private static final int PLAYER_TEXT_SPEED = 1;
 
 	private int x;
 	private int y;
 	private int width;
 	private int height;
-
-	private int step;
-
 
 	private int maxX; //columns
 	private int maxY; //rows
@@ -39,8 +45,6 @@ public class Player implements Collidable{
 	private int health;
 	private int initialHealth;
 	private int score;
-
-	private String ship;
 
 	private double firerate;
 	private double fireCount;
@@ -57,7 +61,7 @@ public class Player implements Collidable{
 	 * @param health new player's total health
 	 */
 	public Player(int x, int y, int health) {
-		this(x,y,0,0,health,0.5,6,TextGame.COLUMNS, TextGame.ROWS);
+		this(x,y,TEXT_DIMENSION,TEXT_DIMENSION,health,DEFAULT_FIRE_RATE,DEFAULT_TEXT_FIRE_COUNT,TextGame.COLUMNS, TextGame.ROWS);
         
 	}
 
@@ -71,7 +75,7 @@ public class Player implements Collidable{
 	 * @param health new player's total health
 	 */
 	public Player(int x, int y, int width, int height, int health) {
-		this(x,y,width,height,health,0.5,100, GUIGame.SCREEN_WIDTH, GUIGame.SCREEN_HEIGHT);
+		this(x,y,width,height,health,DEFAULT_FIRE_RATE,DEFAULT_GUI_FIRE_COUNT, GUIGame.SCREEN_WIDTH, GUIGame.SCREEN_HEIGHT);
 
 	}
 	
@@ -99,15 +103,12 @@ public class Player implements Collidable{
 		this.initialHealth = health;
 		this.score = 0;
 		
-		this.ship = "A";
-		this.step = 1;
-		
 		this.maxX = maxX;
 		this.maxY = maxY;
 
 		this.firerate = firerate;
 		this.fireCount = fireCount;
-		fireTimer = fireCount * firerate;
+		fireTimer = fireCount * (1-firerate);
         
         try {
             img = ImageIO.read(new File("src/lib/PlayerShip.png"));
@@ -129,8 +130,6 @@ public class Player implements Collidable{
 		
 		this.maxX = p.getMaxX();
 		this.maxY = p.getMaxY();
-
-		this.step = 1;
 		
 		this.health = p.getHealth();
 		this.initialHealth = p.getInitialHealth();
@@ -139,10 +138,7 @@ public class Player implements Collidable{
 		this.firerate = p.getFirerate();
 		this.fireCount = p.getFireCount();
 		this.fireTimer = p.getFireTimer();
-		
-		this.ship = "A";
-    
-
+   
 	}
 
 
@@ -153,20 +149,20 @@ public class Player implements Collidable{
 	 */
 	public void move(String s) {
 		if (s.equals("A")) {
-			if (x - step >= 0) {
-				x-= step;
+			if (x - PLAYER_TEXT_SPEED >= 0) {
+				x-= PLAYER_TEXT_SPEED;
 			}
 		} else if (s.equals("D")) {
-			if ((x + step) < maxX) {
-				x+= step;
+			if ((x + PLAYER_TEXT_SPEED) < maxX) {
+				x+= PLAYER_TEXT_SPEED;
 			}
 		} else if (s.equals("W")) {
-			if ((y - step) >= 0) {
-				y-= step;
+			if ((y - PLAYER_TEXT_SPEED) >= 0) {
+				y-= PLAYER_TEXT_SPEED;
 			}
 		} else if (s.equals("S")) {
-			if ((y + step) < maxY) {
-				y+= step;
+			if ((y + PLAYER_TEXT_SPEED) < maxY) {
+				y+= PLAYER_TEXT_SPEED;
 			}
 		}
 	}
@@ -213,7 +209,7 @@ public class Player implements Collidable{
 			} else {
 				newShot = new PlayerProjectile(x+(width/2), y-1);
 			}
-			fireTimer = firerate * fireCount;
+			fireTimer = (1-firerate) * fireCount;
 
 		}
 
@@ -225,7 +221,7 @@ public class Player implements Collidable{
 	 * @param board The text board
 	 */
 	public void draw(String[][] board) {
-		board[y][x] = ship;
+		board[y][x] = PLAYER_SYMBOL;
 	}
 
 	/**
@@ -321,14 +317,6 @@ public class Player implements Collidable{
 	 */
 	public void setMaxY(int max) {
 		this.maxY = max;
-	}
-	
-	/**
-	 * Sets the players step or distance moved per button press 
-	 * @param step the amount moved 
-	 */
-	public void setStep(int step) {
-		this.step = step;
 	}
 	
 	/**
