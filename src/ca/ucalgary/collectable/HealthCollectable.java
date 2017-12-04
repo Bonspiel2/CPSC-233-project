@@ -8,7 +8,7 @@ import ca.ucalgary.game.TextGame;
 
 public class HealthCollectable extends Collectable {
 
-    private String symbol = "+";
+    private static final String HEALTH_SYMBOL = "+";
     
     /**
      * Collectable constructor for the TextBased version of the game, 
@@ -41,7 +41,7 @@ public class HealthCollectable extends Collectable {
      * @param board array list that is the game board.
      */
     public void draw(String[][] board) {
-        board[getY()][getX()] = symbol;
+        board[getY()][getX()] = HEALTH_SYMBOL;
         
     }
     
@@ -51,7 +51,7 @@ public class HealthCollectable extends Collectable {
      */
     public void draw(Graphics g) {
         g.setColor(Color.RED);
-        g.drawString(symbol, getX(), getY());
+        g.drawString(HEALTH_SYMBOL, getX(), getY());
         
     }
 
