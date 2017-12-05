@@ -139,7 +139,7 @@ public class GUIGameInterface extends JPanel {
 		finalScore = game.getPlayer().getScore();
 
 		try {
-			FileReader reader = new FileReader("src/lib/HighScore.txt");
+			FileReader reader = new FileReader("HighScore.txt");
 			BufferedReader buffReader = new BufferedReader(reader);
 			String line = buffReader.readLine();
 			highScore = Integer.parseInt(line);
@@ -153,7 +153,7 @@ public class GUIGameInterface extends JPanel {
 		if (finalScore > highScore) {
 			displayScore = finalScore;
 			try {
-				FileWriter writer = new FileWriter("src/lib/HighScore.txt", false);
+				FileWriter writer = new FileWriter("HighScore.txt", false);
 				BufferedWriter buffWriter = new BufferedWriter(writer);
 				buffWriter.write(Integer.toString(finalScore));
 				buffWriter.close();

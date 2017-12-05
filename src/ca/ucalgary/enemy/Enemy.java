@@ -90,7 +90,7 @@ public class Enemy implements Collidable{
 		this.maxX = maxX;
 
 		try {
-			enemyImg = ImageIO.read(new File("src/lib/EnemyShip.png"));
+			enemyImg = ImageIO.read(Enemy.class.getResourceAsStream("/ca/ucalgary/lib/EnemyShip.png"));
 		} catch (IOException e) {
 			System.out.println("Could not load enemy image.");
 		}
