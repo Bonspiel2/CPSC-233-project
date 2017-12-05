@@ -111,7 +111,7 @@ public class Player implements Collidable{
 		fireTimer = fireCount * (1-firerate);
         
         try {
-            img = ImageIO.read(new File("src/lib/PlayerShip.png"));
+            img = ImageIO.read(Player.class.getResourceAsStream("/ca/ucalgary/lib/PlayerShip.png"));
         } catch (IOException e) {
             System.out.println("Could not load player image.");
         }
