@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.1" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="ca.ucalgary.game.Game" project="CPSC-233-project" 
+    file="/CPSC-233-project/src/ca/ucalgary/game/Game.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="376" width="566" x="1927" y="106"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="ca.ucalgary.main.Main" project="CPSC-233-project" 
+    file="/CPSC-233-project/src/ca/ucalgary/main/Main.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="116" width="152" x="340" y="106"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="ca.ucalgary.enemy.Enemy" project="CPSC-233-project" 
+    file="/CPSC-233-project/src/ca/ucalgary/enemy/Enemy.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="716" width="251" x="1507" y="522"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="ca.ucalgary.projectiles.EnemyProjectile" project="CPSC-233-project" 
+    file="/CPSC-233-project/src/ca/ucalgary/projectiles/EnemyProjectile.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="216" width="205" x="1982" y="1518"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="ca.ucalgary.game.TextGame" project="CPSC-233-project" 
+    file="/CPSC-233-project/src/ca/ucalgary/game/TextGame.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="336" width="593" x="583" y="522"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="ca.ucalgary.collectable.HealthCollectable" project="CPSC-233-project" 
+    file="/CPSC-233-project/src/ca/ucalgary/collectable/HealthCollectable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="176" width="234" x="1079" y="1518"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="ca.ucalgary.game.GUIGameController" project="CPSC-233-project" 
+    file="/CPSC-233-project/src/ca/ucalgary/game/GUIGameController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="216" width="268" x="2792" y="106"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="ca.ucalgary.game.GUIGame" project="CPSC-233-project" 
+    file="/CPSC-233-project/src/ca/ucalgary/game/GUIGame.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="592" x="2468" y="1518"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="ca.ucalgary.collectable.Money" project="CPSC-233-project" 
+    file="/CPSC-233-project/src/ca/ucalgary/collectable/Money.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="176" width="166" x="1353" y="1518"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="ca.ucalgary.collectable.Collectable" project="CPSC-233-project" 
+    file="/CPSC-233-project/src/ca/ucalgary/collectable/Collectable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="478" width="251" x="1216" y="522"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="ca.ucalgary.projectiles.Projectile" project="CPSC-233-project" 
+    file="/CPSC-233-project/src/ca/ucalgary/projectiles/Projectile.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="537" width="251" x="2156" y="522"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="ca.ucalgary.player.Player" project="CPSC-233-project" 
+    file="/CPSC-233-project/src/ca/ucalgary/player/Player.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="956" width="318" x="1798" y="522"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="ca.ucalgary.game.GUIGameInterface" project="CPSC-233-project" 
+    file="/CPSC-233-project/src/ca/ucalgary/game/GUIGameInterface.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="316" width="489" x="2468" y="522"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="14" language="java" name="ca.ucalgary.interfaces.Collidable" project="CPSC-233-project" 
+    file="/CPSC-233-project/src/ca/ucalgary/interfaces/Collidable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="176" width="251" x="1670" y="1518"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="15" language="java" name="ca.ucalgary.projectiles.PlayerProjectile" project="CPSC-233-project" 
+    file="/CPSC-233-project/src/ca/ucalgary/projectiles/PlayerProjectile.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="136" width="201" x="2227" y="1518"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="16">    
+    <bendpoint x="2980" y="523"/>    
+    <bendpoint x="2980" y="834"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="17" name="game"/>      
+      <multiplicity id="18" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="19">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="14"/>  
+  </realization>  
+  <generalization id="20">    
+    <bendpoint x="2442" y="831"/>    
+    <bendpoint x="2442" y="529"/>    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="21">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <association id="22">    
+    <bendpoint x="1782" y="520"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="23" name="enemies"/>      
+      <multiplicity id="24" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="25">    
+    <bendpoint x="2175" y="1463"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <association id="26">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="27" name="game"/>      
+      <multiplicity id="28" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="29">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="30" name="player"/>      
+      <multiplicity id="31" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="32">    
+    <bendpoint x="1217" y="508"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <realization id="33">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="14"/>  
+  </realization>  
+  <realization id="34">    
+    <bendpoint x="1502" y="1235"/>    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="14"/>  
+  </realization>  
+  <association id="35">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="36" name="gui"/>      
+      <multiplicity id="37" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="38">    
+    <bendpoint x="1502" y="507"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="39" name="collectables"/>      
+      <multiplicity id="40" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="41">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <generalization id="42">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <association id="43">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="44" name="projectiles"/>      
+      <multiplicity id="45" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="46">    
+    <bendpoint x="2127" y="1490"/>    
+    <bendpoint x="1966" y="1512"/>    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="14"/>  
+  </realization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
