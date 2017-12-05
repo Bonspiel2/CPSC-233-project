@@ -30,7 +30,7 @@ public class GUIGame extends Game {
 	public GUIGame() {
 		super();
 
-		Player player = new Player(SCREEN_WIDTH/2, SCREEN_HEIGHT*7/8, 32, 32, 10);
+		Player player = new Player(SCREEN_WIDTH/2, SCREEN_HEIGHT*7/8, Player.DEFAULT_GUI_WIDTH, Player.DEFAULT_GUI_HEIGHT, Player.DEFAULT_GUI_HEALTH);
         
 
 		player.setMaxX(SCREEN_WIDTH);
@@ -57,8 +57,9 @@ public class GUIGame extends Game {
 	 * @param y the given y value for the player
 	 */
 	public void movePlayer(int x, int y) {
-		super.getPlayer().setX(x- super.getPlayer().getWidth()/2);
-		super.getPlayer().setY(y - super.getPlayer().getHeight()/2);
+		Player p = super.getPlayer();
+		p.setX(x - p.getWidth()/2);
+		p.setY(y - p.getHeight()/2);
 	}
 
 }

@@ -17,6 +17,9 @@ import java.io.*;
  * It reacts to user-given mouse events and refreshes the board based on a timer.
  */
 public class GUIGameController implements ActionListener, MouseMotionListener {
+	
+	private static final int GAME_SPEED = 7;
+	private static final int LEVEL_TIME = 30000;
 
 	private GUIGameInterface gui;
 	private GUIGame game;
@@ -37,11 +40,11 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 		game = new GUIGame();
 		gui = new GUIGameInterface(this, this, game);
 
-		gameClock = new Timer(7, this);
+		gameClock = new Timer(GAME_SPEED, this);
 		gameClock.setActionCommand("TIMER");
 		gameClock.start();
         
-        levelClock = new Timer(30000, this);
+        levelClock = new Timer(LEVEL_TIME, this);
         levelClock.setActionCommand("LEVEL");
         levelClock.start();
 
@@ -109,7 +112,7 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 			gui.newGame();
 			game = new GUIGame();
 			gui.setGame(game);
-			levelClock = new Timer(30000, this);
+			levelClock = new Timer(LEVEL_TIME, this);
 	        levelClock.setActionCommand("LEVEL");
 	        levelClock.start();
 

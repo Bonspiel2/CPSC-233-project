@@ -30,6 +30,13 @@ import java.util.ConcurrentModificationException;
  */
 
 public class GUIGameInterface extends JPanel {
+	
+	private static final int SCORE_LABEL_X = 10;
+	private static final int SCORE_LABEL_Y = 15;
+	
+	private static final int LEVEL_LABEL_X = 290;
+	private static final int LEVEL_LABEL_Y = 15;
+	
 
 	private JFrame frame;
 	private JButton playAgain;
@@ -107,10 +114,10 @@ public class GUIGameInterface extends JPanel {
 				collectable.draw(g);
 			}
 			g.setColor(Color.WHITE);
-			g.drawString("Score: " + game.getPlayer().getScore(), 10, 15);
+			g.drawString("Score: " + game.getPlayer().getScore(), SCORE_LABEL_X, SCORE_LABEL_Y);
             
             g.setColor(Color.WHITE);
-            g.drawString("Level: " + GUIGameController.currentLevel, 290, 15);
+            g.drawString("Level: " + GUIGameController.currentLevel, LEVEL_LABEL_X, LEVEL_LABEL_Y);
             
             if(GUIGameController.currentLevel == 2) {
                 setBackground(Color.BLUE);

@@ -25,6 +25,12 @@ import javax.imageio.ImageIO;
  */
 public class Player implements Collidable{
 	
+	public static final int DEFAULT_GUI_WIDTH = 32;
+	public static final int DEFAULT_GUI_HEIGHT = 32;
+	
+	public static final int DEFAULT_TEXT_HEALTH = 5;
+	public static final int DEFAULT_GUI_HEALTH = 10;
+
 	private static final int TEXT_DIMENSION = 0;
 	private static final double DEFAULT_FIRE_RATE = 0.5;
 	private static final double DEFAULT_TEXT_FIRE_COUNT = 6;

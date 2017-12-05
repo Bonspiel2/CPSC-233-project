@@ -26,6 +26,8 @@ public class TextGame extends Game {
 
 	public static final int ROWS = 10;
 	public static final int COLUMNS = 7;
+	
+	private static final String EMPTY_SPACE_SYMBOL = "-";
 
 	private String[][] board;
 
@@ -39,7 +41,7 @@ public class TextGame extends Game {
 	public TextGame() {
 		super();
         
-        Player player = new Player(COLUMNS/2, ROWS - 2, 5);
+        Player player = new Player(COLUMNS/2, ROWS - 2, Player.DEFAULT_TEXT_HEALTH);
 
         super.setPlayer(player);
         
@@ -195,7 +197,7 @@ public class TextGame extends Game {
 		board = new String[ROWS][COLUMNS];
 		for(int row = 0; row < ROWS; row++) {
 			for(int col = 0; col < COLUMNS; col++) {
-				board[row][col] = "-";
+				board[row][col] = EMPTY_SPACE_SYMBOL;
 			}
 		}
 	}
