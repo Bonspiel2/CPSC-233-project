@@ -19,6 +19,13 @@ import ca.ucalgary.interfaces.Collidable;
 
 public abstract class Projectile implements Collidable {
 	
+	public static final int DEFAULT_GUI_WIDTH = 2;
+	public static final int DEFAULT_GUI_HEIGHT = 10;
+	
+	private static final String PROJECTILE_SYMBOL = "|";
+	private static final int TEXT_DIMENSION = 0;
+	private static final int DEFAULT_VELOCITY = 1;
+	
 	private int x;
 	private int y;
 	
@@ -43,9 +50,9 @@ public abstract class Projectile implements Collidable {
     	maxX = TextGame.COLUMNS-1;
     	setX(x);
     	setY(y);		
-    	this.width = 0;
-		this.height = 0;
-		this.velocity = 1;
+    	this.width = TEXT_DIMENSION;
+		this.height = TEXT_DIMENSION;
+		this.velocity = DEFAULT_VELOCITY;
 	}
     
     /**
@@ -59,13 +66,13 @@ public abstract class Projectile implements Collidable {
     	maxY = GUIGame.SCREEN_HEIGHT-1;
     	setX(x);
     	setY(y);
-        this.height = 10;
-        this.width = 2;
+        this.height = DEFAULT_GUI_HEIGHT;
+        this.width = DEFAULT_GUI_WIDTH;
         
         if(vel >= 0) {
         	this.velocity = vel;
         } else {
-        	this.velocity = 1;
+        	this.velocity = DEFAULT_VELOCITY;
         }
         
     }
@@ -84,7 +91,7 @@ public abstract class Projectile implements Collidable {
      */
     public void draw(String[][] board) {
     	if( (x >= 0 && x <= maxX) && (y >= 0 && y <= maxY) ) {
-    		board[y][x] = "|";
+    		board[y][x] = PROJECTILE_SYMBOL;
     	}
 	}
     

@@ -8,7 +8,7 @@ import ca.ucalgary.game.TextGame;
 
 public class Money extends Collectable {
 
-    private String symbol = "$";
+	private static final String MONEY_SYMBOL = "$";
 
     
     /**
@@ -42,7 +42,7 @@ public class Money extends Collectable {
      * @param board array list that is the game board.
      */
     public void draw(String[][] board) {
-        board[getY()][getX()] = symbol;
+        board[getY()][getX()] = MONEY_SYMBOL;
     }
     
     /**
@@ -51,7 +51,7 @@ public class Money extends Collectable {
      */
     public void draw(Graphics g) {
         g.setColor(Color.YELLOW);
-        g.drawString(symbol, getX(), getY());
+        g.drawString(MONEY_SYMBOL, getX(), getY());
     }
 
 }

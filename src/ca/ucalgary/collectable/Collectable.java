@@ -17,11 +17,12 @@ import ca.ucalgary.interfaces.Collidable;
  */
 public abstract class Collectable implements Collidable{
 
+	private static final int TEXT_DIMENSION = 0;
+	
 	private int x;
 	private int y;
 	private int maxY;
 	private int maxX;
-    private String symbol = "$";
     
     private int width;
     private int height;
@@ -37,8 +38,8 @@ public abstract class Collectable implements Collidable{
 		this.x = Math.min(maxX - 1, Math.max(0, x));
 		this.y = Math.min(maxY - 1,Math.max(0, y));
 		
-		this.width = 0;
-		this.height = 0;
+		this.width = TEXT_DIMENSION;
+		this.height = TEXT_DIMENSION;
 		
 		this.maxX = maxX;
 		this.maxY = maxY;

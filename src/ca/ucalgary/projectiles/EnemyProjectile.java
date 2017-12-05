@@ -12,9 +12,8 @@ import ca.ucalgary.game.TextGame;
  * @author Matt
  */
 public class EnemyProjectile extends Projectile{
-
-	private boolean edgy;
-	private String symbol = "*";
+	
+	private static final String ENEMY_PROJECTILE_SYMBOL = "*";
 
 	/**
 	 * Constructor for the TextGame version
@@ -43,6 +42,7 @@ public class EnemyProjectile extends Projectile{
 	 * @return edgy, boolean of whether it is at the edge of the screen or not
 	 */
 	public boolean move() {
+		boolean edgy;
 		if (getY() >= getMaxY()) {
 			edgy = false;
 		} else {
@@ -59,7 +59,7 @@ public class EnemyProjectile extends Projectile{
 	@Override
 	public void draw(String[][] board) {
 		if( (getX() >= 0 && getX() <= getMaxX()) && (getY() >= 0 && getY() <= getMaxY()) ) {
-    		board[getY()][getX()] = symbol;
+    		board[getY()][getX()] = ENEMY_PROJECTILE_SYMBOL;
     	}
 	}
 
