@@ -162,7 +162,7 @@ public abstract class Game {
 	public boolean playerIsDead() {
 		return player.getHealth() <= 0;
 	}
-
+    
 	/**
 	 * Retrieves the ArrayList of enemies
 	 * @return enemies the ArrayList of enemies

@@ -15,6 +15,8 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+import ca.ucalgary.game.GUIGameInterface;
+
 /**
  * The player class allows the game to interact with the 
  * player's position, their health as well as their score.
@@ -188,6 +190,7 @@ public class Player implements Collidable{
 		int ch = c.getHeight();
 
 		if (cx + cw >= x && cx <= (x + width) && cy + ch >= y && cy <= y + height ) {
+            if (!GUIGameInterface.gameOver) {
             if (c instanceof Money) {
                 score++;
             } else if (c instanceof HealthCollectable) {
@@ -197,6 +200,7 @@ public class Player implements Collidable{
                 }
             }
 			collided = true;
+            }
 		}
 
 		return collided;

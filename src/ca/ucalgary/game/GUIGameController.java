@@ -80,16 +80,32 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
                     enemyCounter = 0;
                 }
             } else if (currentLevel == 2) {
-                if(enemyCounter >= 25) {
+                if(enemyCounter >= 30) {
                     game.addEnemy(new Enemy(new Random().nextInt(GUIGame.SCREEN_WIDTH),0,32,32));
                     enemyCounter = 0;
                 }
-            } else {
-                if(enemyCounter >= 5) {
+            } else if (currentLevel == 3) {
+                if(enemyCounter >= 25) {
                     game.addEnemy(new Enemy(new Random().nextInt(GUIGame.SCREEN_WIDTH),0,32,32));
                     enemyCounter = 0;
                  }
+            } else if (currentLevel == 4) {
+                if(enemyCounter >= 20) {
+                    game.addEnemy(new Enemy(new Random().nextInt(GUIGame.SCREEN_WIDTH),0,32,32));
+                    enemyCounter = 0;
+                }
+            } else if (currentLevel == 5) {
+                if(enemyCounter >= 5) {
+                    game.addEnemy(new Enemy(new Random().nextInt(GUIGame.SCREEN_WIDTH),0,32,32));
+                    enemyCounter = 0;
+                }
             }
+
+            if (currentLevel == 6) {
+                gui.gameOver();
+                levelClock.stop();
+            }
+
 			if (game.playerIsDead()) {
 				gui.gameOver();
                 currentLevel = 1;
@@ -100,18 +116,19 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 				game.enemiesShoot();
 				game.checkCollisions();
 			}
+            
 
 			gui.repaint();
             
         } else if (e.getActionCommand().equals("LEVEL")) {
             if (currentLevel <= 5) {
                 this.currentLevel ++;
-                System.out.println("************************\nLevel " + this.currentLevel + "\n************************");
             }
 		} else if (e.getActionCommand().equals("Play Again")) {
 			gui.newGame();
 			game = new GUIGame();
 			gui.setGame(game);
+            
 			levelClock = new Timer(LEVEL_TIME, this);
 	        levelClock.setActionCommand("LEVEL");
 	        levelClock.start();
