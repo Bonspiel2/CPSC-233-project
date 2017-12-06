@@ -97,6 +97,8 @@ public class GUIGameInterface extends JPanel {
 		super.paintComponent(g);
 
 		if (!gameOver) {
+			
+			int curLevel = game.getCurrentLevel();
 
 			game.getPlayer().draw(g);
 
@@ -119,22 +121,22 @@ public class GUIGameInterface extends JPanel {
 			g.drawString("Score: " + game.getPlayer().getScore(), SCORE_LABEL_X, SCORE_LABEL_Y);
             
             g.setColor(Color.WHITE);
-            g.drawString("Level: " + GUIGameController.currentLevel, LEVEL_LABEL_X, LEVEL_LABEL_Y);
+            g.drawString("Level: " + curLevel, LEVEL_LABEL_X, LEVEL_LABEL_Y);
             
-            if(GUIGameController.currentLevel == 1) {
+            if(curLevel == 1) {
                 setBackground(Color.BLACK);
-            } else if (GUIGameController.currentLevel == 2)  {
+            } else if (curLevel == 2)  {
                 setBackground(new Color(8, 71, 173));
-            } else if (GUIGameController.currentLevel == 3)  {
+            } else if (curLevel == 3)  {
                 setBackground(new Color(96, 5, 99));
-            } else if (GUIGameController.currentLevel == 4)  {
+            } else if (curLevel == 4)  {
                 setBackground(new Color(209, 4, 103).darker());
-            } else if (GUIGameController.currentLevel == 5)  {
+            } else if (curLevel == 5)  {
                 setBackground(new Color(165, 17, 6));
             }
 		}
 		else {
-            if (GUIGameController.currentLevel == 6 && !game.playerIsDead()) {
+            if (game.getCurrentLevel() == 6 && !game.playerIsDead()) {
                 game.getPlayer().setHealth(100);
                 g.setColor(Color.GREEN);
                 g.setFont(new Font("Times New Roman", Font.PLAIN, 35));
@@ -162,7 +164,7 @@ public class GUIGameInterface extends JPanel {
         gameOver = true;
         finalScore = game.getPlayer().getScore();
         setBackground(Color.BLACK);
-        if (GUIGameController.currentLevel != 6) {
+        if (game.getCurrentLevel() != 6) {
             playAgain.setVisible(true);
             playAgain.setEnabled(true);
         }

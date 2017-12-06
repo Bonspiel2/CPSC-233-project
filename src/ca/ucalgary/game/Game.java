@@ -17,11 +17,15 @@ public abstract class Game {
 	private ArrayList<Projectile> projectiles;
 
 	private Player player;
+	
+	private int currentLevel;
 
 	public Game() {
 		enemies = new ArrayList<Enemy>();
 		projectiles = new ArrayList<Projectile>();
 		collectables = new ArrayList<Collectable>();
+		
+		currentLevel = 1;
 	}
     
     /**
@@ -218,6 +222,20 @@ public abstract class Game {
     public void setNewPlayer(Player player) {
         this.player = new Player(player);
     }
+
+	/**
+	 * @return the currentLevel
+	 */
+	public int getCurrentLevel() {
+		return currentLevel;
+	}
+
+	/**
+	 * @param currentLevel the currentLevel to set
+	 */
+	public void setCurrentLevel(int currentLevel) {
+		this.currentLevel = currentLevel;
+	}
 
 
 }
