@@ -18,6 +18,8 @@ import java.io.*;
  */
 public class GUIGameController implements ActionListener, MouseMotionListener {
 	
+	private static final int[] LEVEL_ENEMY_SPAWN_RATES = {100, 40, 30, 25, 20, 5, 0};
+	
 	private static final int GAME_SPEED = 7;
 	private static final int LEVEL_TIME = 30000;
 
@@ -73,33 +75,10 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
 		if (e.getActionCommand().equals("TIMER")) {
 			enemyCounter++;
 			int currentLevel = game.getCurrentLevel();
-            if (currentLevel == 1) {
-                if(enemyCounter >= 40) {
+                if(enemyCounter >= LEVEL_ENEMY_SPAWN_RATES[currentLevel]) {
                     game.addEnemy(new Enemy(new Random().nextInt(GUIGame.SCREEN_WIDTH),0,32,32));
                     enemyCounter = 0;
                 }
-            } else if (currentLevel == 2) {
-                if(enemyCounter >= 30) {
-                    game.addEnemy(new Enemy(new Random().nextInt(GUIGame.SCREEN_WIDTH),0,32,32));
-                    enemyCounter = 0;
-                }
-            } else if (currentLevel == 3) {
-                if(enemyCounter >= 25) {
-                    game.addEnemy(new Enemy(new Random().nextInt(GUIGame.SCREEN_WIDTH),0,32,32));
-                    enemyCounter = 0;
-                 }
-            } else if (currentLevel == 4) {
-                if(enemyCounter >= 20) {
-                    game.addEnemy(new Enemy(new Random().nextInt(GUIGame.SCREEN_WIDTH),0,32,32));
-                    enemyCounter = 0;
-                }
-            } else if (currentLevel == 5) {
-                if(enemyCounter >= 5) {
-                    game.addEnemy(new Enemy(new Random().nextInt(GUIGame.SCREEN_WIDTH),0,32,32));
-                    enemyCounter = 0;
-                }
-            }
-
             if (currentLevel == 6) {
                 gui.gameOver();
                 levelClock.stop();

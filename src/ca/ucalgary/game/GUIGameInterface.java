@@ -39,8 +39,6 @@ public class GUIGameInterface extends JPanel {
     
     public static boolean gameOver;
 
-	
-
 	private JFrame frame;
 	private JButton playAgain;
 	private GUIGame game;
