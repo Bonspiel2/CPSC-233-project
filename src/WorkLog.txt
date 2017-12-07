@@ -134,3 +134,24 @@ Group 3 Work Log
 
 30/11/17 - Quinn
 	Added level timer (30s). More enemies spawn in later levels. Added level display in GUI. (~0.5 hours).
+
+04/12/17 - Cole
+	Added necessary constants for classes such as projectile, player, Enemy, and collectable. (~1 hour)
+
+04/12/17 - Lily
+	Fixed level clock (~ 1 hour)
+
+04/12/17 - Quinn
+	Fixed level clock (~ 1 hour)
+
+05/12/17 - Quinn
+	Added different background colour for each level. Added ending screen if player wins the game. Fixed issue with how score was displayed if player wins. (~ 1 hour).
+
+06/12/17 - Cole
+	Removed extraneous if statement deciding enemy spawn rate. Refactored level storage to avoid static declaration. (~ 1 hour).
+
+07/12/17 - Quinn
+	Added increased fire rate collectable. (~1 hour).
+
+
+
