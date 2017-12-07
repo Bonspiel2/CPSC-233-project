@@ -3,6 +3,7 @@ package ca.ucalgary.player;
 import ca.ucalgary.*;
 import ca.ucalgary.collectable.HealthCollectable;
 import ca.ucalgary.collectable.Money;
+import ca.ucalgary.collectable.IncreasedFireRate;
 import ca.ucalgary.game.GUIGame;
 import ca.ucalgary.game.TextGame;
 import ca.ucalgary.interfaces.Collidable;
@@ -17,6 +18,11 @@ import javax.imageio.ImageIO;
 
 import ca.ucalgary.game.GUIGameInterface;
 
+import javax.swing.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
 /**
  * The player class allows the game to interact with the 
  * player's position, their health as well as their score.
@@ -25,7 +31,7 @@ import ca.ucalgary.game.GUIGameInterface;
  * 
  * @author Cole
  */
-public class Player implements Collidable{
+public class Player implements Collidable, ActionListener {
 	
 	public static final int DEFAULT_GUI_WIDTH = 32;
 	public static final int DEFAULT_GUI_HEIGHT = 32;
@@ -35,6 +41,9 @@ public class Player implements Collidable{
 
 	private static final int TEXT_DIMENSION = 0;
 	private static final double DEFAULT_FIRE_RATE = 0.5;
+    
+    private static final double INCREASED_FIRE_RATE = 0.8;
+    
 	private static final double DEFAULT_TEXT_FIRE_COUNT = 6;
 	private static final double DEFAULT_GUI_FIRE_COUNT = 100;
 	
@@ -59,6 +68,8 @@ public class Player implements Collidable{
 	private double fireTimer;
     
     private BufferedImage img;
+    
+    private Timer fireRateTimer;
 
 
 	/**
@@ -69,7 +80,9 @@ public class Player implements Collidable{
 	 * @param health new player's total health
 	 */
 	public Player(int x, int y, int health) {
-		this(x,y,TEXT_DIMENSION,TEXT_DIMENSION,health,DEFAULT_FIRE_RATE,DEFAULT_TEXT_FIRE_COUNT,TextGame.COLUMNS, TextGame.ROWS);
+		this(x, y, TEXT_DIMENSION,TEXT_DIMENSION, health,
+             DEFAULT_FIRE_RATE, DEFAULT_TEXT_FIRE_COUNT,
+             TextGame.COLUMNS, TextGame.ROWS);
         
 	}
 
@@ -83,7 +96,9 @@ public class Player implements Collidable{
 	 * @param health new player's total health
 	 */
 	public Player(int x, int y, int width, int height, int health) {
-		this(x,y,width,height,health,DEFAULT_FIRE_RATE,DEFAULT_GUI_FIRE_COUNT, GUIGame.SCREEN_WIDTH, GUIGame.SCREEN_HEIGHT);
+		this(x, y, width, height, health,
+             DEFAULT_FIRE_RATE, DEFAULT_GUI_FIRE_COUNT,
+             GUIGame.SCREEN_WIDTH, GUIGame.SCREEN_HEIGHT);
 
 	}
 	
@@ -198,6 +213,12 @@ public class Player implements Collidable{
                 if (health + 1 <= initialHealth) {
                     health++;
                 }
+            } else if (c instanceof IncreasedFireRate) {
+                score++;
+                this.firerate = INCREASED_FIRE_RATE;
+                fireRateTimer = new Timer(5000, this);
+                fireRateTimer.setActionCommand("FIRERATE");
+                fireRateTimer.start();
             }
 			collided = true;
             }
@@ -205,6 +226,13 @@ public class Player implements Collidable{
 
 		return collided;
 	}
+    
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("FIRERATE")) {
+            fireRateTimer.stop();
+            this.firerate = DEFAULT_FIRE_RATE;
+        }
+    }
 
 	/**
 	 * Creates a projectile when the player's cooldown is at 0

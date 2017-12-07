@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import ca.ucalgary.collectable.Collectable;
 import ca.ucalgary.collectable.HealthCollectable;
 import ca.ucalgary.collectable.Money;
+import ca.ucalgary.collectable.IncreasedFireRate;
 import ca.ucalgary.game.GUIGame;
 import ca.ucalgary.game.TextGame;
 import ca.ucalgary.interfaces.Collidable;
@@ -28,7 +29,7 @@ import ca.ucalgary.projectiles.EnemyProjectile;
  * 
  * @author Matt
  */
-public class Enemy implements Collidable{
+public class Enemy implements Collidable {
 	
 	private static final String ENEMY_SYMBOL = "V";
 	private static final int TEXT_DIMENSION = 0;
@@ -166,6 +167,8 @@ public class Enemy implements Collidable{
 		if(height != 0) {
 			if (decider == 2) {
 				collectable = new HealthCollectable(x,y,7,10);
+            } else if (decider == 3) {
+                collectable = new IncreasedFireRate(x,y,7, 10);
 			} else {
 				collectable = new Money(x,y, 7, 10);
 			}
@@ -173,7 +176,7 @@ public class Enemy implements Collidable{
 		else {
 			if (decider == 2) {
 				collectable = new HealthCollectable(x,y);
-			} else {
+            } else {
 				collectable = new Money(x,y);
 			}
 		}
