@@ -23,6 +23,7 @@ public class GUIGame extends Game {
     public GUIGame(ArrayList<Enemy> enemies, ArrayList<Collectable> collectables, ArrayList<Projectile> projectiles, Player player) {
         super(enemies, collectables, projectiles, player);
     }
+    
 /**
  * The main constructor for the GUIGame. Handles initialization 
  * of the board dimensions and the player,
