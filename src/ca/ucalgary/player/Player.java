@@ -244,7 +244,12 @@ public class Player implements Collidable, ActionListener {
 
 		return collided;
 	}
-
+	
+	/**
+	 * This method is invoked when the player's increased firerate is
+	 * up. It stops the timer and reverts the players firerate back to
+	 * default
+	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("FIRERATE")) {
 			guiFireRateTimer.stop();

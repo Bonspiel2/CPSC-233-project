@@ -16,6 +16,12 @@ import ca.ucalgary.game.TextGame;
  */
 
 public class Main {
+	
+	/**
+	 * Main method to run the game. Runs either the text game or the
+	 * gui game based on user input
+	 * @param args unused
+	 */
 	public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 		System.out.print("Type 1 to play the text game or 2 to play the GUI game.");
@@ -42,8 +48,6 @@ public class Main {
         	System.out.println("You chose the GUI game! Control your ship using the mouse");
         	GUIGameInterface gui = guiGame.getGUI();
         	gui.setVisible(true);
-
-        	
         	
         }
 
