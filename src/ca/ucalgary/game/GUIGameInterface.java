@@ -31,14 +31,14 @@ import java.util.ConcurrentModificationException;
  */
 
 public class GUIGameInterface extends JPanel {
-	
+
 	private static final int SCORE_LABEL_X = 10;
 	private static final int SCORE_LABEL_Y = 15;
-	
+
 	private static final int LEVEL_LABEL_X = 280;
 	private static final int LEVEL_LABEL_Y = 15;
-    
-    public static boolean gameOver;
+
+	public static boolean gameOver;
 
 	private JFrame frame;
 	private JButton playAgain;
@@ -48,7 +48,7 @@ public class GUIGameInterface extends JPanel {
 	private int highScore;
 	private int displayScore;
 
-	
+
 	/**
 	 * The main constructor for GUIGameInterface.
 	 * Initializes the frame and allows the player to click 'play again' when they lose etc.
@@ -64,7 +64,7 @@ public class GUIGameInterface extends JPanel {
 	public GUIGameInterface(ActionListener actionListener,
 			MouseMotionListener mouseMotionListener, GUIGame guiGame) {
 		game = guiGame;
-		frame = new JFrame("Space Invaders");
+		frame = new JFrame("Super Cool Space Shooter XL lite");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		frame.setSize(GUIGame.SCREEN_WIDTH, GUIGame.SCREEN_HEIGHT);
@@ -109,7 +109,7 @@ public class GUIGameInterface extends JPanel {
 		super.paintComponent(g);
 
 		if (!gameOver) {
-			
+
 			int curLevel = game.getCurrentLevel();
 
 			game.getPlayer().draw(g);
@@ -131,48 +131,48 @@ public class GUIGameInterface extends JPanel {
 			}
 			g.setColor(Color.WHITE);
 			g.drawString("Score: " + game.getPlayer().getScore(), SCORE_LABEL_X, SCORE_LABEL_Y);
-            
-            g.setColor(Color.WHITE);
-            g.drawString("Level: " + curLevel, LEVEL_LABEL_X, LEVEL_LABEL_Y);
-            
-            if(curLevel == 1) {
-                setBackground(Color.BLACK);
-            } else if (curLevel == 2)  {
-                setBackground(new Color(8, 71, 173));
-            } else if (curLevel == 3)  {
-                setBackground(new Color(96, 5, 99));
-            } else if (curLevel == 4)  {
-                setBackground(new Color(209, 4, 103).darker());
-            } else if (curLevel == 5)  {
-                setBackground(new Color(165, 17, 6));
-            }
+
+			g.setColor(Color.WHITE);
+			g.drawString("Level: " + curLevel, LEVEL_LABEL_X, LEVEL_LABEL_Y);
+
+			if(curLevel == 1) {
+				setBackground(Color.BLACK);
+			} else if (curLevel == 2)  {
+				setBackground(new Color(8, 71, 173));
+			} else if (curLevel == 3)  {
+				setBackground(new Color(96, 5, 99));
+			} else if (curLevel == 4)  {
+				setBackground(new Color(209, 4, 103).darker());
+			} else if (curLevel == 5)  {
+				setBackground(new Color(165, 17, 6));
+			}
 		}
 		else {
-            if (game.getCurrentLevel() == 6 && !game.playerIsDead()) {
-                game.getPlayer().setHealth(100);
-                g.setColor(Color.GREEN);
-                g.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-                g.drawString("You Win!", 100, 150);
-                g.setColor(Color.WHITE);
-                g.setFont(new Font("Helvetica", Font.BOLD, 30));
-                g.drawString("Score: " + finalScore, 100, 200);
-                g.drawString("High Score: " + displayScore, 70, 300);
+			if (game.getCurrentLevel() == 6 && !game.playerIsDead()) {
+				game.getPlayer().setHealth(100);
+				g.setColor(Color.GREEN);
+				g.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+				g.drawString("You Win!", 100, 150);
+				g.setColor(Color.WHITE);
+				g.setFont(new Font("Helvetica", Font.BOLD, 30));
+				g.drawString("Score: " + finalScore, 100, 200);
+				g.drawString("High Score: " + displayScore, 70, 300);
 
-                
-            } else {
-                g.setColor(Color.RED);
-                g.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-                g.drawString("You Died", 100, 150);
-                g.setColor(Color.WHITE);
-                g.setFont(new Font("Helvetica", Font.BOLD, 30));
-                g.drawString("Score: " + finalScore, 100, 200);
-                g.drawString("High Score: " + displayScore, 70, 300);
-            }
+
+			} else {
+				g.setColor(Color.RED);
+				g.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+				g.drawString("You Died", 100, 150);
+				g.setColor(Color.WHITE);
+				g.setFont(new Font("Helvetica", Font.BOLD, 30));
+				g.drawString("Score: " + finalScore, 100, 200);
+				g.drawString("High Score: " + displayScore, 70, 300);
+			}
 
 		}
 	}
 
-	
+
 	/**
 	 * gameOver is run when the player dies
 	 * brings up the players score, current highscore and updates the highscore
@@ -180,13 +180,11 @@ public class GUIGameInterface extends JPanel {
 	 * the 'play again' button.
 	 */
 	public void gameOver() {
-        gameOver = true;
-        finalScore = game.getNewPlayer().getScore();
-        setBackground(Color.BLACK);
-        if (game.getCurrentLevel() != 6) {
-            playAgain.setVisible(true);
-            playAgain.setEnabled(true);
-        }
+		gameOver = true;
+		finalScore = game.getNewPlayer().getScore();
+		setBackground(Color.BLACK);
+		playAgain.setVisible(true);
+		playAgain.setEnabled(true);
 		frame.getContentPane().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
 		try {
@@ -225,7 +223,7 @@ public class GUIGameInterface extends JPanel {
 		playAgain.setEnabled(false);
 		frame.getContentPane().setCursor(blankCursor);
 	}
-	
+
 	/**
 	 * when a new game is run through the play again button
 	 * a new game is created and set to a new instance of the GUIGame
@@ -237,5 +235,5 @@ public class GUIGameInterface extends JPanel {
 		this.game = g;
 	}
 
-    
+
 }

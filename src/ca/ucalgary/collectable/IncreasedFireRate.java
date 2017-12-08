@@ -15,7 +15,7 @@ import java.awt.Graphics;
  */
 public class IncreasedFireRate extends Collectable {
 
-    private static final String FIRERATE_SYMBOL = "^";
+    private static final String FIRERATE_SYMBOL = "%";
     
     /**
      * Collectable constructor for the TextBased version of the game, 
