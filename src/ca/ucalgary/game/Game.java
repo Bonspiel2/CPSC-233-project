@@ -28,7 +28,7 @@ public abstract class Game {
 	private int currentLevel;
 
 	/**
-	 * Default Contructor
+	 * Default Constructor
 	 * initializes lists and current level
 	 */
 	public Game() {
@@ -179,12 +179,22 @@ public abstract class Game {
 	public boolean playerIsDead() {
 		return player.getHealth() <= 0;
 	}
+	
+	/**
+	 * Retrieves the ArrayList of enemies. This privacy leak
+	 * is necessary so the interface/console can draw the correct set
+	 * of objects.
+	 * @return list of enemies
+	 */
+	protected ArrayList<Enemy> getEnemies(){
+		return enemies;
+	}
 
 	/**
 	 * Retrieves the ArrayList of enemies
 	 * @return enemies the ArrayList of enemies
 	 */
-	public ArrayList<Enemy> getEnemies() {
+	public ArrayList<Enemy> getNewEnemies() {
 		ArrayList<Enemy> returnList = new ArrayList<Enemy>();
 
 		for (Enemy e : enemies) {
@@ -193,12 +203,22 @@ public abstract class Game {
 
 		return returnList;
 	}
+	
+	/**
+	 * Retrieves the ArrayList of collectables. This privacy leak
+	 * is necessary so the interface/console can draw the correct set
+	 * of objects.
+	 * @return list of collectables
+	 */
+	protected ArrayList<Collectable> getCollectables(){
+		return collectables;
+	}
 
 	/**
 	 * Retrieves the ArrayList of collectables
 	 * @return collectables the ArrayList of collectables
 	 */
-	public ArrayList<Collectable> getCollectables() {
+	public ArrayList<Collectable> getNewCollectables() {
 		ArrayList<Collectable> returnList = new ArrayList<Collectable>();
 
 		for (Collectable c : collectables) {
@@ -213,12 +233,22 @@ public abstract class Game {
 
 		return returnList;
 	}
+	
+	/**
+	 * Retrieves the ArrayList of projectiles. This privacy leak
+	 * is necessary so the interface/console can draw the correct set
+	 * of objects.
+	 * @return list of projectiles
+	 */
+	protected ArrayList<Projectile> getProjectiles(){
+		return projectiles;
+	}
 
 	/**
 	 * Retrieves the ArrayList of projectiles
 	 * @return projectiles the ArrayList of projectiles
 	 */
-	public ArrayList<Projectile> getProjectiles() {
+	public ArrayList<Projectile> getNewProjectiles() {
 		ArrayList<Projectile> returnList = new ArrayList<Projectile>();
 
 		for (Projectile p : projectiles) {

@@ -30,9 +30,9 @@ public class GameTest {
     @Test
     public void test_mainConstructorText() {
         TextGame game = new TextGame();
-        assertEquals("Game does not have ArrayList of enemies", 4, game.getEnemies().size());
-        assertEquals("Game does not have ArrayList of projectiles", 0, game.getProjectiles().size());
-        assertEquals("Game does not have ArrayList of collectables", 0, game.getCollectables().size());
+        assertEquals("Game does not have ArrayList of enemies", 4, game.getNewEnemies().size());
+        assertEquals("Game does not have ArrayList of projectiles", 0, game.getNewProjectiles().size());
+        assertEquals("Game does not have ArrayList of collectables", 0, game.getNewCollectables().size());
     }
     
     /**
@@ -164,9 +164,9 @@ public class GameTest {
     @Test
     public void test_mainConstructorGUI() {
         GUIGame game = new GUIGame();
-        assertEquals("Game does not have ArrayList of enemies", 0, game.getEnemies().size());
-        assertEquals("Game does not have ArrayList of projectiles", 0, game.getProjectiles().size());
-        assertEquals("Game does not have ArrayList of collectables", 0, game.getCollectables().size());
+        assertEquals("Game does not have ArrayList of enemies", 0, game.getNewEnemies().size());
+        assertEquals("Game does not have ArrayList of projectiles", 0, game.getNewProjectiles().size());
+        assertEquals("Game does not have ArrayList of collectables", 0, game.getNewCollectables().size());
     }
     
     /**
