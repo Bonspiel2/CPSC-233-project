@@ -18,7 +18,7 @@ import java.io.*;
  */
 public class GUIGameController implements ActionListener, MouseMotionListener {
 	
-	private static final int[] LEVEL_ENEMY_SPAWN_RATES = {100, 40, 30, 25, 20, 5, 0};
+	private static final int[] LEVEL_ENEMY_SPAWN_RATES = {100, 40, 30, 25, 20, 15, 0};
 	
 	private static final int GAME_SPEED = 7;
 	private static final int LEVEL_TIME = 30000;
@@ -47,8 +47,6 @@ public class GUIGameController implements ActionListener, MouseMotionListener {
         levelClock = new Timer(LEVEL_TIME, this);
         levelClock.setActionCommand("LEVEL");
         levelClock.start();
-
-		game.initBoard();
         
 //        try {
 //            FileWriter writer = new FileWriter("src/lib/HighScore.txt");

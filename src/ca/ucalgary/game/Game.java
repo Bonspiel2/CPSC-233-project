@@ -17,31 +17,31 @@ public abstract class Game {
 	private ArrayList<Projectile> projectiles;
 
 	private Player player;
-	
+
 	private int currentLevel;
 
 	public Game() {
 		enemies = new ArrayList<Enemy>();
 		projectiles = new ArrayList<Projectile>();
 		collectables = new ArrayList<Collectable>();
-		
-		currentLevel = 1;
+
+		currentLevel = 5;
 	}
-    
-    /**
-     * Constructor used for testing purposes that takes given lists of enemies,
-     * projectiles, and collectables as parameters.
-     * @param enemies the ArrayList of enemies
-     * @param projectiles the ArrayList of projectiles
-     * @param collectables the ArrayList of collectables
-     * @param player the given player
-     */
-    public Game(ArrayList<Enemy> enemies, ArrayList<Collectable> collectables, ArrayList<Projectile> projectiles, Player player) {
-        this.enemies = enemies;
-        this.collectables = collectables;
-        this.projectiles = projectiles;
-        this.player = player;
-    }
+
+	/**
+	 * Constructor used for testing purposes that takes given lists of enemies,
+	 * projectiles, and collectables as parameters.
+	 * @param enemies the ArrayList of enemies
+	 * @param projectiles the ArrayList of projectiles
+	 * @param collectables the ArrayList of collectables
+	 * @param player the given player
+	 */
+	public Game(ArrayList<Enemy> enemies, ArrayList<Collectable> collectables, ArrayList<Projectile> projectiles, Player player) {
+		this.enemies = enemies;
+		this.collectables = collectables;
+		this.projectiles = projectiles;
+		this.player = player;
+	}
 
 	/**
 	 * Checks if collisions have occured between enemies and projectiles, 
@@ -59,7 +59,7 @@ public abstract class Game {
 				boolean collided = false;
 				for (int enemyIndex = 0; enemyIndex < enemies.size() && !collided; enemyIndex++) {
 					Enemy e = enemies.get(enemyIndex);
-					
+
 					if (((PlayerProjectile) p).collidedWith(e)) {
 						collectables.add(e.createCollectable());
 						projectiles.remove(projIndex);
@@ -90,7 +90,7 @@ public abstract class Game {
 		// check collisions between enemies and player
 		for (Iterator<Enemy> enemyItr = enemies.iterator(); enemyItr.hasNext();) {
 			Enemy enemy = enemyItr.next();
-			
+
 			// decrease player health by one if collision occurs
 			if (enemy.collidedWith(player)) {
 				int health = player.getHealth() - 1;
@@ -136,7 +136,7 @@ public abstract class Game {
 	public void addEnemy(Enemy e) {
 		enemies.add(new Enemy(e));
 	}
-	
+
 	/**
 	 * Causes the player to fire a projectile.
 	 */
@@ -154,11 +154,13 @@ public abstract class Game {
 		for (Enemy enemy : enemies) {
 			if (enemy.getHasAShot()) {
 				Projectile enemyShot = enemy.shoot();
-				projectiles.add(enemyShot);
+				if (enemyShot!=null) {
+					projectiles.add(enemyShot);
+				}
 			}
 		}
 	}
-	
+
 	/**
 	 * Indicates whether the player is still alive or not.
 	 * @return boolean returns true if the player's health is zero (or less)
@@ -166,7 +168,7 @@ public abstract class Game {
 	public boolean playerIsDead() {
 		return player.getHealth() <= 0;
 	}
-    
+
 	/**
 	 * Retrieves the ArrayList of enemies
 	 * @return enemies the ArrayList of enemies
@@ -174,7 +176,7 @@ public abstract class Game {
 	public ArrayList<Enemy> getEnemies() {
 		return enemies;
 	}
-	
+
 	/**
 	 * Retrieves the ArrayList of collectables
 	 * @return collectables the ArrayList of collectables
@@ -198,7 +200,7 @@ public abstract class Game {
 	protected Player getPlayer() {
 		return player;
 	}
-	
+
 	/**
 	 * Retrieves a copy of the player object
 	 * @return player copy of current player
@@ -206,22 +208,22 @@ public abstract class Game {
 	public Player getNewPlayer() {
 		return new Player(player);
 	}
-    
+
 	/**
 	 * Sets the player
 	 * @param player the given player to set
 	 */
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-    
-    /**
-     * Sets the player to a copy of the player
-     * @param player the given player to set
-     */
-    public void setNewPlayer(Player player) {
-        this.player = new Player(player);
-    }
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
+
+	/**
+	 * Sets the player to a copy of the player
+	 * @param player the given player to set
+	 */
+	public void setNewPlayer(Player player) {
+		this.player = new Player(player);
+	}
 
 	/**
 	 * @return the currentLevel

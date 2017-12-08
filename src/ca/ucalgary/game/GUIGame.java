@@ -38,17 +38,6 @@ public class GUIGame extends Game {
         
 		super.setPlayer(player);
 	}
-	
-	/**
-	 * Handles the set-up of the board through spawning
-	 * the initial enemies.
-	 */
-	public void initBoard() {
-		for(int i = 0; i < TextGame.ROWS-6; i++) {
-			Enemy enemy = new Enemy(i);
-			addEnemy(enemy);
-		}
-	}
 
 	/**
 	 * Updates the x and y coordinates of the player.
