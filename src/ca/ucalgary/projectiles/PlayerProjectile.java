@@ -26,7 +26,16 @@ public class PlayerProjectile extends Projectile {
         super(x, y, velocity);
     }
     
+    
     /**
+     * Copy Constructor
+	 * @param p Object to copy
+	 */
+	public PlayerProjectile(PlayerProjectile p) {
+		super(p);
+	}
+
+	/**
      * Moves the projectile up one row and detects whether or not it has reached
      * the edge of the board.
      * @return edgy returns true if the projectile has reached the edge of the board.

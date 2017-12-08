@@ -19,6 +19,9 @@ public abstract class Collectable implements Collidable{
 
 	private static final int TEXT_DIMENSION = 0;
 	
+	public static final int DEFAULT_WIDTH = 7;
+	public static final int DEFAULT_HEIGHT = 10;
+	
 	private int x;
 	private int y;
 	private int maxY;
@@ -65,7 +68,27 @@ public abstract class Collectable implements Collidable{
 		this.maxY = maxY;
 	}
 	
+	/**
+	 * Copy Constructor
+	 * @param c Collectable to copy
+	 */
+	public Collectable(Collectable c) {
+		this.x = c.getX();
+		this.y = c.getY();
+		
+		this.width = c.getWidth();
+		this.height = c.getHeight();
+		
+		this.maxX = c.getMaxX();
+		this.maxY = c.getMaxY();
+	}
 	
+	/**
+	 * Checks whether the collectable and a given collidable have collided
+	 * i.e. they have the same x and y values
+	 * @param c The collidable object
+	 * @return True if it has collided, false if it has not
+	 */
 	public boolean collidedWith(Collidable c) {
 		int cx = c.getX();
 		int cy = c.getY();
@@ -77,8 +100,8 @@ public abstract class Collectable implements Collidable{
 	
 	
 	/**
-	 * Gets integer column value the collectable.
-	 * @return integer column value the collectable.
+	 * Gets integer x value of the collectable.
+	 * @return x value the collectable.
 	 */
 	public int getX() {
 		return x;
@@ -101,7 +124,7 @@ public abstract class Collectable implements Collidable{
 	}
 	
 	/**
-	 * Sets new integer column value for the collectable.
+	 * Sets new integer x value for the collectable.
 	 * @param x new column value.
 	 */
 	public void setX(int x) {
@@ -115,15 +138,15 @@ public abstract class Collectable implements Collidable{
 	}
 
 	/**
-	 * Gets integer row value the collectable.
-	 * @return integer row value the collectable.
+	 * Gets integer y value the collectable.
+	 * @return integer y value the collectable.
 	 */
 	public int getY() {
 		return y;
 	}
 
 	/**
-	 * Sets new integer row value for the collectable.
+	 * Sets new integer y value for the collectable.
 	 * @param y new row value.
 	 */
 	public void setY(int y) {
@@ -148,8 +171,6 @@ public abstract class Collectable implements Collidable{
 	/**
 	 * Moves collectable down the screen by one row every turn 
 	 * until it is no longer within the range of the game board.
-	 * 
-	 * @param board array list that is the game board.
 	 * @return true if the collectable is still within
 	 * the range of the game board.
 	 */
@@ -176,4 +197,8 @@ public abstract class Collectable implements Collidable{
 	 * @param g the graphics object being drawn to
 	 */
     public abstract void draw(Graphics g);
+
+	public int getMaxX() {
+		return maxX;
+	}
 }

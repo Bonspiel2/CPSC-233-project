@@ -4,11 +4,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import ca.ucalgary.collectable.Collectable;
+import ca.ucalgary.collectable.HealthCollectable;
+import ca.ucalgary.collectable.IncreasedFireRate;
+import ca.ucalgary.collectable.Money;
 import ca.ucalgary.enemy.Enemy;
 import ca.ucalgary.player.Player;
 import ca.ucalgary.projectiles.EnemyProjectile;
 import ca.ucalgary.projectiles.PlayerProjectile;
 import ca.ucalgary.projectiles.Projectile;
+
+/**
+ * Game implements the framework for a space shooter game.
+ */
 
 public abstract class Game {
 
@@ -18,26 +25,34 @@ public abstract class Game {
 
 	private Player player;
 
+	private int currentLevel;
+
+	/**
+	 * Default Contructor
+	 * initializes lists and current level
+	 */
 	public Game() {
 		enemies = new ArrayList<Enemy>();
 		projectiles = new ArrayList<Projectile>();
 		collectables = new ArrayList<Collectable>();
+
+		currentLevel = 1;
 	}
-    
-    /**
-     * Constructor used for testing purposes that takes given lists of enemies,
-     * projectiles, and collectables as parameters.
-     * @param enemies the ArrayList of enemies
-     * @param projectiles the ArrayList of projectiles
-     * @param collectables the ArrayList of collectables
-     * @param player the given player
-     */
-    public Game(ArrayList<Enemy> enemies, ArrayList<Collectable> collectables, ArrayList<Projectile> projectiles, Player player) {
-        this.enemies = enemies;
-        this.collectables = collectables;
-        this.projectiles = projectiles;
-        this.player = player;
-    }
+
+	/**
+	 * Constructor used for testing purposes that takes given lists of enemies,
+	 * projectiles, and collectables as parameters. This privacy leak is necessary to alter lists for testing
+	 * @param enemies the ArrayList of enemies
+	 * @param projectiles the ArrayList of projectiles
+	 * @param collectables the ArrayList of collectables
+	 * @param player the given player
+	 */
+	public Game(ArrayList<Enemy> enemies, ArrayList<Collectable> collectables, ArrayList<Projectile> projectiles, Player player) {
+		this.enemies = enemies;
+		this.collectables = collectables;
+		this.projectiles = projectiles;
+		this.player = player;
+	}
 
 	/**
 	 * Checks if collisions have occured between enemies and projectiles, 
@@ -55,7 +70,7 @@ public abstract class Game {
 				boolean collided = false;
 				for (int enemyIndex = 0; enemyIndex < enemies.size() && !collided; enemyIndex++) {
 					Enemy e = enemies.get(enemyIndex);
-					
+
 					if (((PlayerProjectile) p).collidedWith(e)) {
 						collectables.add(e.createCollectable());
 						projectiles.remove(projIndex);
@@ -86,7 +101,7 @@ public abstract class Game {
 		// check collisions between enemies and player
 		for (Iterator<Enemy> enemyItr = enemies.iterator(); enemyItr.hasNext();) {
 			Enemy enemy = enemyItr.next();
-			
+
 			// decrease player health by one if collision occurs
 			if (enemy.collidedWith(player)) {
 				int health = player.getHealth() - 1;
@@ -132,7 +147,7 @@ public abstract class Game {
 	public void addEnemy(Enemy e) {
 		enemies.add(new Enemy(e));
 	}
-	
+
 	/**
 	 * Causes the player to fire a projectile.
 	 */
@@ -144,17 +159,19 @@ public abstract class Game {
 		}
 	}
 	/**
-	 * Causes an enemy to fire a projectile.
+	 * Causes enemies to fire projectiles.
 	 */
 	public void enemiesShoot() {
 		for (Enemy enemy : enemies) {
 			if (enemy.getHasAShot()) {
 				Projectile enemyShot = enemy.shoot();
-				projectiles.add(enemyShot);
+				if (enemyShot!=null) {
+					projectiles.add(enemyShot);
+				}
 			}
 		}
 	}
-	
+
 	/**
 	 * Indicates whether the player is still alive or not.
 	 * @return boolean returns true if the player's health is zero (or less)
@@ -162,21 +179,39 @@ public abstract class Game {
 	public boolean playerIsDead() {
 		return player.getHealth() <= 0;
 	}
-    
+
 	/**
 	 * Retrieves the ArrayList of enemies
 	 * @return enemies the ArrayList of enemies
 	 */
 	public ArrayList<Enemy> getEnemies() {
-		return enemies;
+		ArrayList<Enemy> returnList = new ArrayList<Enemy>();
+
+		for (Enemy e : enemies) {
+			returnList.add(new Enemy(e));
+		}
+
+		return returnList;
 	}
-	
+
 	/**
 	 * Retrieves the ArrayList of collectables
 	 * @return collectables the ArrayList of collectables
 	 */
 	public ArrayList<Collectable> getCollectables() {
-		return collectables;
+		ArrayList<Collectable> returnList = new ArrayList<Collectable>();
+
+		for (Collectable c : collectables) {
+			if (c instanceof HealthCollectable) {
+				returnList.add(new HealthCollectable((HealthCollectable) c));
+			} else if (c instanceof IncreasedFireRate) {
+				returnList.add(new IncreasedFireRate((IncreasedFireRate) c));
+			} else if (c instanceof Money) {
+				returnList.add(new Money((Money) c));
+			}
+		}
+
+		return returnList;
 	}
 
 	/**
@@ -184,17 +219,28 @@ public abstract class Game {
 	 * @return projectiles the ArrayList of projectiles
 	 */
 	public ArrayList<Projectile> getProjectiles() {
-		return projectiles;
+		ArrayList<Projectile> returnList = new ArrayList<Projectile>();
+
+		for (Projectile p : projectiles) {
+			if (p instanceof PlayerProjectile) {
+				returnList.add(new PlayerProjectile((PlayerProjectile) p));
+			} else if (p instanceof EnemyProjectile) {
+				returnList.add(new EnemyProjectile((EnemyProjectile) p));
+			}
+		}
+
+		return returnList;
 	}
 
 	/** 
-	 * Retrieves the player object
+	 * Retrieves the player object. This privacy leak is necessary so the motion listener 
+	 * can move the current player.
 	 * @return player the current player
 	 */
 	protected Player getPlayer() {
 		return player;
 	}
-	
+
 	/**
 	 * Retrieves a copy of the player object
 	 * @return player copy of current player
@@ -202,22 +248,36 @@ public abstract class Game {
 	public Player getNewPlayer() {
 		return new Player(player);
 	}
-    
+
 	/**
-	 * Sets the player
+	 * Sets the player. This privacy leak is necessary so the subclasses can pass in a specific object
 	 * @param player the given player to set
 	 */
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-    
-    /**
-     * Sets the player to a copy of the player
-     * @param player the given player to set
-     */
-    public void setNewPlayer(Player player) {
-        this.player = new Player(player);
-    }
+	protected void setPlayer(Player player) {
+		this.player = player;
+	}
+
+	/**
+	 * Sets the player to a copy of the player
+	 * @param player the given player to set
+	 */
+	public void setNewPlayer(Player player) {
+		this.player = new Player(player);
+	}
+
+	/**
+	 * @return the currentLevel
+	 */
+	public int getCurrentLevel() {
+		return currentLevel;
+	}
+
+	/**
+	 * @param currentLevel the currentLevel to set
+	 */
+	public void setCurrentLevel(int currentLevel) {
+		this.currentLevel = currentLevel;
+	}
 
 
 }

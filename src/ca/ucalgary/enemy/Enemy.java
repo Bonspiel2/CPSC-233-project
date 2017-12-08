@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import ca.ucalgary.collectable.Collectable;
 import ca.ucalgary.collectable.HealthCollectable;
 import ca.ucalgary.collectable.Money;
+import ca.ucalgary.collectable.IncreasedFireRate;
 import ca.ucalgary.game.GUIGame;
 import ca.ucalgary.game.TextGame;
 import ca.ucalgary.interfaces.Collidable;
@@ -28,8 +29,8 @@ import ca.ucalgary.projectiles.EnemyProjectile;
  * 
  * @author Matt
  */
-public class Enemy implements Collidable{
-	
+public class Enemy implements Collidable {
+
 	private static final String ENEMY_SYMBOL = "V";
 	private static final int TEXT_DIMENSION = 0;
 
@@ -40,6 +41,8 @@ public class Enemy implements Collidable{
 
 	private int maxY;
 	private int maxX;
+
+	private int shotSpot;
 
 	private boolean hasAShot;
 
@@ -89,6 +92,9 @@ public class Enemy implements Collidable{
 		this.maxY = maxY;
 		this.maxX = maxX;
 
+		this.shotSpot = new Random().nextInt(maxY/4);
+
+
 		try {
 			enemyImg = ImageIO.read(Enemy.class.getResourceAsStream("/ca/ucalgary/lib/EnemyShip.png"));
 		} catch (IOException e) {
@@ -103,26 +109,13 @@ public class Enemy implements Collidable{
 	 */
 	public Enemy(Enemy e) {
 		this(e.getX(), e.getY(), e.getWidth(), e.getHeight(), e.getMaxX(), e.getMaxY());
-	}
-
-
-	/**
-	 * Board initializer constructor, used to initialize the
-	 * enemies on the board on different rows
-	 * @param y y Coordinate of the enemy 
-	 */
-	public Enemy(int y) {
-		this.x = new Random().nextInt(TextGame.COLUMNS - 1);
-		this.y = y;
-		this.hasAShot = true;
-
+		this.hasAShot = e.getHasAShot();
 	}
 
 	/**
 	 * Moves the enemy down one row towards the players ship and 
 	 * if it has reached the edge of the screen returns false
-	 * @return	The enemy's alive value to know whether to draw
-	 * it or not
+	 * @return	True if the enemy is still on the board
 	 */
 	public boolean move() {
 		boolean alive = true;
@@ -137,9 +130,9 @@ public class Enemy implements Collidable{
 	}
 
 	/**
-	 * Checks whether the player and enemy have collided i.e. they have 
+	 * Checks whether the enemy and a given collidable have collided i.e. they have 
 	 * the same x and y values
-	 * @param c The player object which collision is checked 
+	 * @param c The collidable object which collision is checked 
 	 * for with
 	 * @return True if it has collided, false if it has not
 	 */
@@ -165,14 +158,18 @@ public class Enemy implements Collidable{
 		Collectable collectable;
 		if(height != 0) {
 			if (decider == 2) {
-				collectable = new HealthCollectable(x,y,7,10);
+				collectable = new HealthCollectable(x,y,Collectable.DEFAULT_WIDTH, Collectable.DEFAULT_HEIGHT);
+			} else if (decider == 3) {
+				collectable = new IncreasedFireRate(x,y,Collectable.DEFAULT_WIDTH, Collectable.DEFAULT_HEIGHT);
 			} else {
-				collectable = new Money(x,y, 7, 10);
+				collectable = new Money(x,y, Collectable.DEFAULT_WIDTH, Collectable.DEFAULT_HEIGHT);
 			}
 		}
 		else {
 			if (decider == 2) {
 				collectable = new HealthCollectable(x,y);
+			} else if (decider == 3) {
+				collectable = new IncreasedFireRate(x,y);
 			} else {
 				collectable = new Money(x,y);
 			}
@@ -232,7 +229,7 @@ public class Enemy implements Collidable{
 	}
 
 	/**
-	 * Draws a red square as the enemy at its current x,y,width and height
+	 * Draws enemy picture or red square as the enemy at its current x,y,width and height
 	 * @param g the graphics object being drawn to
 	 */
 	public void draw(Graphics g) {
@@ -252,6 +249,10 @@ public class Enemy implements Collidable{
 		return hasAShot;
 	}
 
+	/**
+	 * Adds or removes enemy shot
+	 * @param true if enemy has another shot, false otherwise
+	 */
 	public void setHasAShot(boolean shot) {
 		this.hasAShot = shot;
 	}
@@ -261,13 +262,15 @@ public class Enemy implements Collidable{
 	 * @return shot, Projectile that was created
 	 */
 	public EnemyProjectile shoot() {
-		EnemyProjectile shot;
-		if(width != 0) {
-			shot = new EnemyProjectile(x + width / 2, y + 1 + height, 2);
-		} else {
-			shot = new EnemyProjectile(x + width / 2, y + 1 + height);
+		EnemyProjectile shot = null;
+		if (y == shotSpot) {
+			if (width != 0) {
+				shot = new EnemyProjectile(x + width / 2, y + 1 + height, 2);
+			} else {
+				shot = new EnemyProjectile(x + width / 2, y + 1 + height);
+			}
+			hasAShot = false;
 		}
-		hasAShot = false;
 		return shot;
 	}
 

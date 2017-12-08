@@ -35,6 +35,14 @@ public class EnemyProjectile extends Projectile{
 		
 	}
 	
+	/**
+	 * Copy Constructor
+	 * @param p Object to copy
+	 */
+	public EnemyProjectile(EnemyProjectile p) {
+		super(p);
+	}
+
 	@Override
 	/**
 	 * Moves the projectile down one row or pixel and detects whether or not it has

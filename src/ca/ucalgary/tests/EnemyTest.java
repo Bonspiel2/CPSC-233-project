@@ -303,23 +303,6 @@ public class EnemyTest {
     	assertTrue("Generated enemy, testing initial shot", enemy.getHasAShot());
     }
     
-  //test has a shot getter after shot
-    @Test
-    public void test_hasShot_getter_shot() {
-    	Enemy enemy = new Enemy(0,0);
-    	enemy.shoot();
-    	assertFalse("Generated enemy, allowed shot, testing has shot", enemy.getHasAShot());
-    }
-    
-    //test shot produced
-    @Test
-    public void test_shoot() {
-    	Enemy enemy = new Enemy(10,10,10,20);
-    	EnemyProjectile projectile = enemy.shoot();
-    	assertEquals("Created enemy, produced shot, testing x value", 15, projectile.getX());
-    	assertEquals("Created enemy, produced shot, testing y value", 31, projectile.getY());
-    }
-    
     //test width getter
     @Test
     public void test_width_getter() {

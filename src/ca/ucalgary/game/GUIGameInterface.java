@@ -23,7 +23,8 @@ import java.io.*;
 import java.util.ConcurrentModificationException;
 
 /**
- * The GUIGameInterface class controls all aspects of displaying the game graphically.
+ * The GUIGameInterface class handles all the user interaction and controls all aspects 
+ * of displaying the game graphically.
  * It sets up the JFrame as well as handles the drawing of all enemies, projectiles, 
  * collectables, and the player. 
  *
@@ -39,8 +40,6 @@ public class GUIGameInterface extends JPanel {
     
     public static boolean gameOver;
 
-	
-
 	private JFrame frame;
 	private JButton playAgain;
 	private GUIGame game;
@@ -49,9 +48,22 @@ public class GUIGameInterface extends JPanel {
 	private int highScore;
 	private int displayScore;
 
-	public GUIGameInterface(ActionListener a,
-			MouseMotionListener m, GUIGame g) {
-		game = g;
+	
+	/**
+	 * The main constructor for GUIGameInterface.
+	 * Initializes the frame and allows the player to click 'play again' when they lose etc.
+	 * There is a privacy leak for all three parameters in the constructor for GUIGameInterface
+	 * The privacy leak is neccasary here so that the GUIGame interface is interacting with the 
+	 * same objects as in the GUIGame controller.
+	 * 
+	 * @param actionListener Action Listener for player actions 
+	 * @param mouseMotionListener MouseMotionListener for mouse motion events
+	 * @param guiGame the GUIGame instance that is being handled/ drawn by 
+	 * 
+	 */
+	public GUIGameInterface(ActionListener actionListener,
+			MouseMotionListener mouseMotionListener, GUIGame guiGame) {
+		game = guiGame;
 		frame = new JFrame("Space Invaders");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -59,13 +71,13 @@ public class GUIGameInterface extends JPanel {
 		frame.setVisible(true);
 
 		playAgain = new JButton("Play Again");
-		playAgain.addActionListener(a);
+		playAgain.addActionListener(actionListener);
 		playAgain.setVisible(false);
 		playAgain.setEnabled(false);
 
 		add(playAgain);
 
-		addMouseMotionListener(m);
+		addMouseMotionListener(mouseMotionListener);
 
 		setSize(GUIGame.SCREEN_WIDTH, GUIGame.SCREEN_HEIGHT);
 
@@ -97,6 +109,8 @@ public class GUIGameInterface extends JPanel {
 		super.paintComponent(g);
 
 		if (!gameOver) {
+			
+			int curLevel = game.getCurrentLevel();
 
 			game.getPlayer().draw(g);
 
@@ -119,22 +133,22 @@ public class GUIGameInterface extends JPanel {
 			g.drawString("Score: " + game.getPlayer().getScore(), SCORE_LABEL_X, SCORE_LABEL_Y);
             
             g.setColor(Color.WHITE);
-            g.drawString("Level: " + GUIGameController.currentLevel, LEVEL_LABEL_X, LEVEL_LABEL_Y);
+            g.drawString("Level: " + curLevel, LEVEL_LABEL_X, LEVEL_LABEL_Y);
             
-            if(GUIGameController.currentLevel == 1) {
+            if(curLevel == 1) {
                 setBackground(Color.BLACK);
-            } else if (GUIGameController.currentLevel == 2)  {
+            } else if (curLevel == 2)  {
                 setBackground(new Color(8, 71, 173));
-            } else if (GUIGameController.currentLevel == 3)  {
+            } else if (curLevel == 3)  {
                 setBackground(new Color(96, 5, 99));
-            } else if (GUIGameController.currentLevel == 4)  {
+            } else if (curLevel == 4)  {
                 setBackground(new Color(209, 4, 103).darker());
-            } else if (GUIGameController.currentLevel == 5)  {
+            } else if (curLevel == 5)  {
                 setBackground(new Color(165, 17, 6));
             }
 		}
 		else {
-            if (GUIGameController.currentLevel == 6 && !game.playerIsDead()) {
+            if (game.getCurrentLevel() == 6 && !game.playerIsDead()) {
                 game.getPlayer().setHealth(100);
                 g.setColor(Color.GREEN);
                 g.setFont(new Font("Times New Roman", Font.PLAIN, 35));
@@ -158,11 +172,18 @@ public class GUIGameInterface extends JPanel {
 		}
 	}
 
+	
+	/**
+	 * gameOver is run when the player dies
+	 * brings up the players score, current highscore and updates the highscore
+	 * if higher than the current. also allows the player to play again by clicking
+	 * the 'play again' button.
+	 */
 	public void gameOver() {
         gameOver = true;
-        finalScore = game.getPlayer().getScore();
+        finalScore = game.getNewPlayer().getScore();
         setBackground(Color.BLACK);
-        if (GUIGameController.currentLevel != 6) {
+        if (game.getCurrentLevel() != 6) {
             playAgain.setVisible(true);
             playAgain.setEnabled(true);
         }
@@ -195,18 +216,26 @@ public class GUIGameInterface extends JPanel {
 		}
 	}
 
+	/**
+	 * starts a new game if the player selects play again.
+	 */
 	public void newGame() {
 		gameOver = false;
 		playAgain.setVisible(false);
 		playAgain.setEnabled(false);
 		frame.getContentPane().setCursor(blankCursor);
 	}
-
+	
+	/**
+	 * when a new game is run through the play again button
+	 * a new game is created and set to a new instance of the GUIGame
+	 * @param g the GUIGame that is being set as the latest instance of game.
+	 * This method has a privacy leak that is required as this class need to be
+	 * working with the same instance of GUIGame as Game
+	 */
 	public void setGame(GUIGame g) {
 		this.game = g;
 	}
+
     
-    public boolean getGameOver() {
-        return this.gameOver;
-    }
 }

@@ -13,41 +13,31 @@ import ca.ucalgary.projectiles.Projectile;
  *
  */
 public class GUIGame extends Game {
-	
+
 	public static final int SCREEN_WIDTH = 350;
 	public static final int SCREEN_HEIGHT = 500;
 
-/**
- * Constructor for testing
- */
-    public GUIGame(ArrayList<Enemy> enemies, ArrayList<Collectable> collectables, ArrayList<Projectile> projectiles, Player player) {
-        super(enemies, collectables, projectiles, player);
-    }
-/**
- * The main constructor for the GUIGame. Handles initialization 
- * of the board dimensions and the player,
- */
+	/**
+	 * Constructor for testing. Privacy leak is necessary for alerting lists during testing
+	 */
+	public GUIGame(ArrayList<Enemy> enemies, ArrayList<Collectable> collectables, ArrayList<Projectile> projectiles, Player player) {
+		super(enemies, collectables, projectiles, player);
+	}
+
+	/**
+	 * The main constructor for the GUIGame. Handles initialization 
+	 * of the board dimensions and the player,
+	 */
 	public GUIGame() {
 		super();
 
 		Player player = new Player(SCREEN_WIDTH/2, SCREEN_HEIGHT*7/8, Player.DEFAULT_GUI_WIDTH, Player.DEFAULT_GUI_HEIGHT, Player.DEFAULT_GUI_HEALTH);
-        
+
 
 		player.setMaxX(SCREEN_WIDTH);
 		player.setMaxY(SCREEN_HEIGHT);
-        
+
 		super.setPlayer(player);
-	}
-	
-	/**
-	 * Handles the set-up of the board through spawning
-	 * the initial enemies.
-	 */
-	public void initBoard() {
-		for(int i = 0; i < TextGame.ROWS-6; i++) {
-			Enemy enemy = new Enemy(i);
-			addEnemy(enemy);
-		}
 	}
 
 	/**
