@@ -300,32 +300,32 @@ public class Player implements Collidable, ActionListener {
 	}
 
 	/**
-	 * Gets the player's column value
-	 * @return player's column value
+	 * Gets the player's x value
+	 * @return player's x value
 	 */
 	public int getX() {
 		return x;
 	}
 
 	/**
-	 * Sets the player's column value
-	 * @param x New column value
+	 * Sets the player's x value
+	 * @param x New x value
 	 */
 	public void setX(int x) {
 		this.x = x;
 	}
 
 	/**
-	 * Gets the player's row value
-	 * @return Player's row value
+	 * Gets the player's y value
+	 * @return Player's y value
 	 */
 	public int getY() {
 		return y;
 	}
 
 	/**
-	 * Sets the player's row value
-	 * @param y New row value
+	 * Sets the player's y value
+	 * @param y New y value
 	 */
 	public void setY(int y) {
 		this.y = y;

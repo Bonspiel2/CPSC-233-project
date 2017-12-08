@@ -36,6 +36,7 @@ public class Main {
         	}
             
         }
+        
         else if (gameChoice == 2){
             GUIGameController guiGame = new GUIGameController();
         	System.out.println("You chose the GUI game! Control your ship using the mouse");
