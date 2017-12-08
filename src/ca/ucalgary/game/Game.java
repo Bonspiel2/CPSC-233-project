@@ -25,7 +25,7 @@ public abstract class Game {
 		projectiles = new ArrayList<Projectile>();
 		collectables = new ArrayList<Collectable>();
 
-		currentLevel = 5;
+		currentLevel = 1;
 	}
 
 	/**
