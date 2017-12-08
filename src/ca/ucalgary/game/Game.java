@@ -41,7 +41,7 @@ public abstract class Game {
 
 	/**
 	 * Constructor used for testing purposes that takes given lists of enemies,
-	 * projectiles, and collectables as parameters. This privacy leak is necessary to alter lists during testing
+	 * projectiles, and collectables as parameters. This privacy leak is necessary to alter lists for testing
 	 * @param enemies the ArrayList of enemies
 	 * @param projectiles the ArrayList of projectiles
 	 * @param collectables the ArrayList of collectables
@@ -71,7 +71,7 @@ public abstract class Game {
 				for (int enemyIndex = 0; enemyIndex < enemies.size() && !collided; enemyIndex++) {
 					Enemy e = enemies.get(enemyIndex);
 
-					if (((PlayerProjectile) p).collidedWith(new Enemy(e))) {
+					if (((PlayerProjectile) p).collidedWith(e)) {
 						collectables.add(e.createCollectable());
 						projectiles.remove(projIndex);
 						projIndex--;
@@ -81,7 +81,7 @@ public abstract class Game {
 					}
 				}
 			} else if (p instanceof EnemyProjectile) {
-				if (((EnemyProjectile) p).collidedWith(new Player(player))) {
+				if (((EnemyProjectile) p).collidedWith(player)) {
 					projectiles.remove(projIndex);
 					projIndex--;
 					int health = player.getHealth() - 1;
@@ -93,7 +93,7 @@ public abstract class Game {
 		// check collisions between collectables and player
 		for (Iterator<Collectable> collecItr = collectables.iterator(); collecItr.hasNext();) {
 			Collectable collec = collecItr.next();
-			if (collec.collidedWith(new Player(player))) {
+			if (player.collidedWith(collec)) {
 				collecItr.remove();
 			}
 		}
@@ -103,7 +103,7 @@ public abstract class Game {
 			Enemy enemy = enemyItr.next();
 
 			// decrease player health by one if collision occurs
-			if (enemy.collidedWith(new Player(player))) {
+			if (enemy.collidedWith(player)) {
 				int health = player.getHealth() - 1;
 				player.setHealth(health);
 				enemyItr.remove();
