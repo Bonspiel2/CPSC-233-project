@@ -7,6 +7,12 @@ import ca.ucalgary.game.TextGame;
 import java.awt.Color;
 import java.awt.Graphics;
 
+/**
+ * This class extends the collectable class. This is separate so 
+ * other classes know how to handle this specific collectable based
+ * on what collectable subclass the object pertains to.
+ *
+ */
 public class IncreasedFireRate extends Collectable {
 
     private static final String FIRERATE_SYMBOL = "%";
@@ -39,7 +45,7 @@ public class IncreasedFireRate extends Collectable {
 
     
     /**
-     * Draws the collectable to a graphics object, as a yellow "$"
+     * Draws the collectable to a graphics object, as an orange "%"
      * @param g the graphics object being drawn to
      */
     public void draw(Graphics g) {

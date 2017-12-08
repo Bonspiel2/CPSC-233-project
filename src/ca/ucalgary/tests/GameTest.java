@@ -159,23 +159,6 @@ public class GameTest {
     }
 
     /**
-     * Tests that projectile added if enemy can shoot
-     */
-    @Test
-    public void test_text_enemyShootAddsProjectile() {
-        Player player = new Player(1, 1, 5);
-        ArrayList<Enemy> enemies = new ArrayList<Enemy>(Arrays.asList(new Enemy(0,0)));
-        ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
-        ArrayList<Collectable> collectables = new ArrayList<Collectable>();
-        
-        TextGame game = new TextGame(enemies, collectables, projectiles, player);
-        game.enemiesShoot();
-        assertEquals("List of projectiles should have one element", 1, projectiles.size());
-	assertTrue("Projectile should be of type enemy projectile.", projectiles.get(0) instanceof EnemyProjectile);
-    }
-
-
-    /**
      * Tests to ensure arraylists of enemies, projectiles, and collectables are being created.
      */
     @Test
@@ -308,26 +291,5 @@ public class GameTest {
         game.enemiesShoot();
         assertEquals("List of projectiles should remain empty", 0, projectiles.size());
     }
-
-    /**
-     * Tests that projectile added if enemy can shoot
-     */
-    @Test
-    public void test_enemyShootAddsProjectile() {
-        Player player = new Player(1, 1, 5);
-        ArrayList<Enemy> enemies = new ArrayList<Enemy>(Arrays.asList(new Enemy(0,0)));
-        ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
-        ArrayList<Collectable> collectables = new ArrayList<Collectable>();
-        
-        GUIGame game = new GUIGame(enemies, collectables, projectiles, player);
-        game.enemiesShoot();
-        assertEquals("List of projectiles should have one element", 1, projectiles.size());
-	assertTrue("Projectile should be of type enemy projectile.", projectiles.get(0) instanceof EnemyProjectile);
-    }
-
-
-
-
-
 
 }

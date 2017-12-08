@@ -114,8 +114,7 @@ public class Enemy implements Collidable {
 	/**
 	 * Moves the enemy down one row towards the players ship and 
 	 * if it has reached the edge of the screen returns false
-	 * @return	The enemy's alive value to know whether to draw
-	 * it or not
+	 * @return	True if the enemy is still on the board
 	 */
 	public boolean move() {
 		boolean alive = true;
@@ -130,9 +129,9 @@ public class Enemy implements Collidable {
 	}
 
 	/**
-	 * Checks whether the player and enemy have collided i.e. they have 
+	 * Checks whether the enemy and a given collidable have collided i.e. they have 
 	 * the same x and y values
-	 * @param c The player object which collision is checked 
+	 * @param c The collidable object which collision is checked 
 	 * for with
 	 * @return True if it has collided, false if it has not
 	 */
@@ -158,11 +157,11 @@ public class Enemy implements Collidable {
 		Collectable collectable;
 		if(height != 0) {
 			if (decider == 2) {
-				collectable = new HealthCollectable(x,y,7,10);
+				collectable = new HealthCollectable(x,y,Collectable.DEFAULT_WIDTH, Collectable.DEFAULT_HEIGHT);
 			} else if (decider == 3) {
-				collectable = new IncreasedFireRate(x,y,7, 10);
+				collectable = new IncreasedFireRate(x,y,Collectable.DEFAULT_WIDTH, Collectable.DEFAULT_HEIGHT);
 			} else {
-				collectable = new Money(x,y, 7, 10);
+				collectable = new Money(x,y, Collectable.DEFAULT_WIDTH, Collectable.DEFAULT_HEIGHT);
 			}
 		}
 		else {
@@ -229,7 +228,7 @@ public class Enemy implements Collidable {
 	}
 
 	/**
-	 * Draws a red square as the enemy at its current x,y,width and height
+	 * Draws enemy picture or red square as the enemy at its current x,y,width and height
 	 * @param g the graphics object being drawn to
 	 */
 	public void draw(Graphics g) {
@@ -249,6 +248,10 @@ public class Enemy implements Collidable {
 		return hasAShot;
 	}
 
+	/**
+	 * Adds or removes enemy shot
+	 * @param true if enemy has another shot, false otherwise
+	 */
 	public void setHasAShot(boolean shot) {
 		this.hasAShot = shot;
 	}
