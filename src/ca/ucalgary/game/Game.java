@@ -41,7 +41,7 @@ public abstract class Game {
 
 	/**
 	 * Constructor used for testing purposes that takes given lists of enemies,
-	 * projectiles, and collectables as parameters.
+	 * projectiles, and collectables as parameters. This privacy leak is necessary to alter lists during testing
 	 * @param enemies the ArrayList of enemies
 	 * @param projectiles the ArrayList of projectiles
 	 * @param collectables the ArrayList of collectables
