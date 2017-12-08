@@ -43,6 +43,14 @@ public class Money extends Collectable {
     }
     
     /**
+     * Copy Constructor
+     * @param m Object to copy
+     */
+    public Money(Money m) {
+    	super(m);
+    }
+    
+    /**
      * Prints the character '$' at the current X and Y
      * value on the array list that is the game board.
      * @param board array list that is the game board.

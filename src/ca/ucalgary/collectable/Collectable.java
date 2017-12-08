@@ -69,6 +69,21 @@ public abstract class Collectable implements Collidable{
 	}
 	
 	/**
+	 * Copy Constructor
+	 * @param c Collectable to copy
+	 */
+	public Collectable(Collectable c) {
+		this.x = c.getX();
+		this.y = c.getY();
+		
+		this.width = c.getWidth();
+		this.height = c.getHeight();
+		
+		this.maxX = c.getMaxX();
+		this.maxY = c.getMaxY();
+	}
+	
+	/**
 	 * Checks whether the collectable and a given collidable have collided
 	 * i.e. they have the same x and y values
 	 * @param c The collidable object
@@ -182,4 +197,8 @@ public abstract class Collectable implements Collidable{
 	 * @param g the graphics object being drawn to
 	 */
     public abstract void draw(Graphics g);
+
+	public int getMaxX() {
+		return maxX;
+	}
 }

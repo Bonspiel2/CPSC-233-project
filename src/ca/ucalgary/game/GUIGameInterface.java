@@ -160,7 +160,7 @@ public class GUIGameInterface extends JPanel {
 
 	public void gameOver() {
         gameOver = true;
-        finalScore = game.getPlayer().getScore();
+        finalScore = game.getNewPlayer().getScore();
         setBackground(Color.BLACK);
         if (game.getCurrentLevel() != 6) {
             playAgain.setVisible(true);

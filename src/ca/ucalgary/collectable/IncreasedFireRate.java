@@ -42,6 +42,14 @@ public class IncreasedFireRate extends Collectable {
     public IncreasedFireRate(int x, int y, int width, int height) {
         super(x, y, width, height, GUIGame.SCREEN_WIDTH, GUIGame.SCREEN_HEIGHT);
     }
+    
+    /**
+     * Copy Constructor
+     * @param i Object to copy
+     */
+    public IncreasedFireRate(IncreasedFireRate i) {
+    	super(i);
+    }
 
     
     /**

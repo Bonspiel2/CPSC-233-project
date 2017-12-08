@@ -109,6 +109,7 @@ public class Enemy implements Collidable {
 	 */
 	public Enemy(Enemy e) {
 		this(e.getX(), e.getY(), e.getWidth(), e.getHeight(), e.getMaxX(), e.getMaxY());
+		this.hasAShot = e.getHasAShot();
 	}
 
 	/**

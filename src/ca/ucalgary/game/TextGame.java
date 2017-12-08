@@ -129,7 +129,7 @@ public class TextGame extends Game {
 		ArrayList<Enemy> enemies = getEnemies();
 		ArrayList<Projectile> projectiles = getProjectiles();
 		ArrayList<Collectable> collectables = getCollectables();
-		Player player = getPlayer();
+		Player player = getNewPlayer();
 
 		player.draw(board);
 

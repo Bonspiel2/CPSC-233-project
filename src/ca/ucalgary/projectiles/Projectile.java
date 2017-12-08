@@ -76,6 +76,20 @@ public abstract class Projectile implements Collidable {
         }
         
     }
+    
+    /**
+     * Copy Constructor
+     * @param p Object to copy
+     */
+    public Projectile(Projectile p) {
+    	this.x = p.getX();
+    	this.y = p.getY();
+    	this.maxX = p.getMaxX();
+    	this.maxY = p.getMaxY();
+    	this.width = p.getWidth();
+    	this.height = p.getHeight();
+    	this.velocity = DEFAULT_VELOCITY;
+    }
 
 
 

@@ -27,9 +27,8 @@ public class HealthCollectable extends Collectable {
     public HealthCollectable(int x, int y) {
         super(x, y, TextGame.COLUMNS, TextGame.ROWS);
     }
-    
-    
-    /**
+
+	/**
      * Collectable constructor for the GUI version of the game, 
      * initializes all variables that are needed when a collectable is created.
      * @param x, x coordinate of the collectable
@@ -41,6 +40,14 @@ public class HealthCollectable extends Collectable {
     public HealthCollectable(int x, int y, int width, int height) {
         super(x, y, width, height, GUIGame.SCREEN_WIDTH, GUIGame.SCREEN_HEIGHT);
     }
+    
+    /**
+     * Copy Constructor
+	 * @param c Object to copy
+	 */
+	public HealthCollectable(HealthCollectable c) {
+		super(c);
+	}
     
     /**
      * Prints the character '+' at the current X and Y

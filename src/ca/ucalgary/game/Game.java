@@ -4,11 +4,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import ca.ucalgary.collectable.Collectable;
+import ca.ucalgary.collectable.HealthCollectable;
+import ca.ucalgary.collectable.IncreasedFireRate;
+import ca.ucalgary.collectable.Money;
 import ca.ucalgary.enemy.Enemy;
 import ca.ucalgary.player.Player;
 import ca.ucalgary.projectiles.EnemyProjectile;
 import ca.ucalgary.projectiles.PlayerProjectile;
 import ca.ucalgary.projectiles.Projectile;
+
+/**
+ * Game implements the framework for a space shooter game.
+ */
 
 public abstract class Game {
 
@@ -20,6 +27,10 @@ public abstract class Game {
 
 	private int currentLevel;
 
+	/**
+	 * Default Contructor
+	 * initializes lists and current level
+	 */
 	public Game() {
 		enemies = new ArrayList<Enemy>();
 		projectiles = new ArrayList<Projectile>();
@@ -60,7 +71,7 @@ public abstract class Game {
 				for (int enemyIndex = 0; enemyIndex < enemies.size() && !collided; enemyIndex++) {
 					Enemy e = enemies.get(enemyIndex);
 
-					if (((PlayerProjectile) p).collidedWith(e)) {
+					if (((PlayerProjectile) p).collidedWith(new Enemy(e))) {
 						collectables.add(e.createCollectable());
 						projectiles.remove(projIndex);
 						projIndex--;
@@ -70,7 +81,7 @@ public abstract class Game {
 					}
 				}
 			} else if (p instanceof EnemyProjectile) {
-				if (((EnemyProjectile) p).collidedWith(player)) {
+				if (((EnemyProjectile) p).collidedWith(new Player(player))) {
 					projectiles.remove(projIndex);
 					projIndex--;
 					int health = player.getHealth() - 1;
@@ -82,7 +93,7 @@ public abstract class Game {
 		// check collisions between collectables and player
 		for (Iterator<Collectable> collecItr = collectables.iterator(); collecItr.hasNext();) {
 			Collectable collec = collecItr.next();
-			if (player.collidedWith(collec)) {
+			if (collec.collidedWith(new Player(player))) {
 				collecItr.remove();
 			}
 		}
@@ -92,7 +103,7 @@ public abstract class Game {
 			Enemy enemy = enemyItr.next();
 
 			// decrease player health by one if collision occurs
-			if (enemy.collidedWith(player)) {
+			if (enemy.collidedWith(new Player(player))) {
 				int health = player.getHealth() - 1;
 				player.setHealth(health);
 				enemyItr.remove();
@@ -148,7 +159,7 @@ public abstract class Game {
 		}
 	}
 	/**
-	 * Causes an enemy to fire a projectile.
+	 * Causes enemies to fire projectiles.
 	 */
 	public void enemiesShoot() {
 		for (Enemy enemy : enemies) {
@@ -174,7 +185,13 @@ public abstract class Game {
 	 * @return enemies the ArrayList of enemies
 	 */
 	public ArrayList<Enemy> getEnemies() {
-		return enemies;
+		ArrayList<Enemy> returnList = new ArrayList<Enemy>();
+
+		for (Enemy e : enemies) {
+			returnList.add(new Enemy(e));
+		}
+
+		return returnList;
 	}
 
 	/**
@@ -182,7 +199,19 @@ public abstract class Game {
 	 * @return collectables the ArrayList of collectables
 	 */
 	public ArrayList<Collectable> getCollectables() {
-		return collectables;
+		ArrayList<Collectable> returnList = new ArrayList<Collectable>();
+
+		for (Collectable c : collectables) {
+			if (c instanceof HealthCollectable) {
+				returnList.add(new HealthCollectable((HealthCollectable) c));
+			} else if (c instanceof IncreasedFireRate) {
+				returnList.add(new IncreasedFireRate((IncreasedFireRate) c));
+			} else if (c instanceof Money) {
+				returnList.add(new Money((Money) c));
+			}
+		}
+
+		return returnList;
 	}
 
 	/**
@@ -190,11 +219,22 @@ public abstract class Game {
 	 * @return projectiles the ArrayList of projectiles
 	 */
 	public ArrayList<Projectile> getProjectiles() {
-		return projectiles;
+		ArrayList<Projectile> returnList = new ArrayList<Projectile>();
+
+		for (Projectile p : projectiles) {
+			if (p instanceof PlayerProjectile) {
+				returnList.add(new PlayerProjectile((PlayerProjectile) p));
+			} else if (p instanceof EnemyProjectile) {
+				returnList.add(new EnemyProjectile((EnemyProjectile) p));
+			}
+		}
+
+		return returnList;
 	}
 
 	/** 
-	 * Retrieves the player object
+	 * Retrieves the player object. This privacy leak is necessary so the motion listener 
+	 * can move the current player.
 	 * @return player the current player
 	 */
 	protected Player getPlayer() {
@@ -210,10 +250,10 @@ public abstract class Game {
 	}
 
 	/**
-	 * Sets the player
+	 * Sets the player. This privacy leak is necessary so the subclasses can pass in a specific object
 	 * @param player the given player to set
 	 */
-	public void setPlayer(Player player) {
+	protected void setPlayer(Player player) {
 		this.player = player;
 	}
 
