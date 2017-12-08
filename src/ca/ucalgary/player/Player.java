@@ -32,23 +32,24 @@ import java.awt.event.ActionListener;
  * @author Cole
  */
 public class Player implements Collidable, ActionListener {
-	
+
 	public static final int DEFAULT_GUI_WIDTH = 32;
 	public static final int DEFAULT_GUI_HEIGHT = 32;
-	
+
 	public static final int DEFAULT_TEXT_HEALTH = 5;
 	public static final int DEFAULT_GUI_HEALTH = 10;
 
 	private static final int TEXT_DIMENSION = 0;
 	private static final double DEFAULT_FIRE_RATE = 0.5;
-    
-    private static final double INCREASED_FIRE_RATE = 0.8;
-    
+
+	private static final double GUI_INCREASED_FIRE_RATE = 0.8;
+	private static final double TEXT_INCREASED_FIRE_RATE = 1;
+
 	private static final double DEFAULT_TEXT_FIRE_COUNT = 6;
 	private static final double DEFAULT_GUI_FIRE_COUNT = 100;
-	
+
 	private static final String PLAYER_SYMBOL = "A";
-	
+
 	private static final int PLAYER_TEXT_SPEED = 1;
 
 	private int x;
@@ -66,10 +67,11 @@ public class Player implements Collidable, ActionListener {
 	private double firerate;
 	private double fireCount;
 	private double fireTimer;
-    
-    private BufferedImage img;
-    
-    private Timer fireRateTimer;
+
+	private BufferedImage img;
+
+	private Timer guiFireRateTimer;
+	private int textFireRateTimer;
 
 
 	/**
@@ -81,14 +83,14 @@ public class Player implements Collidable, ActionListener {
 	 */
 	public Player(int x, int y, int health) {
 		this(x, y, TEXT_DIMENSION,TEXT_DIMENSION, health,
-             DEFAULT_FIRE_RATE, DEFAULT_TEXT_FIRE_COUNT,
-             TextGame.COLUMNS, TextGame.ROWS);
-        
+				DEFAULT_FIRE_RATE, DEFAULT_TEXT_FIRE_COUNT,
+				TextGame.COLUMNS, TextGame.ROWS);
+
 	}
 
 	/**
 	 * Main constructor for GUI game. Initializes with given x, y, width, height, 
-     * and health as well as 0.5 firerate, and 100 fireCount
+	 * and health as well as 0.5 firerate, and 100 fireCount
 	 * @param x new player's column value
 	 * @param y new player's row value
 	 * @param width new player's width
@@ -97,11 +99,11 @@ public class Player implements Collidable, ActionListener {
 	 */
 	public Player(int x, int y, int width, int height, int health) {
 		this(x, y, width, height, health,
-             DEFAULT_FIRE_RATE, DEFAULT_GUI_FIRE_COUNT,
-             GUIGame.SCREEN_WIDTH, GUIGame.SCREEN_HEIGHT);
+				DEFAULT_FIRE_RATE, DEFAULT_GUI_FIRE_COUNT,
+				GUIGame.SCREEN_WIDTH, GUIGame.SCREEN_HEIGHT);
 
 	}
-	
+
 	/**
 	 * Main constructor
 	 * @param x
@@ -125,22 +127,26 @@ public class Player implements Collidable, ActionListener {
 		this.health = health;
 		this.initialHealth = health;
 		this.score = 0;
-		
+
 		this.maxX = maxX;
 		this.maxY = maxY;
 
 		this.firerate = firerate;
 		this.fireCount = fireCount;
 		fireTimer = fireCount * (1-firerate);
-        
-        try {
-            img = ImageIO.read(Player.class.getResourceAsStream("/ca/ucalgary/lib/PlayerShip.png"));
-        } catch (IOException e) {
-            System.out.println("Could not load player image.");
-        }
 
+		try {
+			img = ImageIO.read(Player.class.getResourceAsStream("/ca/ucalgary/lib/PlayerShip.png"));
+		} catch (IOException e) {
+			System.out.println("Could not load player image.");
+		}
+
+		this.guiFireRateTimer = new Timer(1,this);
+		guiFireRateTimer.stop();
+		
+		this.textFireRateTimer = 0;
 	}
-	
+
 	/**
 	 * Copy Constructor
 	 * @param p Player to copy
@@ -150,10 +156,10 @@ public class Player implements Collidable, ActionListener {
 		this.y = p.getY();
 		this.width = p.getWidth();
 		this.height = p.getHeight();
-		
+
 		this.maxX = p.getMaxX();
 		this.maxY = p.getMaxY();
-		
+
 		this.health = p.getHealth();
 		this.initialHealth = p.getInitialHealth();
 		this.score = p.getScore();
@@ -161,7 +167,7 @@ public class Player implements Collidable, ActionListener {
 		this.firerate = p.getFirerate();
 		this.fireCount = p.getFireCount();
 		this.fireTimer = p.getFireTimer();
-   
+
 	}
 
 
@@ -188,6 +194,12 @@ public class Player implements Collidable, ActionListener {
 				y+= PLAYER_TEXT_SPEED;
 			}
 		}
+		
+		textFireRateTimer--;
+		
+		if (textFireRateTimer <= 0) {
+			firerate = DEFAULT_FIRE_RATE;
+		}
 	}
 
 	/**
@@ -205,34 +217,40 @@ public class Player implements Collidable, ActionListener {
 		int ch = c.getHeight();
 
 		if (cx + cw >= x && cx <= (x + width) && cy + ch >= y && cy <= y + height ) {
-            if (!GUIGameInterface.gameOver) {
-            if (c instanceof Money) {
-                score++;
-            } else if (c instanceof HealthCollectable) {
-                score++;
-                if (health + 1 <= initialHealth) {
-                    health++;
-                }
-            } else if (c instanceof IncreasedFireRate) {
-                score++;
-                this.firerate = INCREASED_FIRE_RATE;
-                fireRateTimer = new Timer(5000, this);
-                fireRateTimer.setActionCommand("FIRERATE");
-                fireRateTimer.start();
-            }
-			collided = true;
-            }
+			if (!GUIGameInterface.gameOver) {
+				if (c instanceof Money) {
+					score++;
+				} else if (c instanceof HealthCollectable) {
+					score++;
+					if (health + 1 <= initialHealth) {
+						health++;
+					}
+				} else if (c instanceof IncreasedFireRate) {
+					score++;
+					if (width!=0) {
+						guiFireRateTimer.stop();
+						this.firerate = GUI_INCREASED_FIRE_RATE;
+						guiFireRateTimer = new Timer(4000, this);
+						guiFireRateTimer.setActionCommand("FIRERATE");
+						guiFireRateTimer.start();
+					} else {
+						this.firerate = TEXT_INCREASED_FIRE_RATE;
+						textFireRateTimer = 5;
+					}
+				}
+				collided = true;
+			}
 		}
 
 		return collided;
 	}
-    
-    public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("FIRERATE")) {
-            fireRateTimer.stop();
-            this.firerate = DEFAULT_FIRE_RATE;
-        }
-    }
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getActionCommand().equals("FIRERATE")) {
+			guiFireRateTimer.stop();
+			this.firerate = DEFAULT_FIRE_RATE;
+		}
+	}
 
 	/**
 	 * Creates a projectile when the player's cooldown is at 0
@@ -266,20 +284,20 @@ public class Player implements Collidable, ActionListener {
 	 * Draws the projectile for the GUI Game.
 	 * @param g the current GUI graphics object.
 	 */
-    public void draw(Graphics g) {
-        if (img != null) {
-            g.drawImage(img, x, y, null);
-            
-        } else {
-            g.setColor(Color.CYAN);
-            g.fillOval(x, y, width, height);
-        }
-        g.setColor(Color.RED);
-        g.fillRect(x, y + height + 5, width, 5);
-        g.setColor(Color.GREEN);
-        g.fillRect(x, y + height + 5, (int)(width * ((double)health/(double)initialHealth)), 5);
+	public void draw(Graphics g) {
+		if (img != null) {
+			g.drawImage(img, x, y, null);
 
-    }
+		} else {
+			g.setColor(Color.CYAN);
+			g.fillOval(x, y, width, height);
+		}
+		g.setColor(Color.RED);
+		g.fillRect(x, y + height + 5, width, 5);
+		g.setColor(Color.GREEN);
+		g.fillRect(x, y + height + 5, (int)(width * ((double)health/(double)initialHealth)), 5);
+
+	}
 
 	/**
 	 * Gets the player's column value
@@ -326,11 +344,9 @@ public class Player implements Collidable, ActionListener {
 	 * @param health New health value
 	 */
 	public void setHealth(int health) {
-        if (health >= 0) {
-            this.health = health;
-        } else {
-            this.health = this.health;
-        }
+		if (health >= 0) {
+			this.health = health;
+		}
 	}
 
 	/**
@@ -348,7 +364,7 @@ public class Player implements Collidable, ActionListener {
 	public void setMaxX(int max) {
 		this.maxX = max;
 	}
-	
+
 	/**
 	 * Sets the player's maxY value
 	 * @param max the new maxY value
@@ -356,7 +372,7 @@ public class Player implements Collidable, ActionListener {
 	public void setMaxY(int max) {
 		this.maxY = max;
 	}
-	
+
 	/**
 	 * Gets the player's width 
 	 * @return width the player's width
@@ -372,7 +388,7 @@ public class Player implements Collidable, ActionListener {
 	public void setWidth(int width) {
 		this.width = width;
 	}
-	
+
 	/**
 	 * Gets the player's height 
 	 * @return height the players height
@@ -380,7 +396,7 @@ public class Player implements Collidable, ActionListener {
 	public int getHeight() {
 		return height;
 	}
-	
+
 	/**
 	 * Sets the player's height value
 	 * @param height the player's height value
@@ -388,7 +404,7 @@ public class Player implements Collidable, ActionListener {
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	
+
 	/**
 	 * Gets the player's firerate
 	 * @return firerate The player's firerate

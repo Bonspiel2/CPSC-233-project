@@ -168,6 +168,8 @@ public class Enemy implements Collidable {
 		else {
 			if (decider == 2) {
 				collectable = new HealthCollectable(x,y);
+			} else if (decider == 3) {
+				collectable = new IncreasedFireRate(x,y);
 			} else {
 				collectable = new Money(x,y);
 			}

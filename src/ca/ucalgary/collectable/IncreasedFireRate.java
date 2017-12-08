@@ -2,6 +2,7 @@
 package ca.ucalgary.collectable;
 
 import ca.ucalgary.game.GUIGame;
+import ca.ucalgary.game.TextGame;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -9,6 +10,19 @@ import java.awt.Graphics;
 public class IncreasedFireRate extends Collectable {
 
     private static final String FIRERATE_SYMBOL = "%";
+    
+    /**
+     * Collectable constructor for the TextBased version of the game, 
+     * initializes all variables that are needed when a collectable is created.
+     * @param x, x coordinate of the collectable
+     * @param y, y coordinate of the collectable
+     * @param maxY, the farthest down a collectable can travel before being removed
+     */
+    public IncreasedFireRate(int x, int y) {
+        super(x, y, TextGame.COLUMNS, TextGame.ROWS);
+    }
+    
+    
     
     /**
      * Collectable constructor for the GUI version of the game,
@@ -35,9 +49,12 @@ public class IncreasedFireRate extends Collectable {
     }
     
     /**
-     * Collectable not used in text game.
+     * Prints the character '%' at the current X and Y
+     * value on the array list that is the game board.
+     * @param board array list that is the game board.
      */
     public void draw(String[][] board) {
+        board[getY()][getX()] = FIRERATE_SYMBOL;
     }
 
     
