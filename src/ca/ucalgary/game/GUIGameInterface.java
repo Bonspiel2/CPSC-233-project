@@ -35,7 +35,7 @@ public class GUIGameInterface extends JPanel {
 	private static final int SCORE_LABEL_X = 10;
 	private static final int SCORE_LABEL_Y = 15;
 	
-	private static final int LEVEL_LABEL_X = 290;
+	private static final int LEVEL_LABEL_X = 280;
 	private static final int LEVEL_LABEL_Y = 15;
     
     public static boolean gameOver;
