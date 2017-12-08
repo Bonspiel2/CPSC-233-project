@@ -84,7 +84,7 @@ public class TextGame extends Game {
 				int finalScore = getPlayer().getScore();
 				int displayScore;
 				try {
-		            FileReader reader = new FileReader("src/lib/HighScore.txt");
+		            FileReader reader = new FileReader("HighScore.txt");
 		            BufferedReader buffReader = new BufferedReader(reader);
 		            String line = buffReader.readLine();
 		            highScore = Integer.parseInt(line);
@@ -98,7 +98,7 @@ public class TextGame extends Game {
 		        if (finalScore > highScore) {
 		            displayScore = finalScore;
 		            try {
-		                FileWriter writer = new FileWriter("src/lib/HighScore.txt", false);
+		                FileWriter writer = new FileWriter("HighScore.txt", false);
 		                BufferedWriter buffWriter = new BufferedWriter(writer);
 		                buffWriter.write(Integer.toString(finalScore));
 		                buffWriter.close();
